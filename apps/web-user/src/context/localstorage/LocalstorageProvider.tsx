@@ -47,7 +47,10 @@ export function LocalstorageProvider({
     Run the local storage setup only once to determine the state of the storage
     and set any defaults
    */
+  // strictly run once
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const initialLocalstorage = useMemo(() => setUpLocalstorage(testing), []);
+
   /*
     From here on out any local storage data should be read from data to keep everything in sync.
     It is provided to the whole app with context.

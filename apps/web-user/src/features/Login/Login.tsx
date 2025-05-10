@@ -58,7 +58,7 @@ export function Login () {
     if (user) {
       navigateUserHome(user)
     }
-  }, [user])
+  }, [user, navigateUserHome])
 
   return (
     <AccountCard>

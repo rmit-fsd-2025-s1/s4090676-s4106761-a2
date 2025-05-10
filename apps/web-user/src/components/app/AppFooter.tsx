@@ -1,4 +1,5 @@
 import styled from "@emotion/styled"
+import Link from "next/link"
 
 const Footer = styled.footer`
     background-color: indigo;
@@ -16,9 +17,9 @@ export function AppFooter() {
         <p>© {currentYear} LiRon CORP</p>
         <nav className="footer-links">
           {/* FIXME */}
-          <a href="/contact">Privacy Policy | </a>
-          <a href="/contact">Terms of Service | </a>
-          <a href="/contact">Contact Us </a>
+          <Link href="/contact">Privacy Policy | </Link>
+          <Link href="/contact">Terms of Service | </Link>
+          <Link href="/contact">Contact Us </Link>
         </nav>
       </Footer>
     </>

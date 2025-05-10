@@ -62,6 +62,7 @@ export default function Home() {
           {/* Lecturer Section */}
           <Box textAlign="center">
             <img
+              width={600}
               src="/lecturer.jpg"
               alt="Lecturer teaching"
               style={{

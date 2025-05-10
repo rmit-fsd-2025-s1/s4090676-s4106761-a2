@@ -26,6 +26,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@repo/eslint-config": "*",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",

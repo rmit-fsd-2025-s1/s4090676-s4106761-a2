@@ -1,7 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "@/components/ui/provider";
-import { Card, CardHeader } from "@chakra-ui/react";
 import FittedPopover from "../FittedPopover";
 
 describe("Home page", () => {
