@@ -1,9 +1,9 @@
 import { RoutedTabs } from "@/components/RoutedTabs"
-import { Applications } from "@/pages/lecturer/Applications"
+import { Applications } from "@/features/LecturerHome/Applications"
 import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
 import { AccountType } from "@/context/localstorage/enums"
 import { ReactNode } from "react"
-import { Courses } from "@/pages/lecturer/Courses"
+import { Courses } from "@/features/LecturerHome/Courses"
 
 export default function LecturerRouteRoot({
   children,

@@ -1,19 +1,17 @@
 import { describe, expect, test } from "vitest"
 import { render, screen } from "@testing-library/react"
+import Home from "../pages"
 import { Provider } from "@/components/ui/provider"
-import { Card, CardHeader } from "@chakra-ui/react"
 
 describe("Home page", () => {
   test("Title appears on page", () => {
     render(
       <Provider>
-        <Card.Root>
-          <CardHeader>Hi I am a header</CardHeader>
-        </Card.Root>
+        <Home />
       </Provider>
     )
 
-    const text = screen.getByText(/Hi I am a header/i)
+    const text = screen.getByText(/Tutor Matching made easy/i)
 
     expect(text).toBeDefined()
   })

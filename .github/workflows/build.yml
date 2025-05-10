@@ -1,0 +1,22 @@
+name: Builds
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  user-website:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run build
+        run: npm run build -w web-user

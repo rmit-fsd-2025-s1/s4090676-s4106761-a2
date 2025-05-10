@@ -10,7 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { CardHeader } from "@/components/CardHeader"
-import { stackProps } from "@/pages/tutor/Dashboard"
+import { stackProps } from "@/features/TutorHome/Dashboard"
 import { useStore } from "@/hooks/localstorage/useStore"
 import {
   ApplicationStatus,

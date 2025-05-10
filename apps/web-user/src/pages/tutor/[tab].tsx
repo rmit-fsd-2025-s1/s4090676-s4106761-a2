@@ -1,5 +1,5 @@
 import { RoutedTabs } from "@/components/RoutedTabs"
-import { Dashboard } from "@/pages/tutor/Dashboard"
+import { Dashboard } from "@/features/TutorHome/Dashboard"
 import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
 import { AccountType } from "@/context/localstorage/enums"
 
