@@ -1,7 +1,21 @@
-console.log('i ran')
+import express from "express"
+import cors from "cors"
 
-function example(e: number) {
-  return "yep"
-}
+const app = express()
+const PORT = process.env.PORT || 3001
 
-example(3)
+app.use(
+  cors({
+    origin: "http://localhost",
+  })
+)
+
+app.use(express.json())
+
+app.post("/example", async (req, res) => {
+  res.status(200).json(JSON.stringify(req.body))
+})
+
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`)
+})
