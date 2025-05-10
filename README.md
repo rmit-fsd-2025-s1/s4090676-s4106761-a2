@@ -11,7 +11,7 @@ Files are arranged in a monorepo structure. Please find a `README.md` at the roo
 ### To set up the project for evaluation and development
 
 These operations install dependencies of all apps and modules, add pre commit hooks mentioned below and
-stops the user from committing any changes to apps/server-user/.env
+stops the user from committing any changes to `apps/server-user/.env`
 
 ```shell
 npm i && npx simple-git-hooks && git update-index --skip-worktree apps/server-user/.env
@@ -19,8 +19,12 @@ npm i && npx simple-git-hooks && git update-index --skip-worktree apps/server-us
 
 ### To start all the development servers at the same time use
 
+> [!IMPORTANT]  
+> Fill out your database details in advance at `apps/server-user/.env`
+
 ```shell
-: # user-web now at http://localhost:3000
+: # web-user now at http://localhost:3000
+: # server-user now at http://localhost:3001
 npm run dev
 ```
 
