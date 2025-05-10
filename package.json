@@ -5,7 +5,11 @@
     "packages/*",
     "apps/*"
   ],
-  "scripts": {},
+  "scripts": {
+    "lint": "npm run lint --workspaces --if-present -- --fix",
+    "dev": "(trap 'kill 0' SIGINT; npm run dev -w server-user & npm run dev -w web-user)",
+    "type-check": "npm run type-check --workspaces --if-present"
+  },
   "devDependencies": {
     "pretty-quick": "^4.1.1",
     "simple-git-hooks": "^2.13.0",
@@ -16,6 +20,6 @@
     "node": "22.15.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm run lint-staged --workspaces --if-present"
+    "pre-commit": "npm run lint && npm run type-check"
   }
 }

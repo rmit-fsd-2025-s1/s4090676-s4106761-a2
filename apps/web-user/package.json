@@ -10,7 +10,8 @@
     "lint": "next lint",
     "watchTypes": "tsc --noEmit --incremental",
     "test": "vitest",
-    "lint-staged": "pretty-quick --staged"
+    "lint-staged": "pretty-quick --staged",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.15.0",
