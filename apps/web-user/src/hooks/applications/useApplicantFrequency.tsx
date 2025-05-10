@@ -1,7 +1,7 @@
-import { Application, UUID } from "@/context/localstorage/types";
-import { useStore } from "@/hooks/localstorage/useStore";
-import { useMemo } from "react";
-import { ApplicationStatus } from "@/context/localstorage/enums";
+import { Application, UUID } from "@/context/localstorage/types"
+import { useStore } from "@/hooks/localstorage/useStore"
+import { useMemo } from "react"
+import { ApplicationStatus } from "@/context/localstorage/enums"
 
 /**
  * Get how frequently an application has been accepted
@@ -11,32 +11,32 @@ import { ApplicationStatus } from "@/context/localstorage/enums";
  * @returns [tutorAcceptedFrequency, floatPercent]
  */
 export function useApplicantFrequency(
-  targetTutor: UUID,
+  targetTutor: UUID
 ): [number, number, Application[]] {
-  const [applications] = useStore("applications");
+  const [applications] = useStore("applications")
 
   const applicantHistory = useMemo(() => {
-    const frequencies: { [tutor: UUID]: Application[] } = {};
+    const frequencies: { [tutor: UUID]: Application[] } = {}
     applications.forEach((application: Application) => {
       if (application.status === ApplicationStatus.ACCEPTED) {
-        const records = frequencies[application.tutorId];
-        if (records) records.push(application);
-        else frequencies[application.tutorId] = [application];
+        const records = frequencies[application.tutorId]
+        if (records) records.push(application)
+        else frequencies[application.tutorId] = [application]
       }
-    });
-    return frequencies;
-  }, [applications]);
+    })
+    return frequencies
+  }, [applications])
 
   // if there is no entries for an applicant set it to 0
-  const targetFrequency = applicantHistory[targetTutor]?.length ?? 0;
+  const targetFrequency = applicantHistory[targetTutor]?.length ?? 0
   // if there are no entries in the system divide by 1
   const targetFrequencyFloat =
     targetFrequency /
-    (Math.max(...Object.values(applicantHistory).map((as) => as.length)) ?? 1);
+    (Math.max(...Object.values(applicantHistory).map((as) => as.length)) ?? 1)
 
   return [
     targetFrequency,
     targetFrequencyFloat,
     applicantHistory[targetTutor] ?? [],
-  ];
+  ]
 }

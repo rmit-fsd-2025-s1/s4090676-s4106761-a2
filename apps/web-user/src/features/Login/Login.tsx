@@ -1,19 +1,19 @@
-import { Card } from "@chakra-ui/react";
-import { AccountTypePicker } from "@/components/accounts/AccountTypePicker";
-import { Password } from "@/components/hookform/Password";
-import { AccountCard } from "@/components/accounts/AccountCard";
-import { FieldSet } from "@/components/FieldSet";
-import { CardHeader } from "@/components/CardHeader";
-import { ZodForm } from "@/components/hookform/ZodForm";
-import { z } from "zod";
-import { AccountType } from "@/context/localstorage/enums";
-import { TextInput } from "@/components/hookform/TextInput";
-import { AccountCardControls } from "@/components/accounts/AccountCardControls";
-import { useLogin } from "@/hooks/user/useLogin";
-import { toaster } from "@/components/ui/toaster";
-import { useUser } from "@/hooks/localstorage/useUser";
-import { useEffect } from "react";
-import useRedirectUserPage from "@/hooks/user/useRedirectUserPage";
+import { Card } from "@chakra-ui/react"
+import { AccountTypePicker } from "@/components/accounts/AccountTypePicker"
+import { Password } from "@/components/hookform/Password"
+import { AccountCard } from "@/components/accounts/AccountCard"
+import { FieldSet } from "@/components/FieldSet"
+import { CardHeader } from "@/components/CardHeader"
+import { ZodForm } from "@/components/hookform/ZodForm"
+import { z } from "zod"
+import { AccountType } from "@/context/localstorage/enums"
+import { TextInput } from "@/components/hookform/TextInput"
+import { AccountCardControls } from "@/components/accounts/AccountCardControls"
+import { useLogin } from "@/hooks/user/useLogin"
+import { toaster } from "@/components/ui/toaster"
+import { useUser } from "@/hooks/localstorage/useUser"
+import { useEffect } from "react"
+import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
 
 const schema = z
   .object({
@@ -23,33 +23,33 @@ const schema = z
       .string()
       .min(8, "Please enter a password of at least 8 characters"),
   })
-  .required();
+  .required()
 
-type Schema = z.infer<typeof schema>;
+type Schema = z.infer<typeof schema>
 
 const formDefaults = {
   type: AccountType.TUTOR,
-};
+}
 
 export function Login() {
-  const login = useLogin();
-  const navigateUserHome = useRedirectUserPage();
-  const [user] = useUser();
+  const login = useLogin()
+  const navigateUserHome = useRedirectUserPage()
+  const [user] = useUser()
 
   const handleLogin = (formData: Schema) => {
     const result = login({
       type: formData.type,
       email: formData.Email,
       password: formData.Password,
-    });
+    })
 
     if (!result) {
       toaster.create({
         description: "No user found! Please try again",
         type: "error",
-      });
+      })
     }
-  };
+  }
 
   /**
    * If there is already an authenticated user set, and they come to the login page,
@@ -57,9 +57,9 @@ export function Login() {
    */
   useEffect(() => {
     if (user) {
-      navigateUserHome(user);
+      navigateUserHome(user)
     }
-  }, [user, navigateUserHome]);
+  }, [user, navigateUserHome])
 
   return (
     <AccountCard>
@@ -75,5 +75,5 @@ export function Login() {
         <AccountCardControls />
       </ZodForm>
     </AccountCard>
-  );
+  )
 }

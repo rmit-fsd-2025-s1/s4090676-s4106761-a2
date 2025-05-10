@@ -5,25 +5,25 @@ import {
   Separator,
   Show,
   Text,
-} from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
-import { ApplicationsTable } from "@/features/LecturerApplications/ApplicationsTable";
-import { ZodForm } from "@/components/hookform/ZodForm";
-import { TextInput } from "@/components/hookform/TextInput";
-import { RadioCards } from "@/components/hookform/RadioCards";
-import { RadioCardItem } from "@/components/RadioCardItem";
-import styled from "@emotion/styled";
+} from "@chakra-ui/react"
+import { Dispatch, SetStateAction } from "react"
+import { ApplicationsTable } from "@/features/LecturerApplications/ApplicationsTable"
+import { ZodForm } from "@/components/hookform/ZodForm"
+import { TextInput } from "@/components/hookform/TextInput"
+import { RadioCards } from "@/components/hookform/RadioCards"
+import { RadioCardItem } from "@/components/RadioCardItem"
+import styled from "@emotion/styled"
 import {
   ApplicationFilterSorts,
   applicationFilterSortZ,
   SortModes,
-} from "@/hooks/applications/useApplications";
+} from "@/hooks/applications/useApplications"
 
 const SortItem = styled(RadioCardItem)`
   & > div {
     padding: 5px 10px;
   }
-`;
+`
 
 /**
  * @param controls filter and sorting defaultFilters
@@ -33,8 +33,8 @@ export function ApplicationsView({
   defaultFilters,
   selectionState,
 }: {
-  defaultFilters?: ApplicationFilterSorts;
-  selectionState?: [string[], Dispatch<SetStateAction<string[]>>];
+  defaultFilters?: ApplicationFilterSorts
+  selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
 }) {
   return (
     <Card.Root variant="outline">
@@ -80,5 +80,5 @@ export function ApplicationsView({
         </ZodForm>
       </Card.Body>
     </Card.Root>
-  );
+  )
 }

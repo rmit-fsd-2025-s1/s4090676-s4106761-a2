@@ -1,8 +1,8 @@
-import { useStore } from "@/hooks/localstorage/useStore";
-import { Card, For, Heading, List } from "@chakra-ui/react";
+import { useStore } from "@/hooks/localstorage/useStore"
+import { Card, For, Heading, List } from "@chakra-ui/react"
 
 export function Applications() {
-  const [courses] = useStore("courses");
+  const [courses] = useStore("courses")
   return (
     <List.Root>
       <For each={courses}>
@@ -17,5 +17,5 @@ export function Applications() {
         )}
       </For>
     </List.Root>
-  );
+  )
 }

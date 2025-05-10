@@ -1,13 +1,13 @@
-import { Show, Table } from "@chakra-ui/react";
+import { Show, Table } from "@chakra-ui/react"
 import {
   ApplicationFilterSorts,
   SortModes,
   useApplications,
-} from "@/hooks/applications/useApplications";
-import { Dispatch, SetStateAction } from "react";
-import { MasterCheckbox } from "@/features/LecturerApplications/TableCheckboxes";
-import { Row, TableRow } from "@/features/LecturerApplications/TableRow";
-import { useWatchForm } from "@/hooks/useWatchForm";
+} from "@/hooks/applications/useApplications"
+import { Dispatch, SetStateAction } from "react"
+import { MasterCheckbox } from "@/features/LecturerApplications/TableCheckboxes"
+import { Row, TableRow } from "@/features/LecturerApplications/TableRow"
+import { useWatchForm } from "@/hooks/useWatchForm"
 
 /**
  * @param selectionState useState() for tracking selected rows
@@ -15,13 +15,13 @@ import { useWatchForm } from "@/hooks/useWatchForm";
 export function ApplicationsTable({
   selectionState,
 }: {
-  selectionState?: [string[], Dispatch<SetStateAction<string[]>>];
+  selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
 }) {
-  const { sort } = useWatchForm<ApplicationFilterSorts>();
-  const applications = useApplications();
+  const { sort } = useWatchForm<ApplicationFilterSorts>()
+  const applications = useApplications()
 
   /* Ranking must take place on the unfiltered list */
-  const allowRanking = sort === SortModes.RANK;
+  const allowRanking = sort === SortModes.RANK
 
   return (
     <Table.Root size="sm" interactive>
@@ -53,5 +53,5 @@ export function ApplicationsTable({
         ))}
       </Table.Body>
     </Table.Root>
-  );
+  )
 }

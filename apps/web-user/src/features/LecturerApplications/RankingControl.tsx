@@ -1,31 +1,31 @@
-import { ButtonGroup, IconButton, Table } from "@chakra-ui/react";
-import { Application } from "@/context/localstorage/types";
-import { useLocalstorageContext } from "@/context/localstorage/LocalstorageProvider";
-import { UpArrowIcon } from "@/icons/UpArrow";
-import { DownArrowIcon } from "@/icons/DownArrow";
+import { ButtonGroup, IconButton, Table } from "@chakra-ui/react"
+import { Application } from "@/context/localstorage/types"
+import { useLocalstorageContext } from "@/context/localstorage/LocalstorageProvider"
+import { UpArrowIcon } from "@/icons/UpArrow"
+import { DownArrowIcon } from "@/icons/DownArrow"
 
 export function RankingControl({ application }: { application: Application }) {
-  const [{ applications }, writeData] = useLocalstorageContext();
-  const index = applications.indexOf(application);
+  const [{ applications }, writeData] = useLocalstorageContext()
+  const index = applications.indexOf(application)
 
   const rankUp = () => {
-    const newOrder = [...applications];
+    const newOrder = [...applications]
     // swap elements
-    [newOrder[index - 1], newOrder[index]] = [
+    ;[newOrder[index - 1], newOrder[index]] = [
       newOrder[index],
       newOrder[index - 1],
-    ];
-    writeData({ key: "applications", data: newOrder });
-  };
+    ]
+    writeData({ key: "applications", data: newOrder })
+  }
 
   const rankDown = () => {
-    const newOrder = [...applications];
-    [newOrder[index + 1], newOrder[index]] = [
+    const newOrder = [...applications]
+    ;[newOrder[index + 1], newOrder[index]] = [
       newOrder[index],
       newOrder[index + 1],
-    ];
-    writeData({ key: "applications", data: newOrder });
-  };
+    ]
+    writeData({ key: "applications", data: newOrder })
+  }
 
   return (
     <Table.Cell>
@@ -42,5 +42,5 @@ export function RankingControl({ application }: { application: Application }) {
         </IconButton>
       </ButtonGroup>
     </Table.Cell>
-  );
+  )
 }

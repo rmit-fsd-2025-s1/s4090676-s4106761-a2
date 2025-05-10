@@ -5,14 +5,14 @@ import {
   LecturerAccount,
   LocalstorageSchema,
   TutorAccount,
-} from "@/context/localstorage/types";
+} from "@/context/localstorage/types"
 import {
   AccountType,
   ApplicationStatus,
   ApplicationType,
   Availability,
   Semester,
-} from "@/context/localstorage/enums";
+} from "@/context/localstorage/enums"
 
 const DEFAULT_TUTORS: TutorAccount[] = [
   {
@@ -46,7 +46,7 @@ const DEFAULT_TUTORS: TutorAccount[] = [
     password: "password456",
     type: AccountType.TUTOR,
   },
-];
+]
 
 const DEFAULT_LECTURERS: LecturerAccount[] = [
   {
@@ -63,7 +63,7 @@ const DEFAULT_LECTURERS: LecturerAccount[] = [
     password: "password456",
     type: AccountType.LECTURER,
   },
-];
+]
 
 const DEFAULT_APPLICATIONS: Application[] = [
   {
@@ -124,7 +124,7 @@ const DEFAULT_APPLICATIONS: Application[] = [
     status: ApplicationStatus.ACCEPTED,
     type: ApplicationType.LAB,
   },
-];
+]
 
 const DEFAULT_COURSES: Course[] = [
   {
@@ -155,7 +155,7 @@ const DEFAULT_COURSES: Course[] = [
     semester: Semester.TWO,
     availableRoles: [ApplicationType.LAB, ApplicationType.TUTOR],
   },
-];
+]
 
 const DEFAULTS: LocalstorageSchema = {
   tutorAccounts: DEFAULT_TUTORS,
@@ -164,27 +164,27 @@ const DEFAULTS: LocalstorageSchema = {
   applications: DEFAULT_APPLICATIONS,
   courses: DEFAULT_COURSES,
   versionSlug: process.env.NEXT_PUBLIC_VERSION_SLUG ?? "0.0.0",
-};
+}
 
 export function setUpLocalstorage(
-  testing: boolean | undefined,
+  testing: boolean | undefined
 ): LocalstorageSchema {
   // clone defaults
-  const schemaItems: LocalstorageSchema = { ...DEFAULTS };
+  const schemaItems: LocalstorageSchema = { ...DEFAULTS }
 
   const shouldCacheBust =
     process.env.NEXT_PUBLIC_VERSION_SLUG !==
-    JSON.parse(localStorage.getItem("versionSlug") ?? "null");
+    JSON.parse(localStorage.getItem("versionSlug") ?? "null")
 
   // replace defaults with existing values
   for (const [schemaKey, defaultValue] of Object.entries(schemaItems)) {
     const existingValue = shouldCacheBust
       ? null
-      : localStorage.getItem(schemaKey);
+      : localStorage.getItem(schemaKey)
     if (existingValue) {
-      Object.assign(schemaItems, { [schemaKey]: JSON.parse(existingValue) });
+      Object.assign(schemaItems, { [schemaKey]: JSON.parse(existingValue) })
     } else {
-      localStorage.setItem(schemaKey, JSON.stringify(defaultValue));
+      localStorage.setItem(schemaKey, JSON.stringify(defaultValue))
     }
   }
 
@@ -194,9 +194,9 @@ export function setUpLocalstorage(
       JSON.stringify({
         id: "LEC-1",
         type: AccountType.LECTURER,
-      } satisfies AuthenticatedUser),
-    );
+      } satisfies AuthenticatedUser)
+    )
 
   // return state of local storage
-  return schemaItems as LocalstorageSchema;
+  return schemaItems as LocalstorageSchema
 }

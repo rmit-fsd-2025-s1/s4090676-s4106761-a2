@@ -1,9 +1,9 @@
-import { HStack, Icon, RadioCard } from "@chakra-ui/react";
-import { AccountType } from "@/context/localstorage/enums";
-import { TutorIcon } from "@/icons/Tutor";
-import { LecturerIcon } from "@/icons/Lecturer";
-import { RadioCards } from "@/components/hookform/RadioCards";
-import { RadioCardItem } from "@/components/RadioCardItem";
+import { HStack, Icon, RadioCard } from "@chakra-ui/react"
+import { AccountType } from "@/context/localstorage/enums"
+import { TutorIcon } from "@/icons/Tutor"
+import { LecturerIcon } from "@/icons/Lecturer"
+import { RadioCards } from "@/components/hookform/RadioCards"
+import { RadioCardItem } from "@/components/RadioCardItem"
 
 export function AccountTypePicker() {
   return (
@@ -24,5 +24,5 @@ export function AccountTypePicker() {
         </RadioCardItem>
       </HStack>
     </RadioCards>
-  );
+  )
 }

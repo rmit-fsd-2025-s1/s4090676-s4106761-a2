@@ -1,21 +1,21 @@
-import { For, Link as ChakraLink, Tabs } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import styled from "@emotion/styled";
-import { ReactNode } from "react";
+import { For, Link as ChakraLink, Tabs } from "@chakra-ui/react"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import styled from "@emotion/styled"
+import { ReactNode } from "react"
 
 const StyledLink = styled(Link)`
   outline: 0;
-`;
+`
 
 function Tab({
   value,
   children,
   routeRoot,
 }: {
-  value: string;
-  children: React.ReactNode;
-  routeRoot: string;
+  value: string
+  children: React.ReactNode
+  routeRoot: string
 }) {
   return (
     <Tabs.Trigger value={value} asChild>
@@ -23,7 +23,7 @@ function Tab({
         <StyledLink href={`${routeRoot}${value}`}>{children}</StyledLink>
       </ChakraLink>
     </Tabs.Trigger>
-  );
+  )
 }
 
 /**
@@ -34,15 +34,15 @@ export function RoutedTabs({
   tabs,
   routeRoot,
 }: {
-  tabs: { key: string; text: string; content: ReactNode }[];
-  routeRoot: string;
+  tabs: { key: string; text: string; content: ReactNode }[]
+  routeRoot: string
 }) {
   const {
     query: { tab: tabKey },
     isReady,
-  } = useRouter();
+  } = useRouter()
 
-  if (!isReady) return null;
+  if (!isReady) return null
 
   return (
     <Tabs.Root value={tabKey ? (tabKey as string) : tabs[0]?.key}>
@@ -63,5 +63,5 @@ export function RoutedTabs({
         )}
       </For>
     </Tabs.Root>
-  );
+  )
 }

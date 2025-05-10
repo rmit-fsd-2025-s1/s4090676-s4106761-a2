@@ -1,16 +1,16 @@
-import { Application } from "@/context/localstorage/types";
-import { Dispatch, SetStateAction } from "react";
-import { Checkbox, Table } from "@chakra-ui/react";
+import { Application } from "@/context/localstorage/types"
+import { Dispatch, SetStateAction } from "react"
+import { Checkbox, Table } from "@chakra-ui/react"
 
 export function MasterCheckbox({
   applications,
   selectionState,
 }: {
-  applications: Application[];
-  selectionState?: [string[], Dispatch<SetStateAction<string[]>>];
+  applications: Application[]
+  selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
 }) {
-  if (!selectionState) return null;
-  const [selection, setSelection] = selectionState;
+  if (!selectionState) return null
+  const [selection, setSelection] = selectionState
   return (
     <Table.ColumnHeader w="6">
       <Checkbox.Root
@@ -26,26 +26,26 @@ export function MasterCheckbox({
           setSelection(
             changes.checked
               ? applications.map((application) => application.id)
-              : [],
-          );
+              : []
+          )
         }}
       >
         <Checkbox.HiddenInput />
         <Checkbox.Control />
       </Checkbox.Root>
     </Table.ColumnHeader>
-  );
+  )
 }
 
 export function RowCheckbox({
   application,
   selectionState,
 }: {
-  application: Application;
-  selectionState?: [string[], Dispatch<SetStateAction<string[]>>];
+  application: Application
+  selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
 }) {
-  if (!selectionState) return null;
-  const [selection, setSelection] = selectionState;
+  if (!selectionState) return null
+  const [selection, setSelection] = selectionState
 
   return (
     <Table.Cell>
@@ -58,13 +58,13 @@ export function RowCheckbox({
           setSelection((prev) =>
             changes.checked
               ? [...prev, application.id]
-              : selection.filter((id) => id !== application.id),
-          );
+              : selection.filter((id) => id !== application.id)
+          )
         }}
       >
         <Checkbox.HiddenInput />
         <Checkbox.Control />
       </Checkbox.Root>
     </Table.Cell>
-  );
+  )
 }

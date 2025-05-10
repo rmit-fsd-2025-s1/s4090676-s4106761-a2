@@ -1,14 +1,14 @@
-import styled from "@emotion/styled";
-import { Button, ButtonGroup, HStack, Show } from "@chakra-ui/react";
-import { BooksIcon } from "@/icons/Books";
-import Link from "next/link";
-import { SignInIcon } from "@/icons/SignIn";
-import { PlusIcon } from "@/icons/Plus";
-import { useUser } from "@/hooks/localstorage/useUser";
-import { useLogout } from "@/hooks/user/useLogout";
-import { SignOutIcon } from "@/icons/SignOut";
-import { HomeIcon } from "@/icons/Home";
-import useRedirectUserPage from "@/hooks/user/useRedirectUserPage";
+import styled from "@emotion/styled"
+import { Button, ButtonGroup, HStack, Show } from "@chakra-ui/react"
+import { BooksIcon } from "@/icons/Books"
+import Link from "next/link"
+import { SignInIcon } from "@/icons/SignIn"
+import { PlusIcon } from "@/icons/Plus"
+import { useUser } from "@/hooks/localstorage/useUser"
+import { useLogout } from "@/hooks/user/useLogout"
+import { SignOutIcon } from "@/icons/SignOut"
+import { HomeIcon } from "@/icons/Home"
+import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
 
 const Header = styled.header`
   background-color: indigo;
@@ -18,17 +18,17 @@ const Header = styled.header`
   width: 100%;
   top: 0;
   z-index: 99;
-`;
+`
 
 const HStackLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 12px;
-`;
+`
 
 const ButtonGroupEnd = styled(ButtonGroup)`
   margin-left: auto;
-`;
+`
 
 function UnauthenticatedButtons() {
   return (
@@ -46,12 +46,12 @@ function UnauthenticatedButtons() {
         </Link>
       </Button>
     </>
-  );
+  )
 }
 
 function AuthenticatedButtons() {
-  const logout = useLogout();
-  const redirect = useRedirectUserPage();
+  const logout = useLogout()
+  const redirect = useRedirectUserPage()
   return (
     <>
       <Button onClick={() => redirect()}>
@@ -63,11 +63,11 @@ function AuthenticatedButtons() {
         <SignOutIcon />
       </Button>
     </>
-  );
+  )
 }
 
 export function AppHeader() {
-  const [user] = useUser();
+  const [user] = useUser()
 
   return (
     <Header>
@@ -84,5 +84,5 @@ export function AppHeader() {
         </ButtonGroupEnd>
       </HStack>
     </Header>
-  );
+  )
 }

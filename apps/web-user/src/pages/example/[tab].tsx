@@ -1,9 +1,9 @@
-import Tab1 from "@/pages/example/Tab1";
-import Tab2 from "@/pages/example/Tab2";
-import Tab3 from "@/pages/example/Tab3";
-import { RoutedTabs } from "@/components/RoutedTabs";
-import Tab4 from "@/pages/example/Tab4";
-import Tab5 from "@/pages/example/Tab5";
+import Tab1 from "@/pages/example/Tab1"
+import Tab2 from "@/pages/example/Tab2"
+import Tab3 from "@/pages/example/Tab3"
+import { RoutedTabs } from "@/components/RoutedTabs"
+import Tab4 from "@/pages/example/Tab4"
+import Tab5 from "@/pages/example/Tab5"
 
 export default function Route() {
   return (
@@ -17,5 +17,5 @@ export default function Route() {
         { key: "hooks", text: "Updating data", content: <Tab5 /> },
       ]}
     />
-  );
+  )
 }

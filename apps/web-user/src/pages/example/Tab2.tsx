@@ -5,10 +5,10 @@ import {
   Code,
   HStack,
   Spacer,
-} from "@chakra-ui/react";
-import { useStore } from "@/hooks/localstorage/useStore";
-import { AccountType } from "@/context/localstorage/enums";
-import { useLogout } from "@/hooks/user/useLogout";
+} from "@chakra-ui/react"
+import { useStore } from "@/hooks/localstorage/useStore"
+import { AccountType } from "@/context/localstorage/enums"
+import { useLogout } from "@/hooks/user/useLogout"
 
 const sourceCodeExample = `\
 import { useStore } from "@/hooks/localstorage/useStore"
@@ -38,11 +38,11 @@ export function ButtonExample () {
     </Button>
   </>
 }
-`;
+`
 
 export default function Tab2() {
-  const [user, writeUser] = useStore("authenticatedUser");
-  const logout = useLogout();
+  const [user, writeUser] = useStore("authenticatedUser")
+  const logout = useLogout()
 
   return (
     <>
@@ -84,5 +84,5 @@ export default function Tab2() {
         </Button>
       </ButtonGroup>
     </>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
-import { Show } from "@chakra-ui/react";
-import { ApplicationsView } from "@/features/LecturerApplications/ApplicationsView";
-import { SortModes } from "@/hooks/applications/useApplications";
+import { ReactNode } from "react"
+import { Show } from "@chakra-ui/react"
+import { ApplicationsView } from "@/features/LecturerApplications/ApplicationsView"
+import { SortModes } from "@/hooks/applications/useApplications"
 
 /**
  *  The applications feature is responsible for /lecturer/applications/[courseId]/rank
@@ -15,5 +15,5 @@ export function Applications({ children }: { children: ReactNode }) {
         <ApplicationsView defaultFilters={{ sort: SortModes.RANK }} />
       </Show>
     </>
-  );
+  )
 }

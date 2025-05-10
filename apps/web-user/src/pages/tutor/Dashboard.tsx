@@ -11,19 +11,19 @@ import {
   Tag,
   Text,
   Textarea,
-} from "@chakra-ui/react";
-import { CardHeader } from "@/components/CardHeader";
-import { useUser } from "@/hooks/localstorage/useUser";
-import { useState } from "react";
-import { CourseApplications } from "@/features/TutorApplications/CourseApplications";
-import { TutorAccount } from "@/context/localstorage/types";
+} from "@chakra-ui/react"
+import { CardHeader } from "@/components/CardHeader"
+import { useUser } from "@/hooks/localstorage/useUser"
+import { useState } from "react"
+import { CourseApplications } from "@/features/TutorApplications/CourseApplications"
+import { TutorAccount } from "@/context/localstorage/types"
 import {
   ApplicationStatus,
   ApplicationType,
   Availability,
   Semester,
-} from "@/context/localstorage/enums";
-import { useUserApplications } from "@/hooks/applications/useUserApplications";
+} from "@/context/localstorage/enums"
+import { useUserApplications } from "@/hooks/applications/useUserApplications"
 
 export const stackProps = {
   alignItems: "stretch",
@@ -32,27 +32,27 @@ export const stackProps = {
       marginBottom: "1rem",
     },
   },
-};
+}
 
-const CURRENT_SEMESTER = Semester.ONE;
+const CURRENT_SEMESTER = Semester.ONE
 
 export function Dashboard() {
   const [user, updateUser] = useUser() as [
     TutorAccount,
     (p: Partial<TutorAccount>) => void,
-  ];
+  ]
 
-  const userApplications = useUserApplications(user.id);
+  const userApplications = useUserApplications(user.id)
 
   // form management
-  const [newSkill, setNewSkill] = useState("");
+  const [newSkill, setNewSkill] = useState("")
 
   const addSkill = () => {
     if (newSkill.trim() && !user.skills?.includes(newSkill.trim())) {
-      updateUser({ skills: [...(user.skills ?? []), newSkill.trim()] });
-      setNewSkill("");
+      updateUser({ skills: [...(user.skills ?? []), newSkill.trim()] })
+      setNewSkill("")
     }
-  };
+  }
 
   return (
     <Box p={4}>
@@ -196,5 +196,5 @@ export function Dashboard() {
         </Card.Root>
       </Stack>
     </Box>
-  );
+  )
 }

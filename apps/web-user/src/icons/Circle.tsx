@@ -1,4 +1,4 @@
-import { SVGProps } from "react";
+import { SVGProps } from "react"
 
 export function CircleIcon(props: SVGProps<SVGSVGElement>) {
   // <!-- Icon from Phosphor by Phosphor Icons - https://github.com/phosphor-icons/core/blob/main/LICENSE -->
@@ -15,5 +15,5 @@ export function CircleIcon(props: SVGProps<SVGSVGElement>) {
         <path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m0 192a88 88 0 1 1 88-88a88.1 88.1 0 0 1-88 88" />
       </g>
     </svg>
-  );
+  )
 }

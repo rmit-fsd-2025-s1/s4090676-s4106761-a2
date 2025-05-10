@@ -8,38 +8,38 @@ import {
   Show,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { CardHeader } from "@/components/CardHeader";
-import { stackProps } from "@/pages/tutor/Dashboard";
-import { useStore } from "@/hooks/localstorage/useStore";
+} from "@chakra-ui/react"
+import { CardHeader } from "@/components/CardHeader"
+import { stackProps } from "@/pages/tutor/Dashboard"
+import { useStore } from "@/hooks/localstorage/useStore"
 import {
   ApplicationStatus,
   ApplicationType,
-} from "@/context/localstorage/enums";
-import { v4 as uuid } from "uuid";
-import { TutorAccount, UUID } from "@/context/localstorage/types";
-import { useUser } from "@/hooks/localstorage/useUser";
+} from "@/context/localstorage/enums"
+import { v4 as uuid } from "uuid"
+import { TutorAccount, UUID } from "@/context/localstorage/types"
+import { useUser } from "@/hooks/localstorage/useUser"
 
 export function CourseApplications(props: {
   stackProps: {
-    alignItems: string;
-    sx: { "& > *:not(:last-child)": { marginBottom: string } };
-  };
+    alignItems: string
+    sx: { "& > *:not(:last-child)": { marginBottom: string } }
+  }
 }) {
-  const [courses] = useStore("courses");
-  const [applications, putApplication] = useStore("applications");
-  const [user] = useUser() as [TutorAccount, undefined];
+  const [courses] = useStore("courses")
+  const [applications, putApplication] = useStore("applications")
+  const [user] = useUser() as [TutorAccount, undefined]
 
   const submitApplication = (type: ApplicationType, courseId: UUID) => {
-    console.log("im calling yeah");
+    console.log("im calling yeah")
     putApplication({
       id: uuid(),
       type,
       courseId,
       status: ApplicationStatus.PENDING,
       tutorId: user.id,
-    });
-  };
+    })
+  }
 
   return (
     <Card.Root>
@@ -54,8 +54,8 @@ export function CourseApplications(props: {
               const haveApplied = applications.find(
                 (application) =>
                   application.courseId === course.id &&
-                  application.tutorId === user.id,
-              );
+                  application.tutorId === user.id
+              )
               return (
                 <Card.Root key={course.id}>
                   <CardHeader>
@@ -68,7 +68,7 @@ export function CourseApplications(props: {
                           fallback={<Text>Application complete!</Text>}
                         >
                           {course.availableRoles.includes(
-                            ApplicationType.TUTOR,
+                            ApplicationType.TUTOR
                           ) && (
                             <Button
                               size="sm"
@@ -76,7 +76,7 @@ export function CourseApplications(props: {
                               onClick={() =>
                                 submitApplication(
                                   ApplicationType.TUTOR,
-                                  course.id,
+                                  course.id
                                 )
                               }
                             >
@@ -84,7 +84,7 @@ export function CourseApplications(props: {
                             </Button>
                           )}
                           {course.availableRoles.includes(
-                            ApplicationType.LAB,
+                            ApplicationType.LAB
                           ) && (
                             <Button
                               size="sm"
@@ -93,7 +93,7 @@ export function CourseApplications(props: {
                               onClick={() =>
                                 submitApplication(
                                   ApplicationType.LAB,
-                                  course.id,
+                                  course.id
                                 )
                               }
                             >
@@ -105,11 +105,11 @@ export function CourseApplications(props: {
                     </Stack>
                   </CardHeader>
                 </Card.Root>
-              );
+              )
             })}
           </Grid>
         </Stack>
       </Box>
     </Card.Root>
-  );
+  )
 }

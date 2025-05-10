@@ -1,18 +1,18 @@
-import { RoutedTabs } from "@/components/RoutedTabs";
-import { Applications } from "@/pages/lecturer/Applications";
-import { useRequireAccountType } from "@/hooks/user/useRequireAccountType";
-import { AccountType } from "@/context/localstorage/enums";
-import { ReactNode } from "react";
-import { Courses } from "@/pages/lecturer/Courses";
+import { RoutedTabs } from "@/components/RoutedTabs"
+import { Applications } from "@/pages/lecturer/Applications"
+import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
+import { AccountType } from "@/context/localstorage/enums"
+import { ReactNode } from "react"
+import { Courses } from "@/pages/lecturer/Courses"
 
 export default function LecturerRouteRoot({
   children,
 }: {
-  children?: ReactNode;
+  children?: ReactNode
 }) {
-  const redirect = useRequireAccountType(AccountType.LECTURER);
+  const redirect = useRequireAccountType(AccountType.LECTURER)
 
-  if (redirect) return redirect;
+  if (redirect) return redirect
 
   return (
     <RoutedTabs
@@ -30,5 +30,5 @@ export default function LecturerRouteRoot({
         },
       ]}
     />
-  );
+  )
 }

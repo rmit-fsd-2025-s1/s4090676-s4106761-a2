@@ -1,15 +1,15 @@
-import styled from "@emotion/styled";
-import Link from "next/link";
+import styled from "@emotion/styled"
+import Link from "next/link"
 
 const Footer = styled.footer`
   background-color: indigo;
   color: white;
   padding: 0.7rem 1rem;
   width: 100%;
-`;
+`
 
 export function AppFooter() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
     <>
@@ -23,5 +23,5 @@ export function AppFooter() {
         </nav>
       </Footer>
     </>
-  );
+  )
 }

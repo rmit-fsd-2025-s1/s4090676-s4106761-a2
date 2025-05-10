@@ -1,7 +1,7 @@
-import { Card } from "@chakra-ui/react";
-import { FullWidthButton } from "@/components/FullWidthButton";
-import Link from "next/link";
-import { FullWidthVStack } from "@/components/FullWidthVStack";
+import { Card } from "@chakra-ui/react"
+import { FullWidthButton } from "@/components/FullWidthButton"
+import Link from "next/link"
+import { FullWidthVStack } from "@/components/FullWidthVStack"
 
 export function AccountCardControls({ backHref }: { backHref?: string }) {
   return (
@@ -15,5 +15,5 @@ export function AccountCardControls({ backHref }: { backHref?: string }) {
         <FullWidthButton type="submit">Next</FullWidthButton>
       </FullWidthVStack>
     </Card.Footer>
-  );
+  )
 }

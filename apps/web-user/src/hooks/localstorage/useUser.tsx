@@ -1,10 +1,10 @@
-import { useStore } from "@/hooks/localstorage/useStore";
-import { AccountType } from "@/context/localstorage/enums";
+import { useStore } from "@/hooks/localstorage/useStore"
+import { AccountType } from "@/context/localstorage/enums"
 import {
   LecturerAccount,
   TutorAccount,
   UUID,
-} from "@/context/localstorage/types";
+} from "@/context/localstorage/types"
 
 /**
  * Get information on the currently authenticated user
@@ -13,24 +13,24 @@ import {
  */
 export function useUser(
   userIdParam?: UUID,
-  userType?: AccountType,
+  userType?: AccountType
 ): [
   typeof userData,
   ((params: Partial<Exclude<typeof userData, undefined>>) => void) | undefined,
 ] {
-  const [tutors, setTutor] = useStore("tutorAccounts");
-  const [lecturers, setLecturer] = useStore("lecturerAccounts");
-  let [user] = useStore("authenticatedUser");
+  const [tutors, setTutor] = useStore("tutorAccounts")
+  const [lecturers, setLecturer] = useStore("lecturerAccounts")
+  let [user] = useStore("authenticatedUser")
 
   if (userIdParam && userType) {
-    user = { type: userType, id: userIdParam };
-  } else if (!user) return [undefined, undefined];
+    user = { type: userType, id: userIdParam }
+  } else if (!user) return [undefined, undefined]
 
   const userData = (user.type === AccountType.TUTOR ? tutors : lecturers).find(
-    (r) => r.id === user.id,
-  );
+    (r) => r.id === user.id
+  )
 
-  if (!userData) return [undefined, undefined];
+  if (!userData) return [undefined, undefined]
 
   return [
     userData,
@@ -40,13 +40,13 @@ export function useUser(
           setTutor({
             ...userData,
             ...(newData as TutorAccount),
-          });
+          })
         } else {
           setLecturer({
             ...userData,
             ...(newData as LecturerAccount),
-          });
+          })
         }
       }),
-  ];
+  ]
 }

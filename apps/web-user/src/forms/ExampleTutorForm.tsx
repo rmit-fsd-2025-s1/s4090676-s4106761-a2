@@ -1,9 +1,9 @@
-import { ZodForm } from "@/components/hookform/ZodForm";
-import { Button, Fieldset } from "@chakra-ui/react";
-import { TextInput } from "@/components/hookform/TextInput";
-import { z } from "zod";
-import { useStore } from "@/hooks/localstorage/useStore";
-import { AccountType } from "@/context/localstorage/enums";
+import { ZodForm } from "@/components/hookform/ZodForm"
+import { Button, Fieldset } from "@chakra-ui/react"
+import { TextInput } from "@/components/hookform/TextInput"
+import { z } from "zod"
+import { useStore } from "@/hooks/localstorage/useStore"
+import { AccountType } from "@/context/localstorage/enums"
 
 const tab3Schema = z
   .object({
@@ -12,12 +12,12 @@ const tab3Schema = z
     Email: z.string().email("Must be a valid email address"),
     Password: z.string().min(8, "Must be at least 8 characters in length"),
   })
-  .required();
+  .required()
 
-type Tab3Schema = z.infer<typeof tab3Schema>;
+type Tab3Schema = z.infer<typeof tab3Schema>
 
 export function ExampleTutorForm() {
-  const [, writeTutor] = useStore("tutorAccounts");
+  const [, writeTutor] = useStore("tutorAccounts")
 
   const onSubmit = (results: Tab3Schema) => {
     writeTutor({
@@ -26,8 +26,8 @@ export function ExampleTutorForm() {
       name: results.Name,
       email: results.Email,
       password: results.Password,
-    });
-  };
+    })
+  }
 
   return (
     <ZodForm onSubmit={onSubmit} schema={tab3Schema} resetOnSubmit>
@@ -39,5 +39,5 @@ export function ExampleTutorForm() {
         <Button type="submit">Write tutor with given ID</Button>
       </Fieldset.Root>
     </ZodForm>
-  );
+  )
 }

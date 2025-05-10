@@ -1,5 +1,5 @@
-import { Card, Code, Heading, HStack, List, Text } from "@chakra-ui/react";
-import styled from "@emotion/styled";
+import { Card, Code, Heading, HStack, List, Text } from "@chakra-ui/react"
+import styled from "@emotion/styled"
 
 const sourceCodeExample = `\
 /* example tabs */
@@ -17,18 +17,18 @@ export default function Route () {
     ]}/>
   )
 }
-`;
+`
 
 const CardRoot = styled(Card.Root)`
   flex: 1 150px;
   min-width: 270px;
-`;
+`
 
 const CardBody = styled(Card.Body)`
   & > * {
     margin-bottom: 1rem;
   }
-`;
+`
 
 export default function Tab4() {
   return (
@@ -76,5 +76,5 @@ export default function Tab4() {
         </Code>
       </HStack>
     </>
-  );
+  )
 }

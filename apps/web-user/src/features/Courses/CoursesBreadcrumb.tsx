@@ -1,26 +1,26 @@
-import { Breadcrumb, Card, Show } from "@chakra-ui/react";
-import { useRouter } from "next/router";
-import { useCourse } from "@/hooks/localstorage/useCourse";
-import Link from "next/link";
-import styled from "@emotion/styled";
+import { Breadcrumb, Card, Show } from "@chakra-ui/react"
+import { useRouter } from "next/router"
+import { useCourse } from "@/hooks/localstorage/useCourse"
+import Link from "next/link"
+import styled from "@emotion/styled"
 
 const CardBody = styled(Card.Body)`
   padding: 7px 20px;
-`;
+`
 
 const CardRoot = styled(Card.Root)`
   margin-bottom: 20px;
-`;
+`
 
 export function CoursesBreadcrumb() {
   const {
     query: { courseId },
     isReady,
     pathname,
-  } = useRouter();
-  const [course] = useCourse(courseId as string | undefined);
+  } = useRouter()
+  const [course] = useCourse(courseId as string | undefined)
 
-  if (!isReady) return null;
+  if (!isReady) return null
 
   return (
     <>
@@ -58,5 +58,5 @@ export function CoursesBreadcrumb() {
         </CardBody>
       </CardRoot>
     </>
-  );
+  )
 }

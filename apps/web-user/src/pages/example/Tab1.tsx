@@ -1,5 +1,5 @@
-import { Code, Heading } from "@chakra-ui/react";
-import { ExampleTutorCards } from "@/components/ExampleTutorCards";
+import { Code, Heading } from "@chakra-ui/react"
+import { ExampleTutorCards } from "@/components/ExampleTutorCards"
 
 export default function Tab1() {
   return (
@@ -13,5 +13,5 @@ export default function Tab1() {
       <Heading style={{ padding: "10px" }}>Lecturers</Heading>
       <ExampleTutorCards lecturers />
     </>
-  );
+  )
 }

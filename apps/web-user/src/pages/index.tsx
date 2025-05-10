@@ -1,5 +1,5 @@
-import { Button, Heading, Box, Flex, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import { Button, Heading, Box, Flex, Text } from "@chakra-ui/react"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -103,5 +103,5 @@ export default function Home() {
         </Text>
       </div>
     </>
-  );
+  )
 }

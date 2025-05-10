@@ -1,13 +1,13 @@
-import { Card, Flex, For, HStack } from "@chakra-ui/react";
-import { useStore } from "@/hooks/localstorage/useStore";
-import { LecturerAccount, TutorAccount } from "@/context/localstorage/types";
+import { Card, Flex, For, HStack } from "@chakra-ui/react"
+import { useStore } from "@/hooks/localstorage/useStore"
+import { LecturerAccount, TutorAccount } from "@/context/localstorage/types"
 
 export function ExampleTutorCards({ lecturers }: { lecturers?: boolean }) {
   /**
    * We fetch data from local storage with useStore
    */
-  const [tutorAccounts] = useStore("tutorAccounts");
-  const [lecturerAccounts] = useStore("lecturerAccounts");
+  const [tutorAccounts] = useStore("tutorAccounts")
+  const [lecturerAccounts] = useStore("lecturerAccounts")
 
   return (
     <Flex wrap="wrap" gap={3}>
@@ -36,5 +36,5 @@ export function ExampleTutorCards({ lecturers }: { lecturers?: boolean }) {
         )}
       </For>
     </Flex>
-  );
+  )
 }

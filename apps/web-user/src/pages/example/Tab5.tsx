@@ -1,5 +1,5 @@
-import { Card, Code, Heading, HStack, Text } from "@chakra-ui/react";
-import styled from "@emotion/styled";
+import { Card, Code, Heading, HStack, Text } from "@chakra-ui/react"
+import styled from "@emotion/styled"
 
 const sourceCodeExample = `\
 export function UserAvailabilityToggle() {
@@ -18,18 +18,18 @@ export function UserAvailabilityToggle() {
     </>
   )
 }
-`;
+`
 
 const CardRoot = styled(Card.Root)`
   flex: 1 150px;
   min-width: 270px;
-`;
+`
 
 const CardBody = styled(Card.Body)`
   & > * {
     margin-bottom: 1rem;
   }
-`;
+`
 
 export default function Tab5() {
   return (
@@ -68,5 +68,5 @@ export default function Tab5() {
         </CardRoot>
       </HStack>
     </>
-  );
+  )
 }
