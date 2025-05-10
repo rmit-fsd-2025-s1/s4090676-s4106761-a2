@@ -1,21 +1,27 @@
-import { Show, Table } from "@chakra-ui/react"
-import { ApplicationFilterSorts, SortModes, useApplications } from "@/hooks/applications/useApplications"
-import { Dispatch, SetStateAction } from "react"
-import { MasterCheckbox } from "@/features/LecturerApplications/TableCheckboxes"
-import { Row, TableRow } from "@/features/LecturerApplications/TableRow"
-import { useWatchForm } from "@/hooks/useWatchForm"
+import { Show, Table } from "@chakra-ui/react";
+import {
+  ApplicationFilterSorts,
+  SortModes,
+  useApplications,
+} from "@/hooks/applications/useApplications";
+import { Dispatch, SetStateAction } from "react";
+import { MasterCheckbox } from "@/features/LecturerApplications/TableCheckboxes";
+import { Row, TableRow } from "@/features/LecturerApplications/TableRow";
+import { useWatchForm } from "@/hooks/useWatchForm";
 
 /**
  * @param selectionState useState() for tracking selected rows
  */
-export function ApplicationsTable ({ selectionState }: {
-  selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
+export function ApplicationsTable({
+  selectionState,
+}: {
+  selectionState?: [string[], Dispatch<SetStateAction<string[]>>];
 }) {
-  const { sort } = useWatchForm<ApplicationFilterSorts>()
-  const applications = useApplications()
+  const { sort } = useWatchForm<ApplicationFilterSorts>();
+  const applications = useApplications();
 
   /* Ranking must take place on the unfiltered list */
-  const allowRanking = sort === SortModes.RANK
+  const allowRanking = sort === SortModes.RANK;
 
   return (
     <Table.Root size="sm" interactive>
@@ -24,7 +30,10 @@ export function ApplicationsTable ({ selectionState }: {
           <Show when={allowRanking}>
             <Table.ColumnHeader w="20">Order</Table.ColumnHeader>
           </Show>
-          <MasterCheckbox applications={applications} selectionState={selectionState}/>
+          <MasterCheckbox
+            applications={applications}
+            selectionState={selectionState}
+          />
           <Table.ColumnHeader>Course name</Table.ColumnHeader>
           <Table.ColumnHeader>Tutor Name</Table.ColumnHeader>
           <Table.ColumnHeader>Tutor Availability</Table.ColumnHeader>
@@ -44,5 +53,5 @@ export function ApplicationsTable ({ selectionState }: {
         ))}
       </Table.Body>
     </Table.Root>
-  )
+  );
 }

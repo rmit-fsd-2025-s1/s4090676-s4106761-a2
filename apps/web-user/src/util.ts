@@ -1,1 +1,1 @@
-export const isSSREnabled = () => typeof window === "undefined"
+export const isSSREnabled = () => typeof window === "undefined";

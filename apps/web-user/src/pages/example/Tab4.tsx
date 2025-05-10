@@ -1,5 +1,5 @@
-import { Card, Code, Heading, HStack, List, Text } from "@chakra-ui/react"
-import styled from "@emotion/styled"
+import { Card, Code, Heading, HStack, List, Text } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 
 const sourceCodeExample = `\
 /* example tabs */
@@ -17,20 +17,20 @@ export default function Route () {
     ]}/>
   )
 }
-`
+`;
 
 const CardRoot = styled(Card.Root)`
-    flex: 1 150px;
-    min-width: 270px;
-`
+  flex: 1 150px;
+  min-width: 270px;
+`;
 
 const CardBody = styled(Card.Body)`
-    & > * {
-        margin-bottom: 1rem;
-    }
-`
+  & > * {
+    margin-bottom: 1rem;
+  }
+`;
 
-export default function Tab4 () {
+export default function Tab4() {
   return (
     <>
       <HStack alignContent="stretch" alignItems="stretch" wrap="wrap">
@@ -39,20 +39,31 @@ export default function Tab4 () {
             <Heading>Hi</Heading>
           </Card.Header>
           <CardBody>
-            <Text>I&#39;ve created a tabs component that will interface with the nextjs pages router.</Text>
             <Text>
-              Start by creating a route at <Code>/tutor/[tab].tsx</Code>, and another
-              at <Code>/tutor/index.tsx</Code>.
-              The tab route will house the code you see on the right or blow, while index.tsx should
-              just render the tab route.
+              I&#39;ve created a tabs component that will interface with the
+              nextjs pages router.
+            </Text>
+            <Text>
+              Start by creating a route at <Code>/tutor/[tab].tsx</Code>, and
+              another at <Code>/tutor/index.tsx</Code>. The tab route will house
+              the code you see on the right or blow, while index.tsx should just
+              render the tab route.
             </Text>
             <Text>
               It is essential that the route name is <Code>[tab]</Code>, as:
             </Text>
             <List.Root>
-              <List.Item><Text>Nextjs uses <Code>[]</Code> syntax for dynamic routing</Text></List.Item>
-              <List.Item><Text><Code>RoutedTabs</Code> checks only for
-                the <Code>tab</Code> parameter</Text></List.Item>
+              <List.Item>
+                <Text>
+                  Nextjs uses <Code>[]</Code> syntax for dynamic routing
+                </Text>
+              </List.Item>
+              <List.Item>
+                <Text>
+                  <Code>RoutedTabs</Code> checks only for the <Code>tab</Code>{" "}
+                  parameter
+                </Text>
+              </List.Item>
             </List.Root>
           </CardBody>
         </CardRoot>
@@ -65,6 +76,5 @@ export default function Tab4 () {
         </Code>
       </HStack>
     </>
-  )
+  );
 }
-

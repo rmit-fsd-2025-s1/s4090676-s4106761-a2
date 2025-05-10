@@ -1,10 +1,11 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@repo/lint-config",
   "version": "0.0.0",
   "type": "module",
   "exports": {
     "./base": "./base.js",
-    "./next-js": "./next.js"
+    "./next-js": "./next.js",
+    "./prettier": "./prettier.js"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -13,11 +14,12 @@
     "eslint-config-next": "15.2.3",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-only-warn": "^1.1.0",
+    "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-turbo": "^2.5.0",
     "globals": "^16.0.0",
-    "prettier": "2.8.8",
+    "prettier": "^3.5.3",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.31.0"
   },

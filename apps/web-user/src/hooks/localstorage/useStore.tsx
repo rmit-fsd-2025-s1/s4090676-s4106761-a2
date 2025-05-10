@@ -1,15 +1,15 @@
-import { LocalstorageSchema } from "@/context/localstorage/types"
-import { useLocalstorageContext } from "@/context/localstorage/LocalstorageProvider"
-import { ItemOfArray } from "@/types/util"
+import { LocalstorageSchema } from "@/context/localstorage/types";
+import { useLocalstorageContext } from "@/context/localstorage/LocalstorageProvider";
+import { ItemOfArray } from "@/types/util";
 
 /**
  * Fetch and write data to/from localstorage by key
  */
 export function useStore<
   k extends keyof LocalstorageSchema,
-  v extends LocalstorageSchema[k] = LocalstorageSchema[k]
-> (key: k): [v, (item: Exclude<ItemOfArray<v>, string>) => void] {
-  const [datastore, writeData] = useLocalstorageContext()
+  v extends LocalstorageSchema[k] = LocalstorageSchema[k],
+>(key: k): [v, (item: Exclude<ItemOfArray<v>, string>) => void] {
+  const [datastore, writeData] = useLocalstorageContext();
 
   /**
    * Gather round for a story...
@@ -33,21 +33,22 @@ export function useStore<
   return [
     datastore[key] as v,
     (item: Exclude<ItemOfArray<v>, string>) => {
-      const storeValue = datastore[key] as LocalstorageSchema[k]
+      const storeValue = datastore[key] as LocalstorageSchema[k];
       if (Array.isArray(storeValue)) {
-        const targetItem = storeValue
-          .find(activeItem => activeItem.id === item?.id)
+        const targetItem = storeValue.find(
+          (activeItem) => activeItem.id === item?.id,
+        );
         // clone the array into a new reference instead of just copying the reference for the reason above.
-        const itemsToWrite = [...storeValue]
+        const itemsToWrite = [...storeValue];
         if (targetItem) {
-          itemsToWrite[itemsToWrite.indexOf(targetItem)] = item
+          itemsToWrite[itemsToWrite.indexOf(targetItem)] = item;
         } else {
-          itemsToWrite.push(item)
+          itemsToWrite.push(item);
         }
-        writeData({ key, data: itemsToWrite })
+        writeData({ key, data: itemsToWrite });
       } else {
-        writeData({ key, data: item as LocalstorageSchema[k] })
+        writeData({ key, data: item as LocalstorageSchema[k] });
       }
     },
-  ]
+  ];
 }

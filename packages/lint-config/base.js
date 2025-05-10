@@ -1,6 +1,6 @@
 import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
 import turboPlugin from "eslint-plugin-turbo";
+import prettierPlugin from "eslint-plugin-prettier/recommended";
 import tseslint from "typescript-eslint";
 import onlyWarn from "eslint-plugin-only-warn";
 
@@ -11,7 +11,7 @@ import onlyWarn from "eslint-plugin-only-warn";
  * */
 export const config = [
   js.configs.recommended,
-  eslintConfigPrettier,
+  prettierPlugin,
   ...tseslint.configs.recommended,
   {
     plugins: {

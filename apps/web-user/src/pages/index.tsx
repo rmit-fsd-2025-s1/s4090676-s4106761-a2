@@ -1,5 +1,5 @@
-import { Button, Heading, Box, Flex, Text } from "@chakra-ui/react"
-import Link from "next/link"
+import { Button, Heading, Box, Flex, Text } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -29,8 +29,15 @@ export default function Home() {
           }}
         />
 
-
-        <Text fontSize="4xl" fontWeight="bold" my={4} zIndex={1} position="relative">Tutor Matching made easy</Text>
+        <Text
+          fontSize="4xl"
+          fontWeight="bold"
+          my={4}
+          zIndex={1}
+          position="relative"
+        >
+          Tutor Matching made easy
+        </Text>
 
         <Flex
           direction={{ base: "column", md: "row" }}
@@ -47,11 +54,11 @@ export default function Home() {
               src="/tutorImage.jpg"
               alt="Tutor helping a student"
               style={{
-                maxWidth: '100%',
-                width: '600px',
-                height: 'auto',
-                borderRadius: '8px',
-                border: '2px solid black', // Added black border
+                maxWidth: "100%",
+                width: "600px",
+                height: "auto",
+                borderRadius: "8px",
+                border: "2px solid black", // Added black border
               }}
             />
             <Button asChild size="lg" rounded="full" mt={4}>
@@ -66,11 +73,11 @@ export default function Home() {
               src="/lecturer.jpg"
               alt="Lecturer teaching"
               style={{
-                maxWidth: '100%',
-                width: '600px',
-                height: 'auto',
-                borderRadius: '8px',
-                border: '2px solid black',
+                maxWidth: "100%",
+                width: "600px",
+                height: "auto",
+                borderRadius: "8px",
+                border: "2px solid black",
               }}
             />
             <Button asChild size="lg" rounded="full" mt={4}>
@@ -90,8 +97,11 @@ export default function Home() {
       >
         {/* Additional content can go here */}
         <Heading size="5xl">What We Can Offer You</Heading>
-        <Text mt={4} fontSize="xl" >Tutors, Lecturers. All just a click away. Whether you're looking to fill up a lecture hall</Text>
+        <Text mt={4} fontSize="xl">
+          Tutors, Lecturers. All just a click away. Whether you're looking to
+          fill up a lecture hall
+        </Text>
       </div>
     </>
-  )
+  );
 }

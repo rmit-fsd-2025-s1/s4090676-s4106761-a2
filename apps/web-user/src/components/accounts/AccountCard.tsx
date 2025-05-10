@@ -1,6 +1,6 @@
-import styled from "@emotion/styled"
-import { Card } from "@chakra-ui/react"
+import styled from "@emotion/styled";
+import { Card } from "@chakra-ui/react";
 
 export const AccountCard = styled(Card.Root)`
-    width: 450px;
-`
+  width: 450px;
+`;

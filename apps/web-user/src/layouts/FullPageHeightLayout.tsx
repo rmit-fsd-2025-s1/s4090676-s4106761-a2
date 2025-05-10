@@ -1,5 +1,5 @@
-import { Flex } from "@chakra-ui/react"
-import styled from "@emotion/styled"
+import { Flex } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 
 /**
  * Some pages benefit do not have enough height to push the footer to the bottom of the page
@@ -7,8 +7,8 @@ import styled from "@emotion/styled"
  * This component is used in AppLayout.tsx
  */
 export const FullPageHeightLayout = styled(Flex)`
-    flex-direction: column;
-    height: 100vh;
-    justify-content: space-between;
-    align-items: center;
-`
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+`;

@@ -1,5 +1,5 @@
-import LecturerRouteRoot from "@/pages/lecturer/[tab]"
+import LecturerRouteRoot from "@/pages/lecturer/[tab]";
 
-export default function LecturerIndex () {
-  return <LecturerRouteRoot/>
+export default function LecturerIndex() {
+  return <LecturerRouteRoot />;
 }

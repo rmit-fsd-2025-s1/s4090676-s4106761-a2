@@ -1,17 +1,17 @@
-import { For, Table } from "@chakra-ui/react"
-import styled from "@emotion/styled"
+import { For, Table } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 
 const Cell = styled(Table.Cell)`
-    text-wrap: nowrap;
-    border: none;
-    background-color: inherit;
-`
+  text-wrap: nowrap;
+  border: none;
+  background-color: inherit;
+`;
 
 const Row = styled(Table.Row)`
-    background-color: inherit;
-`
+  background-color: inherit;
+`;
 
-export function GhostTable ({ object }: { object: { [key: string]: string } }) {
+export function GhostTable({ object }: { object: { [key: string]: string } }) {
   return (
     <Table.Root size="sm">
       <Table.Body>
@@ -25,5 +25,5 @@ export function GhostTable ({ object }: { object: { [key: string]: string } }) {
         </For>
       </Table.Body>
     </Table.Root>
-  )
+  );
 }

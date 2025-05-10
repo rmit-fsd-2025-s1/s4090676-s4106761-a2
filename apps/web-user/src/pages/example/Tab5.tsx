@@ -1,5 +1,5 @@
-import { Card, Code, Heading, HStack, Text } from "@chakra-ui/react"
-import styled from "@emotion/styled"
+import { Card, Code, Heading, HStack, Text } from "@chakra-ui/react";
+import styled from "@emotion/styled";
 
 const sourceCodeExample = `\
 export function UserAvailabilityToggle() {
@@ -18,20 +18,20 @@ export function UserAvailabilityToggle() {
     </>
   )
 }
-`
+`;
 
 const CardRoot = styled(Card.Root)`
-    flex: 1 150px;
-    min-width: 270px;
-`
+  flex: 1 150px;
+  min-width: 270px;
+`;
 
 const CardBody = styled(Card.Body)`
-    & > * {
-        margin-bottom: 1rem;
-    }
-`
+  & > * {
+    margin-bottom: 1rem;
+  }
+`;
 
-export default function Tab5 () {
+export default function Tab5() {
   return (
     <>
       <HStack alignContent="stretch" alignItems="stretch" wrap="wrap">
@@ -40,23 +40,33 @@ export default function Tab5 () {
             <Heading>Updating individual records</Heading>
           </Card.Header>
           <CardBody>
-            <Text><Code>const [application, updateApplication] = useApplication(id)</Code></Text>
-            <Text><Code>const [user, updateUser] = useUser(id)</Code></Text>
-            <Text><Code>const course = useCourse(id)</Code></Text>
             <Text>
-              Please use any <Code>updateXXX</Code> hook to write or overwrite the object in localstorage.
-              Read more about why in <Code>src/context/localstorage/README.md</Code>
+              <Code>
+                const [application, updateApplication] = useApplication(id)
+              </Code>
+            </Text>
+            <Text>
+              <Code>const [user, updateUser] = useUser(id)</Code>
+            </Text>
+            <Text>
+              <Code>const course = useCourse(id)</Code>
+            </Text>
+            <Text>
+              Please use any <Code>updateXXX</Code> hook to write or overwrite
+              the object in localstorage. Read more about why in{" "}
+              <Code>src/context/localstorage/README.md</Code>
             </Text>
             <Text>An example:</Text>
             <Code
               display="block"
               whiteSpace="pre"
               style={{ padding: "10px", flexGrow: 1 }}
-            >{sourceCodeExample}</Code>
+            >
+              {sourceCodeExample}
+            </Code>
           </CardBody>
         </CardRoot>
       </HStack>
     </>
-  )
+  );
 }
-

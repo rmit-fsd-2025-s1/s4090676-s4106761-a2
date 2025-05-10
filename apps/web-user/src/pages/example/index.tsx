@@ -1,5 +1,5 @@
-import Route from "@/pages/example/[tab]"
+import Route from "@/pages/example/[tab]";
 
-export default function Index () {
-  return <Route/>
+export default function Index() {
+  return <Route />;
 }

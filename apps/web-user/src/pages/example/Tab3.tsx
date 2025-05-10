@@ -1,7 +1,7 @@
-import { Card, Code, Heading, HStack, Spacer } from "@chakra-ui/react"
-import { ExampleTutorForm } from "@/forms/ExampleTutorForm"
-import styled from "@emotion/styled"
-import { ExampleTutorCards } from "@/components/ExampleTutorCards"
+import { Card, Code, Heading, HStack, Spacer } from "@chakra-ui/react";
+import { ExampleTutorForm } from "@/forms/ExampleTutorForm";
+import styled from "@emotion/styled";
+import { ExampleTutorCards } from "@/components/ExampleTutorCards";
 
 const sourceCodeExample = `\
 /* example tutor form */
@@ -47,14 +47,14 @@ export function ExampleTutorForm () {
     </ZodForm>
   )
 }
-`
+`;
 
 const CardRoot = styled(Card.Root)`
-    flex: 1 150px;
-    min-width: 270px;
-`
+  flex: 1 150px;
+  min-width: 270px;
+`;
 
-export default function Tab3 () {
+export default function Tab3() {
   return (
     <>
       <HStack alignContent="stretch" alignItems="stretch" wrap="wrap">
@@ -63,7 +63,7 @@ export default function Tab3 () {
             <Heading>Write tutors</Heading>
           </Card.Header>
           <Card.Body>
-            <ExampleTutorForm/>
+            <ExampleTutorForm />
           </Card.Body>
         </CardRoot>
         <Code
@@ -74,9 +74,8 @@ export default function Tab3 () {
           {sourceCodeExample}
         </Code>
       </HStack>
-      <Spacer style={{ height: 24 }}/>
-      <ExampleTutorCards/>
+      <Spacer style={{ height: 24 }} />
+      <ExampleTutorCards />
     </>
-  )
+  );
 }
-

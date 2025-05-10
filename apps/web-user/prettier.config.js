@@ -1,3 +1,3 @@
-import { prettierConfig } from "@repo/eslint-config/prettier.config";
+import { prettier } from "@repo/lint-config/prettier";
 
-export default prettierConfig;
+export default prettier;

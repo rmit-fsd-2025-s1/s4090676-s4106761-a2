@@ -2,6 +2,7 @@
   "name": "web-user",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -26,7 +27,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
+    "@repo/lint-config": "*",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",

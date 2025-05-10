@@ -1,6 +1,6 @@
-import { FieldValues, useFormContext } from "react-hook-form"
+import { FieldValues, useFormContext } from "react-hook-form";
 
-export function useWatchForm<t extends FieldValues> () {
-    const { watch } = useFormContext()
-    return watch() as t
+export function useWatchForm<t extends FieldValues>() {
+  const { watch } = useFormContext();
+  return watch() as t;
 }

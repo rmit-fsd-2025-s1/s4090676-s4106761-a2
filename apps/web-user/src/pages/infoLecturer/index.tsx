@@ -1,6 +1,6 @@
-import { Button, Heading } from "@chakra-ui/react"
+import { Button, Heading } from "@chakra-ui/react";
 
-import Link from "next/link"
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -10,6 +10,5 @@ export default function Home() {
         <Link href="/">Go to landing page</Link>
       </Button>
     </div>
-
-  )
+  );
 }

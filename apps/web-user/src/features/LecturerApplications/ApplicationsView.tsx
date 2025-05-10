@@ -1,32 +1,41 @@
-import { Card, HStack, RadioCard, Separator, Show, Text } from "@chakra-ui/react"
-import { Dispatch, SetStateAction } from "react"
-import { ApplicationsTable } from "@/features/LecturerApplications/ApplicationsTable"
-import { ZodForm } from "@/components/hookform/ZodForm"
-import { TextInput } from "@/components/hookform/TextInput"
-import { RadioCards } from "@/components/hookform/RadioCards"
-import { RadioCardItem } from "@/components/RadioCardItem"
-import styled from "@emotion/styled"
+import {
+  Card,
+  HStack,
+  RadioCard,
+  Separator,
+  Show,
+  Text,
+} from "@chakra-ui/react";
+import { Dispatch, SetStateAction } from "react";
+import { ApplicationsTable } from "@/features/LecturerApplications/ApplicationsTable";
+import { ZodForm } from "@/components/hookform/ZodForm";
+import { TextInput } from "@/components/hookform/TextInput";
+import { RadioCards } from "@/components/hookform/RadioCards";
+import { RadioCardItem } from "@/components/RadioCardItem";
+import styled from "@emotion/styled";
 import {
   ApplicationFilterSorts,
   applicationFilterSortZ,
   SortModes,
-} from "@/hooks/applications/useApplications"
+} from "@/hooks/applications/useApplications";
 
 const SortItem = styled(RadioCardItem)`
-    & > div {
-        padding: 5px 10px;
-    }
-`
+  & > div {
+    padding: 5px 10px;
+  }
+`;
 
 /**
  * @param controls filter and sorting defaultFilters
  * @param selectionState useState() for tracking selected rows
  */
-export function ApplicationsView ({ defaultFilters, selectionState }: {
-  defaultFilters?: ApplicationFilterSorts,
-  selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
+export function ApplicationsView({
+  defaultFilters,
+  selectionState,
+}: {
+  defaultFilters?: ApplicationFilterSorts;
+  selectionState?: [string[], Dispatch<SetStateAction<string[]>>];
 }) {
-
   return (
     <Card.Root variant="outline">
       <Card.Body>
@@ -43,11 +52,7 @@ export function ApplicationsView ({ defaultFilters, selectionState }: {
             style={{ width: "100%", marginBottom: "20px" }}
           />
           <HStack alignItems="center" style={{ marginBottom: 20 }}>
-            <RadioCards
-              name="sort"
-              fitContent
-              style={{ width: "fit-content" }}
-            >
+            <RadioCards name="sort" fitContent style={{ width: "fit-content" }}>
               <HStack>
                 <RadioCard.Label>Sort by: </RadioCard.Label>
                 {/* The lecturer may not rank the applications while not looking at the full list
@@ -66,12 +71,14 @@ export function ApplicationsView ({ defaultFilters, selectionState }: {
                 </SortItem>
               </HStack>
             </RadioCards>
-            <Separator orientation="vertical" height="4"/>
-            <Text textStyle="sm" style={{ opacity: 0.7 }}>Click cells to see more information</Text>
+            <Separator orientation="vertical" height="4" />
+            <Text textStyle="sm" style={{ opacity: 0.7 }}>
+              Click cells to see more information
+            </Text>
           </HStack>
-          <ApplicationsTable selectionState={selectionState}/>
+          <ApplicationsTable selectionState={selectionState} />
         </ZodForm>
       </Card.Body>
     </Card.Root>
-  )
+  );
 }
