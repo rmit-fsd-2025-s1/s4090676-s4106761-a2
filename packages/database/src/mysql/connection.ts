@@ -1,7 +1,7 @@
-import { DataSource } from "typeorm";
+import { DataSource } from "typeorm"
 
-if (!process.env.DB_USER || !process.env.DB_NAME || !process.env.DB_PASSWORD ) {
-  throw new Error("Missing DB_USER or DB_NAME or DB_PASSWORD");
+if (!process.env.DB_USER || !process.env.DB_NAME || !process.env.DB_PASSWORD) {
+  throw new Error("Missing DB_USER or DB_NAME or DB_PASSWORD")
 }
 
 export const AppDataSource = new DataSource({
@@ -16,4 +16,4 @@ export const AppDataSource = new DataSource({
   entities: [],
   migrations: [],
   subscribers: [],
-});
+})

@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "lint": "eslint",
+    "lint-staged": "pretty-quick --staged"
+  },
   "exports": "./src/index.ts",
   "dependencies": {
     "mysql2": "^3.14.1",

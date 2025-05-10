@@ -1,5 +1,3 @@
-import { AppDataSource } from "./mysql/connection";
+import { AppDataSource } from "./mysql/connection"
 
-export {
-  AppDataSource,
-}
+export { AppDataSource }
