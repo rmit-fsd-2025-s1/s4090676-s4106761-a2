@@ -1,14 +1,21 @@
 {
   "name": "liam-aaron-full-stack-a2",
   "private": true,
-  "workspaces": ["packages/*", "apps/*"],
-  "scripts": {
-  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {},
   "devDependencies": {
+    "pretty-quick": "^4.1.1",
+    "simple-git-hooks": "^2.13.0",
     "typescript": "5.8.3"
   },
   "packageManager": "npm@11.3.0",
   "engines": {
     "node": "22.15.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run lint-staged --workspaces --if-present"
   }
 }
