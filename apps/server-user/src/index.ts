@@ -1,5 +1,6 @@
 import express from "express"
 import cors from "cors"
+import { AppDataSource } from "@repo/database"
 
 const app = express()
 const PORT = process.env.PORT || 3001
@@ -16,6 +17,12 @@ app.post("/example", async (req, res) => {
   res.status(200).json(JSON.stringify(req.body))
 })
 
-app.listen(PORT, () => {
-  console.log(`Listening on ${PORT}`)
-})
+AppDataSource.initialize()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Listening on ${PORT}`)
+    })
+  })
+  .catch((err) => {
+    console.error(err)
+  })
