@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001
 
 app.use(
   cors({
-    origin: "http://localhost",
+    origin: "*",
   })
 )
 
@@ -15,6 +15,12 @@ app.use(express.json())
 
 app.post("/example", (req, res) => {
   res.status(200).json(JSON.stringify(req.body))
+})
+
+app.get("/user", (req, res) => {
+  res.status(200).json({
+    name: "tim",
+  })
 })
 
 AppDataSource.initialize()
