@@ -25,6 +25,7 @@ export interface TutorAccount extends Account {
 
 export interface LecturerAccount extends Account {
   type: AccountType.LECTURER
+  courseIds?: string[]
 }
 
 export type AuthenticatedUser = {
@@ -50,10 +51,16 @@ export type Application = {
 }
 
 export type LocalstorageSchema = {
+  // liam
   tutorAccounts: TutorAccount[]
+  // liam
   lecturerAccounts: LecturerAccount[]
+  // ignore
   authenticatedUser: AuthenticatedUser | null
+  // aaron
   applications: Application[]
+  // aaron
   courses: Course[]
+  // ignore
   versionSlug: string
 }
