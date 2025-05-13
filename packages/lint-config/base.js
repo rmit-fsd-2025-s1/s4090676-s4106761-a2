@@ -13,10 +13,8 @@ export const config = [
   prettierPlugin,
   ...tseslint.configs.recommended,
   {
-    plugins: {
-    },
-    rules: {
-    },
+    plugins: {},
+    rules: {},
   },
   {
     plugins: {
@@ -25,5 +23,10 @@ export const config = [
   },
   {
     ignores: ["dist/**"],
+  },
+  {
+    rules: {
+      "prettier/prettier": ["error", { endOfLine: "auto" }],
+    },
   },
 ];

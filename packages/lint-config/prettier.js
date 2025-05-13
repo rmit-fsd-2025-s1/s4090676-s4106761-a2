@@ -6,4 +6,5 @@ export const prettier = {
   tabWidth: 2,
   semi: false,
   trailingComma: "es5",
+  endOfLine: "auto",
 };
