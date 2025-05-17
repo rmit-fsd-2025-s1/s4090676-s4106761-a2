@@ -27,8 +27,9 @@ You must start each development server in a different window by either:
 ### UNIX systems
 
 ```shell
-: # web-user now at http://localhost:3000
-: # server-user now at http://localhost:3001
+: # web-user now at http://localhost:3000 and watching for changes
+: # server-user now at http://localhost:3001 and watching for changes
+: # @repo/database now watching for changes
 npm run dev
 ```
 
