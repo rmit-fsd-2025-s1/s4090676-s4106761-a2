@@ -22,13 +22,13 @@ export class Application extends UUIDEntity {
   @ManyToOne(() => Course, (course) => course.id)
   course: Course
 
-  @Column({ type: "varchar" })
+  @Column()
   tutorId: string
 
-  @Column({ type: "varchar" })
+  @Column()
   status: string
 
-  @Column({ type: "varchar", nullable: true })
+  @Column()
   comment: string | null
 
   //   @ManyToOne(() => Account, (account) => account.uuid)

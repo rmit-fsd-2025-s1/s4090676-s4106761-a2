@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "lint": "npm run lint --workspaces --if-present -- --fix",
-    "dev": "(trap 'kill 0' SIGINT; npm run dev -w server-user & npm run dev -w web-user)",
+    "dev": "(trap 'kill 0' SIGINT; npm run dev -w server-user & npm run dev -w web-user & npm run dev -w @repo/database)",
     "type-check": "npm run type-check --workspaces --if-present"
   },
   "devDependencies": {

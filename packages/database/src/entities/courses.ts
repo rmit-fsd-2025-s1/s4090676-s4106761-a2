@@ -5,7 +5,7 @@ import { Application } from "./application"
 @Entity()
 export class Course extends UUIDEntity {
   // TODO: Why do courses have a type?
-  @Column({ type: "varchar" })
+  @Column()
   type: string
 
   @OneToMany(() => Application, (application) => application.id)

@@ -15,6 +15,6 @@ export class TutorAccount extends Account {
   @Column("simple-array")
   skills: string[]
 
-  @Column({ type: "text" })
+  @Column()
   credentials: string
 }
