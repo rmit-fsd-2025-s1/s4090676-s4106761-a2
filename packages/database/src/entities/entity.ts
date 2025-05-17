@@ -1,7 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, PrimaryGeneratedColumn } from "typeorm"
 
-@Entity()
-export class UUIDEntity {
+export abstract class UUIDEntity {
   @PrimaryGeneratedColumn("uuid")
   id: string
 }

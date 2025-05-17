@@ -1,10 +1,11 @@
-import { UUIDEntity } from "@/entities/entity"
+import { UUIDEntity } from "./entity"
 import { Column, Entity, OneToMany } from "typeorm"
 import { Application } from "./application"
 
 @Entity()
 export class Course extends UUIDEntity {
-  @Column()
+  // TODO: Why do courses have a type?
+  @Column({ type: "varchar" })
   type: string
 
   @OneToMany(() => Application, (application) => application.id)

@@ -45,6 +45,8 @@ export const nextJsConfig = [
       // React scope no longer necessary with new JSX transform.
       "react/react-in-jsx-scope": "off",
       "react/no-unescaped-entities": "off",
+      "react/jsx-uses-react": "warn",
+      "react/jsx-uses-vars": "warn",
       "@next/next/no-img-element": "off",
     },
   },

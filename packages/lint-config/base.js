@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import prettierPlugin from "eslint-plugin-prettier/recommended";
 import tseslint from "typescript-eslint";
 import onlyWarn from "eslint-plugin-only-warn";
+import unusedImports from "eslint-plugin-unused-imports";
 
 /**
  * A shared ESLint configuration for the repository.
@@ -19,6 +20,7 @@ export const config = [
   {
     plugins: {
       onlyWarn,
+      "unused-imports": unusedImports,
     },
   },
   {
@@ -27,6 +29,7 @@ export const config = [
   {
     rules: {
       "prettier/prettier": ["error", { endOfLine: "auto" }],
+      "unused-imports/no-unused-imports": "error",
     },
   },
 ];

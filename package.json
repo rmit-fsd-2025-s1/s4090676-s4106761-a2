@@ -1,5 +1,6 @@
 {
   "name": "liam-aaron-full-stack-a2",
+  "version": "0.0.1",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -13,13 +14,15 @@
   "devDependencies": {
     "pretty-quick": "^4.1.1",
     "simple-git-hooks": "^2.13.0",
+    "tsx": "^4.19.4",
     "typescript": "5.8.3"
   },
-  "packageManager": "npm@11.3.0",
+  "packageManager": "npm@11.4.0",
   "engines": {
-    "node": "22.15.0"
+    "node": "22.15.0",
+    "npm": "11.4.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm run lint-staged --workspaces --if-present && npm run type-check"
+    "pre-commit": "npm run lint-staged --workspaces --if-present ; npm run type-check"
   }
 }

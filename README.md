@@ -1,26 +1,30 @@
 # Full Stack: Assignment 2
 
-Files are arranged in a monorepo structure. Please find a `README.md` at the root of each package.
+Files are arranged in a monorepo structure. Please find a `README.md` at the root of each package or app.
 
-## How to run, format and validate the project
+## Set up
 
-> [!IMPORTANT]  
-> Run these scripts from the ROOT of the project. `./package.json` has been set up with workspaces in mind
-> and scripts that work with these automatically.
-
-### To set up the project for evaluation and development
-
-These operations install dependencies of all apps and modules, add pre commit hooks mentioned below and
-stops the user from committing any changes to `apps/server-user/.env`
+1. Install deps
+2. Enable git hooks for linting staged files when attempting to commit
+3. Disable tracking for `apps/server-user/.env`
 
 ```shell
-npm i && npx simple-git-hooks && git update-index --skip-worktree apps/server-user/.env
+npm i ; npx simple-git-hooks ; git update-index --skip-worktree apps/server-user/.env
 ```
 
-### To start all the development servers at the same time use
+## Starting development server
 
-> [!IMPORTANT]  
+> [!NOTE]  
 > Fill out your database details in advance at `apps/server-user/.env`
+
+### Windows systems
+
+You must start each development server in a different window by either:
+
+- Change into each directory under `app/` in a different window and run `npm run dev` in that directory
+- Use `npm run dev -w <directory name>` such as `npm run dev -w server-admin`
+
+### UNIX systems
 
 ```shell
 : # web-user now at http://localhost:3000
@@ -28,24 +32,8 @@ npm i && npx simple-git-hooks && git update-index --skip-worktree apps/server-us
 npm run dev
 ```
 
-### To format the project and check for formatting issues use
-
-> [!WARNING]  
-> Linting of staged files is configured as a pre-commit hook.
-> As such you may choose to ignore formatting errors as they will self fix.
+## Linting and type checking
 
 ```shell
-: # all code will now conform to the shared standard
-npm run lint
-```
-
-> [!WARNING]  
-> Type checking of all files is configured as a pre-commit hook.
-> You probably won't be able to commit if the code has type errors.
-
-### To check for type issues
-
-```shell
-: # all code will now conform to the shared standard
-npm run type-check
+npm run lint ; npm run type-check
 ```

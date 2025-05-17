@@ -1,6 +1,6 @@
 import express from "express"
 import cors from "cors"
-import { AppDataSource } from "@repo/database"
+import { AppDataSource } from "./datasource"
 
 const app = express()
 const PORT = process.env.PORT || 3001

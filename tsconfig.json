@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "skipLibCheck": true,
     "target": "ESNext",
     "strict": true,
     "noEmit": true,
@@ -8,8 +9,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": false,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true
   }
 }

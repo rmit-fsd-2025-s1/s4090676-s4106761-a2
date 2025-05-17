@@ -1,3 +1,7 @@
 import { AppDataSource } from "./mysql/connection"
+import { LecturerAccount } from "./entities/lecturerAccount"
+import { TutorAccount } from "./entities/tutorAccount"
 
-export { AppDataSource }
+const entities = [LecturerAccount, TutorAccount]
+
+export { AppDataSource, entities }

@@ -1,11 +1,7 @@
-import { UUIDEntity } from "@/entities/entity"
+import { UUIDEntity } from "./entity"
 import { Column, Entity, ManyToOne } from "typeorm"
 import { Course } from "./courses"
-
-export enum ApplicationType {
-  LAB = "LAB ASSISTANT",
-  TUTOR = "TUTOR",
-}
+import { ApplicationType } from "@repo/types/enums"
 
 @Entity()
 export class Application extends UUIDEntity {
@@ -26,14 +22,14 @@ export class Application extends UUIDEntity {
   @ManyToOne(() => Course, (course) => course.id)
   course: Course
 
-  @Column()
+  @Column({ type: "varchar" })
   tutorId: string
 
-  @Column()
+  @Column({ type: "varchar" })
   status: string
 
-  @Column({ nullable: true })
-  comment?: string
+  @Column({ type: "varchar", nullable: true })
+  comment: string | null
 
   //   @ManyToOne(() => Account, (account) => account.uuid)
 }
