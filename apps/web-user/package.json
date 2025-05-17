@@ -31,7 +31,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@repo/lint-config": "*",
-    "@swc/core": "^1.11.24",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
