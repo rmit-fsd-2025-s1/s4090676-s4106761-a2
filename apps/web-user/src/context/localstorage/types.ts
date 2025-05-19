@@ -20,7 +20,7 @@ export interface TutorAccount extends Account {
   type: AccountType.TUTOR
   availability?: Availability
   skills?: string[]
-  credentials?: string[]
+  credentials?: string
 }
 
 export interface LecturerAccount extends Account {

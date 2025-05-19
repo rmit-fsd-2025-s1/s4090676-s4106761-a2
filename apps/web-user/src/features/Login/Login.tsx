@@ -5,7 +5,6 @@ import { AccountCard } from "@/components/accounts/AccountCard"
 import { FieldSet } from "@/components/FieldSet"
 import { CardHeader } from "@/components/CardHeader"
 import { ZodForm } from "@/components/hookform/ZodForm"
-import { z } from "zod"
 import { AccountType } from "@/context/localstorage/enums"
 import { TextInput } from "@/components/hookform/TextInput"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
@@ -14,18 +13,8 @@ import { toaster } from "@/components/ui/toaster"
 import { useUser } from "@/hooks/localstorage/useUser"
 import { useEffect } from "react"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
-
-const schema = z
-  .object({
-    type: z.enum([AccountType.TUTOR, AccountType.LECTURER]),
-    Email: z.string().email("Please enter a valid email"),
-    Password: z
-      .string()
-      .min(8, "Please enter a password of at least 8 characters"),
-  })
-  .required()
-
-type Schema = z.infer<typeof schema>
+import { loginSchema, LoginSchemaType } from "@repo/validation/Login"
+import { useLoading } from "@/hooks/useLoading"
 
 const formDefaults = {
   type: AccountType.TUTOR,
@@ -35,20 +24,15 @@ export function Login() {
   const login = useLogin()
   const navigateUserHome = useRedirectUserPage()
   const [user] = useUser()
+  const [loading, setLoadingPromise] = useLoading()
 
-  const handleLogin = (formData: Schema) => {
-    const result = login({
+  const handleLogin = async (formData: LoginSchemaType) => {
+    const loginPromise = login({
       type: formData.type,
       email: formData.Email,
       password: formData.Password,
     })
-
-    if (!result) {
-      toaster.create({
-        description: "No user found! Please try again",
-        type: "error",
-      })
-    }
+    setLoadingPromise(loginPromise)
   }
 
   /**
@@ -64,7 +48,11 @@ export function Login() {
   return (
     <AccountCard>
       <CardHeader>Sign in to {process.env.NEXT_PUBLIC_PRODUCT_NAME}</CardHeader>
-      <ZodForm onSubmit={handleLogin} schema={schema} defaults={formDefaults}>
+      <ZodForm
+        onSubmit={handleLogin}
+        schema={loginSchema}
+        defaults={formDefaults}
+      >
         <Card.Body>
           <FieldSet>
             <AccountTypePicker />

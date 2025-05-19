@@ -27,13 +27,11 @@ const schema = z
 type Schema = z.infer<typeof schema>
 
 export function Signup({ accountType }: { accountType: AccountType }) {
-  const redirect = useRedirectUserPage()
-
   const [, writeTutor] = useStore("tutorAccounts")
   const [, writeLecturer] = useStore("lecturerAccounts")
   const login = useLogin()
 
-  const handleClick = (formData: Schema) => {
+  const handleClick = async (formData: Schema) => {
     const user = {
       id: uuid(),
       type: accountType,
@@ -46,8 +44,7 @@ export function Signup({ accountType }: { accountType: AccountType }) {
     } else {
       writeTutor(user as TutorAccount)
     }
-    login(user)
-    redirect(user)
+    await login(user)
   }
 
   return (

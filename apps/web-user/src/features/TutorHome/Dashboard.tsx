@@ -138,9 +138,7 @@ export function Dashboard() {
                       "List your academic qualifications",
                     ])[0]
                   }
-                  onChange={(e) =>
-                    updateUser({ credentials: [e.target.value] })
-                  }
+                  onChange={(e) => updateUser({ credentials: e.target.value })}
                   placeholder="List your academic qualifications"
                   mt={2}
                 />

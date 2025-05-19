@@ -1,8 +1,8 @@
-import { Entity } from "typeorm"
-import { Account } from "./account"
+import { Entity, ManyToOne } from "typeorm"
+import { AccountBase } from "./accountBase"
 import { AccountType } from "@repo/types/enums"
 
 @Entity()
-export class LecturerAccount extends Account {
+export class LecturerAccount extends AccountBase {
   declare type: AccountType.LECTURER
 }

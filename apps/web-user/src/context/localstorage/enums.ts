@@ -1,26 +1,5 @@
-export enum AccountType {
-  LECTURER = "LECTURER",
-  TUTOR = "TUTOR",
-}
-
-export enum ApplicationType {
-  LAB = "LAB ASSISTANT",
-  TUTOR = "TUTOR",
-}
-
-export enum Semester {
-  ONE = "One",
-  TWO = "Two",
-  SUMMER = "Summer",
-}
-
-export enum ApplicationStatus {
-  ACCEPTED = "ACCEPTED",
-  REJECTED = "REJECTED",
-  PENDING = "PENDING",
-}
-
-export enum Availability {
-  FULLTIME = "FULLTIME",
-  PARTTIME = "PARTTIME",
-}
+export { AccountType } from "@repo/types/enums"
+export { ApplicationType } from "@repo/types/enums"
+export { Semester } from "@repo/types/enums"
+export { ApplicationStatus } from "@repo/types/enums"
+export { Availability } from "@repo/types/enums"

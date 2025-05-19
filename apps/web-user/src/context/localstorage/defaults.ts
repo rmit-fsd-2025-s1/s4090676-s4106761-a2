@@ -23,7 +23,7 @@ const DEFAULT_TUTORS: TutorAccount[] = [
     type: AccountType.TUTOR,
     availability: Availability.FULLTIME,
     skills: ["Knitting", "Singing"],
-    credentials: ["COSC2801"],
+    credentials: "I have completed COSC2801",
   },
   {
     id: "TUTOR-2",

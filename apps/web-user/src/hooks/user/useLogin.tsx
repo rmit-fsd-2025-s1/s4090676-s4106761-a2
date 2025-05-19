@@ -1,35 +1,30 @@
 import { AccountType } from "@/context/localstorage/enums"
 import { useStore } from "@/hooks/localstorage/useStore"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
+import { useAction } from "@/hooks/api/useApi"
+import type { Account } from "@repo/database/types/account"
+
+type LoginReq = {
+  email: string
+  password: string
+  type: AccountType
+}
 
 export function useLogin() {
   const navigateUserHome = useRedirectUserPage()
-  const [tutors] = useStore("tutorAccounts")
-  const [lecturers] = useStore("lecturerAccounts")
+  const loginAction = useAction<Account>({ path: "/auth/login" })
   const [, setUser] = useStore("authenticatedUser")
 
-  return ({
-    email,
-    password,
-    type,
-  }: {
-    email: string
-    password: string
-    type: AccountType
-  }): boolean => {
-    const foundUser = (type === AccountType.TUTOR ? tutors : lecturers).find(
-      (u) => u.email === email && u.password === password
+  return async (loginDetails: LoginReq) => {
+    const accountDetails = await loginAction(loginDetails).catch(
+      () => false as const
     )
 
-    if (foundUser) {
-      setUser({
-        id: foundUser.id,
-        type: foundUser.type,
-      })
-      navigateUserHome(foundUser)
-      return true
-    } else {
-      return false
+    if (accountDetails) {
+      setUser(accountDetails)
+      // navigateUserHome(accountDetails)
     }
+
+    return accountDetails
   }
 }

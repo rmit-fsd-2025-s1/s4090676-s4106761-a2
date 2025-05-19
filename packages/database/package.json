@@ -13,13 +13,16 @@
     "dev": "tsc -p tsconfig.build.json --watch"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+    "./datasource": {
+      "import": "./dist/mysql/connection.js",
+      "types": "./dist/mysql/connection.d.ts"
     },
-    "./testEntity": {
-      "import": "./dist/testEntity.js",
-      "types": "./dist/testEntity.d.ts"
+    "./entities/*": {
+      "import": "./dist/entities/*.js",
+      "types": "./dist/entities/*.d.ts"
+    },
+    "./types/*": {
+      "types": "./dist/types/*.d.ts"
     }
   },
   "dependencies": {

@@ -1,5 +1,5 @@
 {
-  "name": "@repo/types",
+  "name": "@repo/validation",
   "private": true,
   "version": "0.0.1",
   "type": "module",
@@ -9,6 +9,10 @@
     "lint-staged": "pretty-quick --staged"
   },
   "exports": {
-    "./*": "./src/*.ts"
+    "./*": "./src/schemas/*.ts"
+  },
+  "dependencies": {
+    "zod": "^3.24.2",
+    "@repo/types": "0.0.1"
   }
 }

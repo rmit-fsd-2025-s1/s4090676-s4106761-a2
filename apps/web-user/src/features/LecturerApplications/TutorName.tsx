@@ -13,7 +13,7 @@ export function TutorName({ tutor }: { tutor: undefined | TutorAccount }) {
     Name: tutor.name,
     Availability: tutor.availability ?? "Not specified",
     Skills: formatList(tutor.skills),
-    Credentials: formatList(tutor.credentials),
+    Credentials: tutor.credentials || "",
   }
 
   return (

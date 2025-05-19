@@ -1,9 +1,10 @@
-import { Column, Entity } from "typeorm"
-import { Account } from "./account"
+import { Column, Entity, ManyToOne } from "typeorm"
+import { AccountBase } from "./accountBase"
 import { AccountType, Availability } from "@repo/types/enums"
+import { AuthSession } from "./authSession"
 
 @Entity()
-export class TutorAccount extends Account {
+export class TutorAccount extends AccountBase {
   declare type: AccountType.TUTOR
 
   @Column({
