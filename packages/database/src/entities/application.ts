@@ -23,21 +23,20 @@ export class Application extends UUIDEntity {
   course: Course
 
   @Column()
-  @IsNotEmpty()
   tutorId: string
 
   @Column()
   status: string
 
   @Column()
-  comment: string | null
+  comment: string
 
   //   @ManyToOne(() => Account, (account) => account.uuid)
 }
 
-function IsNotEmpty(): (target: Application, propertyKey: "tutorId") => void {
-  throw new Error("Function not implemented.")
-}
+// function IsNotEmpty(): (target: Application, propertyKey: "tutorId") => void {
+//   throw new Error("Function not implemented.")
+// }
 // export type Application = {
 //   id: UUID
 //   type: ApplicationType
