@@ -16,7 +16,7 @@ import { CardHeader } from "@/components/CardHeader"
 import { useUser } from "@/hooks/localstorage/useUser"
 import { useState } from "react"
 import { CourseApplications } from "@/features/TutorApplications/CourseApplications"
-import { TutorAccount } from "@/context/localstorage/types"
+import { TutorAccount } from "@repo/database/entities/tutorAccount"
 import {
   ApplicationStatus,
   ApplicationType,
@@ -37,19 +37,17 @@ export const stackProps = {
 const CURRENT_SEMESTER = Semester.ONE
 
 export function Dashboard() {
-  const [user, updateUser] = useUser() as [
-    TutorAccount,
-    (p: Partial<TutorAccount>) => void,
-  ]
+  const [{ data: user }, updateUser] = useUser<TutorAccount, true>()
 
-  const userApplications = useUserApplications(user.id)
+  // TODO: fixme
+  const userApplications = useUserApplications(user?.account.id as any)
 
   // form management
   const [newSkill, setNewSkill] = useState("")
 
   const addSkill = () => {
-    if (newSkill.trim() && !user.skills?.includes(newSkill.trim())) {
-      updateUser({ skills: [...(user.skills ?? []), newSkill.trim()] })
+    if (newSkill.trim() && !user?.skills?.includes(newSkill.trim())) {
+      updateUser({ skills: [...(user?.skills ?? []), newSkill.trim()] })
       setNewSkill("")
     }
   }
@@ -60,7 +58,7 @@ export function Dashboard() {
         {/* Welcome Card */}
         <Card.Root>
           <CardHeader>
-            <Heading size="md">Welcome, {user?.name}</Heading>
+            <Heading size="md">Welcome, {user?.account.name}</Heading>
             <Text mt={2}>Tutor Dashboard - Semester {CURRENT_SEMESTER}</Text>
           </CardHeader>
         </Card.Root>
@@ -80,7 +78,7 @@ export function Dashboard() {
                 <Flex gap={4} mt={2}>
                   <Button
                     variant={
-                      user.availability === Availability.PARTTIME
+                      user?.availability === Availability.PARTTIME
                         ? "solid"
                         : "outline"
                     }
@@ -92,7 +90,7 @@ export function Dashboard() {
                   </Button>
                   <Button
                     variant={
-                      user.availability === Availability.FULLTIME
+                      user?.availability === Availability.FULLTIME
                         ? "solid"
                         : "outline"
                     }
@@ -108,7 +106,7 @@ export function Dashboard() {
               <Box>
                 <Heading size="sm">Skills</Heading>
                 <Flex wrap="wrap" gap={2} mt={2}>
-                  {(user.skills ?? []).map((skill) => (
+                  {(user?.skills ?? []).map((skill) => (
                     <Tag.Root
                       key={skill}
                       size="md"
@@ -134,7 +132,7 @@ export function Dashboard() {
                 {/*FIXME: Using only the first value of the array */}
                 <Textarea
                   value={
-                    (user.credentials ?? [
+                    (user?.credentials ?? [
                       "List your academic qualifications",
                     ])[0]
                   }

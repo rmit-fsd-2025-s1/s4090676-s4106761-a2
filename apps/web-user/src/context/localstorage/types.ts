@@ -5,6 +5,7 @@ import {
   Availability,
   Semester,
 } from "@/context/localstorage/enums"
+import { AccountDetails } from "@repo/database/types/AccountDetails"
 
 export type UUID = string
 
@@ -56,11 +57,13 @@ export type LocalstorageSchema = {
   // liam
   lecturerAccounts: LecturerAccount[]
   // ignore
-  authenticatedUser: AuthenticatedUser | null
+  authenticatedUser: AccountDetails | null
   // aaron
   applications: Application[]
   // aaron
   courses: Course[]
   // ignore
   versionSlug: string
+
+  userId: string | undefined
 }

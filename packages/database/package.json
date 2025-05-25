@@ -22,6 +22,10 @@
       "import": "./dist/entities/*.js",
       "types": "./dist/entities/*.d.ts"
     },
+    "./queries/*": {
+      "import": "./dist/queries/*.js",
+      "types": "./dist/queries/*.d.ts"
+    },
     "./types/*": {
       "types": "./dist/types/*.d.ts"
     }

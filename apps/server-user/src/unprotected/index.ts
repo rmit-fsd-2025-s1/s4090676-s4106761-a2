@@ -3,4 +3,4 @@ import { authRoutes } from "@/unprotected/auth"
 
 export const unprotectedRoutes = express.Router()
 
-unprotectedRoutes.use(authRoutes)
+unprotectedRoutes.use("/auth", authRoutes)

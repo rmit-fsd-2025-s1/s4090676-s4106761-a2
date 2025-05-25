@@ -157,7 +157,7 @@ const DEFAULT_COURSES: Course[] = [
   },
 ]
 
-const DEFAULTS: LocalstorageSchema = {
+const DEFAULTS = {
   tutorAccounts: DEFAULT_TUTORS,
   lecturerAccounts: DEFAULT_LECTURERS,
   authenticatedUser: null,
@@ -166,37 +166,7 @@ const DEFAULTS: LocalstorageSchema = {
   versionSlug: process.env.NEXT_PUBLIC_VERSION_SLUG ?? "0.0.0",
 }
 
-export function setUpLocalstorage(
-  testing: boolean | undefined
-): LocalstorageSchema {
-  // clone defaults
-  const schemaItems: LocalstorageSchema = { ...DEFAULTS }
-
-  const shouldCacheBust =
-    process.env.NEXT_PUBLIC_VERSION_SLUG !==
-    JSON.parse(localStorage.getItem("versionSlug") ?? "null")
-
-  // replace defaults with existing values
-  for (const [schemaKey, defaultValue] of Object.entries(schemaItems)) {
-    const existingValue = shouldCacheBust
-      ? null
-      : localStorage.getItem(schemaKey)
-    if (existingValue) {
-      Object.assign(schemaItems, { [schemaKey]: JSON.parse(existingValue) })
-    } else {
-      localStorage.setItem(schemaKey, JSON.stringify(defaultValue))
-    }
-  }
-
-  if (testing)
-    localStorage.setItem(
-      "authenticatedUser",
-      JSON.stringify({
-        id: "LEC-1",
-        type: AccountType.LECTURER,
-      } satisfies AuthenticatedUser)
-    )
-
-  // return state of local storage
-  return schemaItems as LocalstorageSchema
+export function setUpLocalstorage() {
+  /* do nothing */
+  return {}
 }

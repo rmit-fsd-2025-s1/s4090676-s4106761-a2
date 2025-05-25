@@ -9,6 +9,7 @@ import { useLogout } from "@/hooks/user/useLogout"
 import { SignOutIcon } from "@/icons/SignOut"
 import { HomeIcon } from "@/icons/Home"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
+import { useStore } from "@/hooks/localstorage/useStore"
 
 const Header = styled.header`
   background-color: indigo;
@@ -67,7 +68,7 @@ function AuthenticatedButtons() {
 }
 
 export function AppHeader() {
-  const [user] = useUser()
+  const [loggedInUserId] = useStore("userId")
 
   return (
     <Header>
@@ -78,7 +79,7 @@ export function AppHeader() {
         </HStackLink>
 
         <ButtonGroupEnd>
-          <Show when={!user} fallback={<AuthenticatedButtons />}>
+          <Show when={!loggedInUserId} fallback={<AuthenticatedButtons />}>
             <UnauthenticatedButtons />
           </Show>
         </ButtonGroupEnd>

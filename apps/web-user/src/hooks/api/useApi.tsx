@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { use } from "react"
 import { toaster } from "@/components/ui/toaster"
 
 const LOGGING = false
@@ -13,7 +11,7 @@ type ApiRequest = {
   options?: RequestInit
 } & ToastConf
 
-function fetchApi<T>({ path, options, ...others }: ApiRequest) {
+export function fetchApi<T>({ path, options, ...others }: ApiRequest) {
   const fetchPromise = fetch(`http://localhost:3001${path}`, {
     headers: {
       "Content-Type": "application/json",
@@ -46,21 +44,13 @@ function fetchApi<T>({ path, options, ...others }: ApiRequest) {
 }
 
 /**
- * fetch wrapped in use()
- * i.e. use <Suspense fallback={} /> to make loading screens
- * @param req.path some route such as "/user" or "/auth/login"
- * @param req.options from fetch(path, options)
- */
-export function useApi<T>(req: ApiRequest) {
-  return use(fetchApi<T>(req))
-}
-
-/**
  * factory for fetch, defaulting to POST. Parameter of function is stringified and used as body
  * @param req.path some route such as "/user" or "/auth/login"
  * @param req.options from fetch(path, options)
  */
-export function useAction<T>(req: ApiRequest) {
+export function useAction<T>(
+  req: ApiRequest & { onSuccess?: (data: T) => void }
+) {
   return (body: any) =>
     fetchApi<T>({
       ...req,

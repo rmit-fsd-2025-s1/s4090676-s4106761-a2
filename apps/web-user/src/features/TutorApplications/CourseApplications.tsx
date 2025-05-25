@@ -17,7 +17,8 @@ import {
   ApplicationType,
 } from "@/context/localstorage/enums"
 import { v4 as uuid } from "uuid"
-import { TutorAccount, UUID } from "@/context/localstorage/types"
+import { UUID } from "@/context/localstorage/types"
+import { TutorAccount } from "@repo/database/entities/tutorAccount"
 import { useUser } from "@/hooks/localstorage/useUser"
 
 export function CourseApplications(props: {
@@ -28,7 +29,7 @@ export function CourseApplications(props: {
 }) {
   const [courses] = useStore("courses")
   const [applications, putApplication] = useStore("applications")
-  const [user] = useUser() as [TutorAccount, undefined]
+  const [{ data: user }] = useUser<TutorAccount, true>()
 
   const submitApplication = (type: ApplicationType, courseId: UUID) => {
     console.log("im calling yeah")
@@ -37,7 +38,7 @@ export function CourseApplications(props: {
       type,
       courseId,
       status: ApplicationStatus.PENDING,
-      tutorId: user.id,
+      tutorId: user!.id,
     })
   }
 
@@ -54,7 +55,7 @@ export function CourseApplications(props: {
               const haveApplied = applications.find(
                 (application) =>
                   application.courseId === course.id &&
-                  application.tutorId === user.id
+                  application.tutorId === user?.id
               )
               return (
                 <Card.Root key={course.id}>

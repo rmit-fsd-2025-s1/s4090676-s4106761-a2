@@ -22,9 +22,10 @@ app.use(cookieParser())
 
 app.use((req, res, next) => {
   if (LOGGING) {
-    console.log("Request made: ", req.body)
-    console.log("Headers w/ request: ", req.headers)
-    console.log("Cookies w/ request: ", req.cookies)
+    console.log("Request body: ", req.body)
+    console.log("Request path: ", req.path)
+    // console.log("Headers w/ request: ", req.headers)
+    console.log("Request cookies: ", req.cookies)
   }
   next()
 })
@@ -35,9 +36,11 @@ app.use(protectedRoutes)
 
 // err should usually be an AggregateError if the error comes from any of the routers
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  console.error(err?.errors)
+  console.error(err?.errors, err?.message)
   if (res.statusCode === 200) res.status(500)
-  res.json({ message: err?.message })
+  res.json({
+    message: err?.errors ? err.message : "Failed. Please try again",
+  })
 }
 
 app.use(errorHandler)

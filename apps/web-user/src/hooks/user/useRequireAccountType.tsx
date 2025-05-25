@@ -8,7 +8,7 @@ export function useRequireAccountType(accountType: AccountType) {
   const [user] = useStore("authenticatedUser")
   const { push: navigate } = useRouter()
 
-  const shouldRedirect = user?.type != accountType
+  const shouldRedirect = user?.account.type != accountType
 
   useEffect(() => {
     if (shouldRedirect) navigate("/login")

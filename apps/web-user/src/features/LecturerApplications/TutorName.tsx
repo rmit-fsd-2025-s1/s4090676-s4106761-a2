@@ -1,4 +1,4 @@
-import { TutorAccount } from "@/context/localstorage/types"
+import { TutorAccount } from "@repo/database/entities/TutorAccount"
 import { DetailedTableItem } from "@/components/DetailedTableItem"
 
 const formatList = (items: string[] | undefined) =>
@@ -8,15 +8,17 @@ const formatList = (items: string[] | undefined) =>
       items.slice(-1)
     : "Not specified"
 
-export function TutorName({ tutor }: { tutor: undefined | TutorAccount }) {
+export function TutorName({ tutor }: { tutor: TutorAccount }) {
   const tutorData = tutor && {
-    Name: tutor.name,
+    Name: tutor.account.name,
     Availability: tutor.availability ?? "Not specified",
     Skills: formatList(tutor.skills),
     Credentials: tutor.credentials || "",
   }
 
   return (
-    <DetailedTableItem details={tutorData}>{tutor?.name}</DetailedTableItem>
+    <DetailedTableItem details={tutorData}>
+      {tutor?.account.name}
+    </DetailedTableItem>
   )
 }

@@ -9,11 +9,12 @@ import { AccountType } from "@/context/localstorage/enums"
 import { TextInput } from "@/components/hookform/TextInput"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
 import { useLogin } from "@/hooks/user/useLogin"
-import { useUser } from "@/hooks/localstorage/useUser"
 import { useEffect } from "react"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
 import { loginSchema, LoginSchemaType } from "@repo/validation/Login"
 import { useLoading } from "@/hooks/useLoading"
+import { useStore } from "@/hooks/localstorage/useStore"
+import { useUser } from "@/hooks/localstorage/useUser"
 
 const formDefaults = {
   type: AccountType.TUTOR,
@@ -22,8 +23,11 @@ const formDefaults = {
 export function Login() {
   const login = useLogin()
   const navigateUserHome = useRedirectUserPage()
-  const [user] = useUser()
+  const [loggedInUserId] = useStore("userId")
   const [loading, setLoadingPromise] = useLoading()
+  const [query] = useUser("24d65f24-9813-4665-aa18-ffabc0e011db")
+
+  console.log(query.data)
 
   const handleLogin = async (formData: LoginSchemaType) => {
     const loginPromise = login({
@@ -39,10 +43,10 @@ export function Login() {
    * redirect them to their home page
    */
   useEffect(() => {
-    if (user) {
-      navigateUserHome(user)
+    if (loggedInUserId) {
+      navigateUserHome()
     }
-  }, [user, navigateUserHome])
+  }, [loggedInUserId, navigateUserHome])
 
   return (
     <AccountCard>
