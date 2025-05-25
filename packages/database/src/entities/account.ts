@@ -3,7 +3,7 @@ import { Check, Column, Entity, Unique } from "typeorm"
 import { AccountType } from "@repo/types/enums"
 
 @Entity()
-@Unique(["email"])
+@Unique(["email", "type"])
 @Check(`LEN("password") > 1`)
 @Check(`LEN("name") > 1`)
 @Check(

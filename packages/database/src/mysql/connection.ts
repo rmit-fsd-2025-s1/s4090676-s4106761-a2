@@ -30,6 +30,7 @@ export const appDataSource = new DataSource({
   ],
   migrations: [],
   subscribers: [],
+  multipleStatements: !!process.env.TESTS,
 })
 
 export const entityManager = appDataSource.manager

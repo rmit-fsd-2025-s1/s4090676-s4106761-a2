@@ -6,6 +6,6 @@ export class AccountSession {
   @PrimaryColumn()
   token: string
 
-  @ManyToOne(() => Account, (account) => account.id)
+  @ManyToOne(() => Account, (account) => account.id, { onDelete: "CASCADE" })
   account: Account
 }

@@ -4,7 +4,7 @@ import { UUIDEntity } from "./entity"
 
 @Entity()
 export class LecturerAccount extends UUIDEntity {
-  @OneToOne(() => Account, (account) => account.id)
+  @OneToOne(() => Account, (account) => account.id, { onDelete: "CASCADE" })
   @JoinColumn()
   account: Account
 }

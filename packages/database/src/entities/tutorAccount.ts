@@ -5,7 +5,7 @@ import { UUIDEntity } from "./entity"
 
 @Entity()
 export class TutorAccount extends UUIDEntity {
-  @OneToOne(() => Account, (a) => a.id)
+  @OneToOne(() => Account, (a) => a.id, { onDelete: "CASCADE" })
   @JoinColumn()
   account: Account
 

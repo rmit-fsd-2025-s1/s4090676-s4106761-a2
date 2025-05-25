@@ -1,6 +1,7 @@
 import { Response } from "express"
+import { throwError } from "@/protected/util/throwError"
 
 export function throwUnauthorized(res: Response) {
   res.status(401)
-  throw new AggregateError([], "Action unauthorized at this time")
+  throwError("Action unauthorized at this time")
 }

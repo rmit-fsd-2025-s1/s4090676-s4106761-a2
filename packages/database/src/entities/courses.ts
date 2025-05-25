@@ -15,7 +15,9 @@ export class Course extends UUIDEntity {
   @Column()
   semester: Semester
 
-  @OneToMany(() => Application, (application) => application.id)
+  @OneToMany(() => Application, (application) => application.id, {
+    onDelete: "CASCADE",
+  })
   applications: Application[]
 }
 

@@ -4,7 +4,6 @@ import cookieParser from "cookie-parser"
 import { appDataSource } from "@repo/database/datasource"
 import { protectedRoutes } from "@/protected"
 import { unprotectedRoutes } from "@/unprotected"
-import { createCourses } from "@repo/database/fixtures/courses"
 
 const app = express()
 const LOGGING = true
@@ -37,7 +36,7 @@ app.use(protectedRoutes)
 // err should usually be an AggregateError if the error comes from any of the routers
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err?.errors)
-  if (res.statusCode !== 200) res.status(500)
+  if (res.statusCode === 200) res.status(500)
   res.json({ message: err?.message })
 }
 
@@ -45,11 +44,10 @@ app.use(errorHandler)
 
 appDataSource
   .initialize()
-  .then(() => {
+  .then(async () => {
     app.listen(PORT, () => {
       console.log(`Listening on ${PORT}`)
     })
-    createCourses()
   })
   .catch((err) => {
     console.error(err)

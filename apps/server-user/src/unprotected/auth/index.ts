@@ -7,6 +7,8 @@ import { AccountDetails } from "@repo/database/types/Account"
 import { AccountType, Availability } from "@repo/types/enums"
 import { entityManager } from "@repo/database/datasource"
 import { AccountSession } from "@repo/database/entities/accountSession"
+import { Account } from "@repo/database/entities/account"
+import { throwError } from "@/protected/util/throwError"
 
 export const authRoutes = express.Router()
 
@@ -21,9 +23,23 @@ const generateToken = () => {
 authRoutes.post("/auth/login", async (req, res) => {
   const newToken = generateToken()
 
+  const user = await entityManager
+    .findOneByOrFail(Account, {
+      email: req.body.email,
+      password: req.body.password,
+      type: req.body.type,
+    })
+    .catch((err) => {
+      return throwError(
+        "Unable to find username or password. Please try again",
+        err
+      )
+    })
+
   await entityManager.save(
     entityManager.create(AccountSession, {
       token: newToken,
+      account: user,
     })
   )
 
@@ -50,7 +66,9 @@ authRoutes.post("/auth/login", async (req, res) => {
 })
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  throw new AggregateError([err], "Unable to create auth session at this time")
+  console.log(err instanceof AggregateError)
+  if (err instanceof AggregateError) throw err
+  else throw new AggregateError([err], "Failed to login. Please try again")
 }
 
 authRoutes.use(errorHandler)
