@@ -17,6 +17,10 @@
       "import": "./dist/mysql/connection.js",
       "types": "./dist/mysql/connection.d.ts"
     },
+    "./fixtures/*": {
+      "import": "./dist/mysql/fixtures/*.js",
+      "types": "./dist/mysql/fixtures/*.d.ts"
+    },
     "./entities/*": {
       "import": "./dist/entities/*.js",
       "types": "./dist/entities/*.d.ts"

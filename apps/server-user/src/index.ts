@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser"
 import { appDataSource } from "@repo/database/datasource"
 import { protectedRoutes } from "@/protected"
 import { unprotectedRoutes } from "@/unprotected"
+import { createCourses } from "@repo/database/fixtures/courses"
 
 const app = express()
 const LOGGING = true
@@ -48,6 +49,7 @@ appDataSource
     app.listen(PORT, () => {
       console.log(`Listening on ${PORT}`)
     })
+    createCourses()
   })
   .catch((err) => {
     console.error(err)
