@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { use } from "react"
 import { toaster } from "@/components/ui/toaster"
 

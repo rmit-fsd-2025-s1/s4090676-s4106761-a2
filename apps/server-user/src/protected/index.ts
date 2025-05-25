@@ -1,10 +1,6 @@
 import express from "express"
 import { throwUnauthorized } from "@/protected/util/throwUnauthorized"
-import {
-  appDataSource,
-  entityManager,
-  getQueryBuilder,
-} from "@repo/database/datasource"
+import { getQueryBuilder } from "@repo/database/datasource"
 import { AuthSession } from "@repo/database/entities/authSession"
 import { LecturerAccount } from "@repo/database/entities/lecturerAccount"
 

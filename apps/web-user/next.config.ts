@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   allowedDevOrigins: ["[::]", "localhost"],
   devIndicators: false,
+  transpilePackages: ["@repo/validation", "@repo/types"],
 }
 
 export default nextConfig

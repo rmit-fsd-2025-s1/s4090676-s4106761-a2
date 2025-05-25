@@ -1,4 +1,4 @@
-import express, { ErrorRequestHandler, NextFunction, Request } from "express"
+import express, { ErrorRequestHandler } from "express"
 import { randomBytes } from "node:crypto"
 
 import { AccountDetails } from "@repo/database/types/Account"

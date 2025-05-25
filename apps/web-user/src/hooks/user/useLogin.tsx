@@ -22,7 +22,7 @@ export function useLogin() {
 
     if (accountDetails) {
       setUser(accountDetails)
-      // navigateUserHome(accountDetails)
+      navigateUserHome(accountDetails)
     }
 
     return accountDetails

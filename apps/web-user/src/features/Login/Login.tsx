@@ -9,7 +9,6 @@ import { AccountType } from "@/context/localstorage/enums"
 import { TextInput } from "@/components/hookform/TextInput"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
 import { useLogin } from "@/hooks/user/useLogin"
-import { toaster } from "@/components/ui/toaster"
 import { useUser } from "@/hooks/localstorage/useUser"
 import { useEffect } from "react"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
@@ -60,7 +59,7 @@ export function Login() {
             <Password name="Password" />
           </FieldSet>
         </Card.Body>
-        <AccountCardControls />
+        <AccountCardControls loading={loading} />
       </ZodForm>
     </AccountCard>
   )
