@@ -1,4 +1,4 @@
-import { TutorAccount } from "@repo/database/entities/TutorAccount"
+import { TutorAccount } from "@repo/database/entities/tutorAccount"
 import { DetailedTableItem } from "@/components/DetailedTableItem"
 
 const formatList = (items: string[] | undefined) =>
