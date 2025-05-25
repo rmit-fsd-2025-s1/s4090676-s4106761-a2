@@ -2,7 +2,7 @@ import { AccountType } from "@/context/localstorage/enums"
 import { useStore } from "@/hooks/localstorage/useStore"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
 import { useAction } from "@/hooks/api/useApi"
-import type { Account } from "@repo/database/types/account"
+import type { Account } from "@repo/database/entities/account"
 
 type LoginReq = {
   email: string

@@ -1,8 +1,7 @@
 import { TutorAccount } from "../entities/tutorAccount"
 import { LecturerAccount } from "../entities/lecturerAccount"
-
-export type Account = LecturerAccount | TutorAccount
+import { Account } from "../entities/account"
 
 export type AccountDetails =
-  | Omit<LecturerAccount, "password">
-  | Omit<TutorAccount, "password">
+  | Omit<LecturerAccount & Account, "password" | "account">
+  | Omit<TutorAccount & Account, "password" | "account">

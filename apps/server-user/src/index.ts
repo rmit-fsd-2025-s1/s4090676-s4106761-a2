@@ -36,7 +36,8 @@ app.use(protectedRoutes)
 // err should usually be an AggregateError if the error comes from any of the routers
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   console.error(err?.errors)
-  res.status(500).json({ message: err?.message })
+  if (res.statusCode !== 200) res.status(500)
+  res.json({ message: err?.message })
 }
 
 app.use(errorHandler)

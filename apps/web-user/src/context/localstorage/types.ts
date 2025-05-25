@@ -8,7 +8,7 @@ import {
 
 export type UUID = string
 
-export interface Account {
+interface Account {
   id: UUID
   type: AccountType
   email: string

@@ -1,14 +1,14 @@
-import { Account } from "@/context/localstorage/types"
-import { AccountType } from "@/context/localstorage/enums"
+import { AccountType } from "@repo/types/enums"
 import { useRouter } from "next/router"
 import { useUser } from "@/hooks/localstorage/useUser"
 import { toaster } from "@/components/ui/toaster"
+import type { AccountDetails } from "@repo/database/types/Account"
 
 export default function useRedirectUserPage() {
   const { push: navigate } = useRouter()
   const [userAccount] = useUser()
 
-  return (user?: Account) => {
+  return (user?: { type: AccountType }) => {
     switch (user?.type || userAccount?.type) {
       case AccountType.TUTOR:
         navigate("/tutor")

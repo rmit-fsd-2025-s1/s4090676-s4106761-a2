@@ -1,8 +1,9 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
+import { Account } from "../entities/account"
 import { TutorAccount } from "../entities/tutorAccount"
 import { LecturerAccount } from "../entities/lecturerAccount"
-import { AuthSession } from "../entities/authSession"
+import { AccountSession } from "../entities/accountSession"
 
 if (!process.env.DB_USER || !process.env.DB_NAME || !process.env.DB_PASSWORD) {
   throw new Error("Missing DB_USER or DB_NAME or DB_PASSWORD")
@@ -17,9 +18,11 @@ export const appDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: true,
   logging: true,
-  entities: [LecturerAccount, TutorAccount, AuthSession],
+  entities: [Account, LecturerAccount, TutorAccount, AccountSession],
   migrations: [],
   subscribers: [],
 })
 
 export const entityManager = appDataSource.manager
+
+export const getQueryBuilder = appDataSource.createQueryBuilder
