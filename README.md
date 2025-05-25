@@ -4,12 +4,11 @@ Files are arranged in a monorepo structure. Please find a `README.md` at the roo
 
 ## Set up
 
-1. Install deps
-2. Enable git hooks for linting staged files when attempting to commit
-3. Disable tracking for `apps/server-user/.env`
+1. Install deps (automatically enables git hooks)
+2. Disable tracking for `apps/server-user/.env`
 
 ```shell
-npm i ; npx simple-git-hooks ; git update-index --skip-worktree apps/server-user/.env
+npm i ; git update-index --skip-worktree apps/server-user/.env
 ```
 
 ## Starting development server

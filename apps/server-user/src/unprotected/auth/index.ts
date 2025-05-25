@@ -1,10 +1,12 @@
+// noinspection JSUnusedLocalSymbols
+
 import express, { ErrorRequestHandler } from "express"
 import { randomBytes } from "node:crypto"
 
 import { AccountDetails } from "@repo/database/types/Account"
 import { AccountType, Availability } from "@repo/types/enums"
 import { entityManager } from "@repo/database/datasource"
-import { AuthSession } from "@repo/database/entities/authSession"
+import { AccountSession } from "@repo/database/entities/accountSession"
 
 export const authRoutes = express.Router()
 
@@ -20,7 +22,7 @@ authRoutes.post("/auth/login", async (req, res) => {
   const newToken = generateToken()
 
   await entityManager.save(
-    entityManager.create(AuthSession, {
+    entityManager.create(AccountSession, {
       token: newToken,
     })
   )

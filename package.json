@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "lint": "npm run lint --workspaces --if-present -- --fix",
+    "clean": "npm run clean --workspaces --if-present",
     "dev": "(trap 'kill 0' SIGINT; npm run dev -w server-user & npm run dev -w web-user & npm run dev -w @repo/database)",
-    "type-check": "npm run type-check --workspaces --if-present"
+    "type-check": "npm run type-check --workspaces --if-present",
+    "prepare": "npx simple-git-hooks"
   },
   "devDependencies": {
     "pretty-quick": "^4.1.1",
@@ -23,6 +25,6 @@
     "npm": "11.4.0"
   },
   "simple-git-hooks": {
-    "pre-commit": "npm run lint-staged --workspaces --if-present ; npm run type-check"
+    "pre-commit": "npm run clean ; npm ci ; npm run lint-staged --workspaces --if-present ; npm run type-check"
   }
 }

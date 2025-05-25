@@ -31,5 +31,5 @@ jobs:
           node-version: 22.x
       - name: Install Dependencies
         run: npm ci
-      - name: Run dev
+      - name: Run type-check
         run: npm run type-check
