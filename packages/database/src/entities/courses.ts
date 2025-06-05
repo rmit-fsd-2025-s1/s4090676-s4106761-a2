@@ -21,6 +21,7 @@ export class Course extends UUIDEntity {
   applications: Application[]
 }
 
+//FIXME
 // export type Course = {
 //   id: UUID
 //   code: string

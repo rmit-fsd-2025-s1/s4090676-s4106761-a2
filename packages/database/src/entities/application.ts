@@ -2,6 +2,7 @@ import { UUIDEntity } from "./entity"
 import { Column, Entity, ManyToOne } from "typeorm"
 import { Course } from "./courses"
 import { ApplicationType } from "@repo/types/enums"
+import { TutorAccount } from "./tutorAccount"
 
 @Entity()
 export class Application extends UUIDEntity {
@@ -10,29 +11,36 @@ export class Application extends UUIDEntity {
     enum: ApplicationType,
     nullable: false,
   })
-  type: "enum"
+  type: ApplicationType
 
-  //   @Column({
-  //     type: "enum",
-  //     enum: UserRole,
-  //     default: UserRole.GHOST,
-  // })
-  // role: UserRole
-
-  @ManyToOne(() => Course, (course) => course.id)
+  @ManyToOne(() => Course, (course) => course.applications)
   course: Course
 
-  @Column()
-  tutorId: string
+  @ManyToOne(() => TutorAccount, (tutor) => tutor.applications, {
+    nullable: false,
+    onDelete: "CASCADE",
+    eager: true,
+  })
+  tutor: TutorAccount
 
   @Column()
   status: string
 
   @Column()
   comment: string
-
-  //   @ManyToOne(() => Account, (account) => account.uuid)
 }
+
+//FIXME
+// @Column()
+// tutorId: string
+
+// @Column()
+// status: string
+
+// @Column()
+// comment: string
+
+//   @ManyToOne(() => Account, (account) => account.uuid)
 
 // function IsNotEmpty(): (target: Application, propertyKey: "tutorId") => void {
 //   throw new Error("Function not implemented.")
@@ -45,3 +53,10 @@ export class Application extends UUIDEntity {
 //   status: ApplicationStatus
 //   comment?: string
 // }
+
+//   @Column({
+//     type: "enum",
+//     enum: UserRole,
+//     default: UserRole.GHOST,
+// })
+// role: UserRole
