@@ -5,6 +5,8 @@ import { throwUnauthorized } from "@/util/throwUnauthorized"
 import { entityManager } from "@repo/database/datasource"
 import { AccountSession } from "@repo/database/entities/accountSession"
 import { userRoutes } from "@/protected/user"
+import { tutorRouter } from "@/routes/tutor.routes"
+//import { applicationRoutes } from "@/protected/application"
 
 export const protectedRoutes = express.Router()
 
@@ -23,3 +25,7 @@ protectedRoutes.use(async (req, res, next) => {
 })
 
 protectedRoutes.use("/user", userRoutes)
+protectedRoutes.use("/tutors", tutorRouter)
+//console.log("applicationRoutes is a", typeof applicationRoutes)
+
+//protectedRoutes.use("/application", applicationRoutes)
