@@ -31,6 +31,10 @@ const queryClient = new QueryClient({
           path: queryKey.join("/"),
         }) as Promise<AccountDetails>,
     },
+    mutations: {
+      retry: false,
+      throwOnError: false,
+    },
   },
 })
 

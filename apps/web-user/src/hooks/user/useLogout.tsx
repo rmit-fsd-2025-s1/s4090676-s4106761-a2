@@ -1,12 +1,11 @@
-import { useStore } from "@/hooks/localstorage/useStore"
 import { useRouter } from "next/navigation"
+import { setUser } from "@/hooks/localstorage/useUser"
 
 export function useLogout() {
-  const [, writeUser] = useStore("authenticatedUser")
   const router = useRouter()
 
-  return (options?: { doNotMovePage?: boolean }) => {
-    writeUser(null)
-    if (!options?.doNotMovePage) router.push("/")
+  return () => {
+    setUser(null, null)
+    router.push("/")
   }
 }

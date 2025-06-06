@@ -44,20 +44,18 @@ export function fetchApi<T>({ path, options, ...others }: ApiRequest) {
 }
 
 /**
- * factory for fetch, defaulting to POST. Parameter of function is stringified and used as body
- * @param req.path some route such as "/user" or "/auth/login"
- * @param req.options from fetch(path, options)
+ * factory for useMutation
  */
-export function useAction<T>(
-  req: ApiRequest & { onSuccess?: (data: T) => void }
-) {
-  return (body: any) =>
-    fetchApi<T>({
-      ...req,
-      options: {
-        method: "POST",
-        body: JSON.stringify(body),
-        ...req.options,
-      },
-    })
+export function createMutation<R, T>(req: ApiRequest) {
+  return {
+    mutationFn: (body: R) =>
+      fetchApi<T>({
+        ...req,
+        options: {
+          method: "POST",
+          body: JSON.stringify(body),
+          ...req.options,
+        },
+      }),
+  }
 }

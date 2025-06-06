@@ -1,18 +1,18 @@
-import { useStore } from "@/hooks/localstorage/useStore"
 import { AccountType } from "@/context/localstorage/enums"
 import { Text } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
+import { useUser } from "@/hooks/localstorage/useUser"
 
 export function useRequireAccountType(accountType: AccountType) {
-  const [user] = useStore("authenticatedUser")
+  const [,userType] = useUser()
   const { push: navigate } = useRouter()
 
-  const shouldRedirect = user?.account.type != accountType
+  const shouldRedirect = userType != accountType
 
   useEffect(() => {
     if (shouldRedirect) navigate("/login")
-  }, [user, navigate, shouldRedirect])
+  }, [userType, navigate, shouldRedirect])
 
   return shouldRedirect ? <Text>Redirecting...</Text> : null
 }

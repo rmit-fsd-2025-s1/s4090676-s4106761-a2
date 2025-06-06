@@ -9,12 +9,7 @@ import { AccountType } from "@/context/localstorage/enums"
 import { TextInput } from "@/components/hookform/TextInput"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
 import { useLogin } from "@/hooks/user/useLogin"
-import { useEffect } from "react"
-import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
 import { loginSchema, LoginSchemaType } from "@repo/validation/Login"
-import { useLoading } from "@/hooks/useLoading"
-import { useStore } from "@/hooks/localstorage/useStore"
-import { useUser } from "@/hooks/localstorage/useUser"
 
 const formDefaults = {
   type: AccountType.TUTOR,
@@ -22,31 +17,14 @@ const formDefaults = {
 
 export function Login() {
   const login = useLogin()
-  const navigateUserHome = useRedirectUserPage()
-  const [loggedInUserId] = useStore("userId")
-  const [loading, setLoadingPromise] = useLoading()
-  const [query] = useUser("24d65f24-9813-4665-aa18-ffabc0e011db")
-
-  console.log(query.data)
 
   const handleLogin = async (formData: LoginSchemaType) => {
-    const loginPromise = login({
+    login.mutate({
       type: formData.type,
       email: formData.Email,
       password: formData.Password,
     })
-    setLoadingPromise(loginPromise)
   }
-
-  /**
-   * If there is already an authenticated user set, and they come to the login page,
-   * redirect them to their home page
-   */
-  useEffect(() => {
-    if (loggedInUserId) {
-      navigateUserHome()
-    }
-  }, [loggedInUserId, navigateUserHome])
 
   return (
     <AccountCard>
@@ -63,7 +41,7 @@ export function Login() {
             <Password name="Password" />
           </FieldSet>
         </Card.Body>
-        <AccountCardControls loading={loading} />
+        <AccountCardControls loading={login.isPending} />
       </ZodForm>
     </AccountCard>
   )

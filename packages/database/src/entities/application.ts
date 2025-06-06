@@ -16,7 +16,7 @@ export class Application extends UUIDEntity {
   @ManyToOne(() => Course, (course) => course.applications)
   course: Course
 
-  @ManyToOne(() => TutorAccount, (tutor) => tutor.applications, {
+  @ManyToOne(() => TutorAccount, (tutor) => tutor.id, {
     nullable: false,
     onDelete: "CASCADE",
     eager: true,

@@ -4,12 +4,11 @@ import { BooksIcon } from "@/icons/Books"
 import Link from "next/link"
 import { SignInIcon } from "@/icons/SignIn"
 import { PlusIcon } from "@/icons/Plus"
-import { useUser } from "@/hooks/localstorage/useUser"
+import { useIsLoggedIn, useUser } from "@/hooks/localstorage/useUser"
 import { useLogout } from "@/hooks/user/useLogout"
 import { SignOutIcon } from "@/icons/SignOut"
 import { HomeIcon } from "@/icons/Home"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
-import { useStore } from "@/hooks/localstorage/useStore"
 
 const Header = styled.header`
   background-color: indigo;
@@ -53,13 +52,15 @@ function UnauthenticatedButtons() {
 function AuthenticatedButtons() {
   const logout = useLogout()
   const redirect = useRedirectUserPage()
+  const [id, type] = useUser()
+
   return (
     <>
-      <Button onClick={() => redirect()}>
+      <Button onClick={() => redirect(type)}>
         Home
         <HomeIcon />
       </Button>
-      <Button onClick={() => logout({ doNotMovePage: true })}>
+      <Button onClick={logout}>
         Log out
         <SignOutIcon />
       </Button>
@@ -68,7 +69,7 @@ function AuthenticatedButtons() {
 }
 
 export function AppHeader() {
-  const [loggedInUserId] = useStore("userId")
+  const loggedIn = useIsLoggedIn()
 
   return (
     <Header>
@@ -79,8 +80,8 @@ export function AppHeader() {
         </HStackLink>
 
         <ButtonGroupEnd>
-          <Show when={!loggedInUserId} fallback={<AuthenticatedButtons />}>
-            <UnauthenticatedButtons />
+          <Show when={loggedIn} fallback={<UnauthenticatedButtons />}>
+            <AuthenticatedButtons />
           </Show>
         </ButtonGroupEnd>
       </HStack>

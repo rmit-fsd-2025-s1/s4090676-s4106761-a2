@@ -40,7 +40,7 @@ loginRouter.post("/", async (req, res) => {
     })
   )
 
-  const accountDetails = getAccountDetails(user)
+  const accountDetails = await getAccountDetails(user)
 
   res
     .status(200)

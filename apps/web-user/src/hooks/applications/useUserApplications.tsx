@@ -1,5 +1,4 @@
 import { Application, UUID } from "@/context/localstorage/types"
-import { useStore } from "@/hooks/localstorage/useStore"
 import { useMemo } from "react"
 import { Semester } from "@/context/localstorage/enums"
 
@@ -11,8 +10,9 @@ export function useUserApplications(targetTutor: UUID): (Application & {
   courseCode: string
   semester: Semester
 })[] {
-  const [applications] = useStore("applications")
-  const [courses] = useStore("courses")
+  // FIXME
+  const applications = null
+  const courses = null
 
   const applicantHistory = useMemo(() => {
     const frequencies: { [tutor: UUID]: Application[] } = {}

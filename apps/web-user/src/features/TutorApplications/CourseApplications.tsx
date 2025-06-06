@@ -11,15 +11,12 @@ import {
 } from "@chakra-ui/react"
 import { CardHeader } from "@/components/CardHeader"
 import { stackProps } from "@/features/TutorHome/Dashboard"
-import { useStore } from "@/hooks/localstorage/useStore"
 import {
   ApplicationStatus,
   ApplicationType,
 } from "@/context/localstorage/enums"
 import { v4 as uuid } from "uuid"
 import { UUID } from "@/context/localstorage/types"
-import { TutorAccount } from "@repo/database/entities/tutorAccount"
-import { useUser } from "@/hooks/localstorage/useUser"
 
 export function CourseApplications(props: {
   stackProps: {
@@ -27,9 +24,10 @@ export function CourseApplications(props: {
     sx: { "& > *:not(:last-child)": { marginBottom: string } }
   }
 }) {
-  const [courses] = useStore("courses")
-  const [applications, putApplication] = useStore("applications")
-  const [{ data: user }] = useUser<TutorAccount, true>()
+  // FIXME
+  const user = null
+  const courses = null
+  const [applications, putApplication] = [null, null]
 
   const submitApplication = (type: ApplicationType, courseId: UUID) => {
     console.log("im calling yeah")
