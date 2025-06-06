@@ -1,4 +1,3 @@
-import { useStore } from "@/hooks/localstorage/useStore"
 import { Card, For, Heading, List } from "@chakra-ui/react"
 
 export function Applications() {

@@ -1,4 +1,3 @@
-import { AccountType } from "@/context/localstorage/enums"
 import useRedirectUserPage from "@/hooks/user/useRedirectUserPage"
 import { createMutation } from "@/hooks/api/useApi"
 import type { AccountDetails } from "@repo/database/types/AccountDetails"
@@ -16,7 +15,7 @@ export function useLogin() {
 
   return useMutation({
     ...createMutation<LoginReq, AccountDetails>({
-      path: "/auth/login"
+      path: "/auth/login",
     }),
     onSuccess: (data) => {
       setUser(data.id, data.account.type)

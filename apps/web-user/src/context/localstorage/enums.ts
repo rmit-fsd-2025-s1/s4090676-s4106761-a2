@@ -1,5 +1,0 @@
-export { AccountType } from "@repo/types/enums"
-export { ApplicationType } from "@repo/types/enums"
-export { Semester } from "@repo/types/enums"
-export { ApplicationStatus } from "@repo/types/enums"
-export { Availability } from "@repo/types/enums"

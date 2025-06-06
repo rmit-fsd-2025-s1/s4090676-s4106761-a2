@@ -17,12 +17,6 @@ import { useUser } from "@/hooks/localstorage/useUser"
 import { useState } from "react"
 import { CourseApplications } from "@/features/TutorApplications/CourseApplications"
 import { TutorAccount } from "@repo/database/entities/tutorAccount"
-import {
-  ApplicationStatus,
-  ApplicationType,
-  Availability,
-  Semester,
-} from "@/context/localstorage/enums"
 import { useUserApplications } from "@/hooks/applications/useUserApplications"
 
 export const stackProps = {

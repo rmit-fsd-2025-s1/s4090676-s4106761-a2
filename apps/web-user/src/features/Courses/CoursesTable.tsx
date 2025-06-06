@@ -1,9 +1,7 @@
 import { Button, Card, Table } from "@chakra-ui/react"
-import { useStore } from "@/hooks/localstorage/useStore"
 import Link from "next/link"
 import styled from "@emotion/styled"
 import { RightArrowIcon } from "@/icons/RightArrow"
-import { Course } from "@/context/localstorage/types"
 
 const SmallButton = styled(Button)`
   height: unset;
@@ -16,7 +14,8 @@ const Row = styled(Table.Row)`
 `
 
 function TableRow({ course }: { course: Course }) {
-  const [applications] = useStore("applications")
+  // FIXME
+  const applications = []
   const count = applications.reduce(
     (a, p) => a + (p.courseId === course.id ? 1 : 0),
     0

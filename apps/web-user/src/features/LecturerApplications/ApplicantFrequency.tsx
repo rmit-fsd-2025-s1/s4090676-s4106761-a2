@@ -1,5 +1,4 @@
 import { IconButton, Table } from "@chakra-ui/react"
-import { Application } from "@/context/localstorage/types"
 import { useApplicantFrequency } from "@/hooks/applications/useApplicantFrequency"
 import { CircleIcon } from "@/icons/Circle"
 import FittedPopover from "@/components/FittedPopover"

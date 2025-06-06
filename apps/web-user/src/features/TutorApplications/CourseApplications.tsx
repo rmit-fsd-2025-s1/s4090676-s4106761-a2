@@ -11,12 +11,7 @@ import {
 } from "@chakra-ui/react"
 import { CardHeader } from "@/components/CardHeader"
 import { stackProps } from "@/features/TutorHome/Dashboard"
-import {
-  ApplicationStatus,
-  ApplicationType,
-} from "@/context/localstorage/enums"
 import { v4 as uuid } from "uuid"
-import { UUID } from "@/context/localstorage/types"
 
 export function CourseApplications(props: {
   stackProps: {
@@ -26,7 +21,7 @@ export function CourseApplications(props: {
 }) {
   // FIXME
   const user = null
-  const courses = null
+  const courses = []
   const [applications, putApplication] = [null, null]
 
   const submitApplication = (type: ApplicationType, courseId: UUID) => {

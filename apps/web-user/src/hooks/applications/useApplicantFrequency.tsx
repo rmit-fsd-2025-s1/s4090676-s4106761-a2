@@ -1,7 +1,4 @@
-import { Application, UUID } from "@/context/localstorage/types"
-import { useStore } from "@/hooks/localstorage/useStore"
 import { useMemo } from "react"
-import { ApplicationStatus } from "@/context/localstorage/enums"
 
 /**
  * Get how frequently an application has been accepted
@@ -13,7 +10,8 @@ import { ApplicationStatus } from "@/context/localstorage/enums"
 export function useApplicantFrequency(
   targetTutor: UUID
 ): [number, number, Application[]] {
-  const [applications] = useStore("applications")
+  // FIXME
+  const applications = []
 
   const applicantHistory = useMemo(() => {
     const frequencies: { [tutor: UUID]: Application[] } = {}

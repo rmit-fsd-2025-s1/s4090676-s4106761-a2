@@ -1,6 +1,4 @@
 import { ButtonGroup, IconButton, Table } from "@chakra-ui/react"
-import { Application } from "@/context/localstorage/types"
-import { useLocalstorageContext } from "@/context/localstorage/LocalstorageProvider"
 import { UpArrowIcon } from "@/icons/UpArrow"
 import { DownArrowIcon } from "@/icons/DownArrow"
 

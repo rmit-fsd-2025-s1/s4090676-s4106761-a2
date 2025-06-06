@@ -2,8 +2,6 @@ import { ZodForm } from "@/components/hookform/ZodForm"
 import { Button, Fieldset } from "@chakra-ui/react"
 import { TextInput } from "@/components/hookform/TextInput"
 import { z } from "zod"
-import { useStore } from "@/hooks/localstorage/useStore"
-import { AccountType } from "@/context/localstorage/enums"
 
 const tab3Schema = z
   .object({

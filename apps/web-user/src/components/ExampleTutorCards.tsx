@@ -1,6 +1,4 @@
 import { Card, Flex, For, HStack } from "@chakra-ui/react"
-import { useStore } from "@/hooks/localstorage/useStore"
-import { LecturerAccount, TutorAccount } from "@/context/localstorage/types"
 
 export function ExampleTutorCards({ lecturers }: { lecturers?: boolean }) {
   /**

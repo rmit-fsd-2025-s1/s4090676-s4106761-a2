@@ -1,6 +1,5 @@
 import { Breadcrumb, Card, Show } from "@chakra-ui/react"
 import { useRouter } from "next/router"
-import { useCourse } from "@/hooks/localstorage/useCourse"
 import Link from "next/link"
 import styled from "@emotion/styled"
 
@@ -18,7 +17,8 @@ export function CoursesBreadcrumb() {
     isReady,
     pathname,
   } = useRouter()
-  const [course] = useCourse(courseId as string | undefined)
+  // FIXME
+  const course = null
 
   if (!isReady) return null
 

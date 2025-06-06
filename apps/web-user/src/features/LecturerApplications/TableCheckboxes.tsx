@@ -1,4 +1,3 @@
-import { Application } from "@/context/localstorage/types"
 import { Dispatch, SetStateAction } from "react"
 import { Checkbox, Table } from "@chakra-ui/react"
 

@@ -52,7 +52,7 @@ function UnauthenticatedButtons() {
 function AuthenticatedButtons() {
   const logout = useLogout()
   const redirect = useRedirectUserPage()
-  const [id, type] = useUser()
+  const [, type] = useUser()
 
   return (
     <>

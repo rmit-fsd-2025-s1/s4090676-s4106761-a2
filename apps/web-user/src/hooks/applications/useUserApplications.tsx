@@ -1,6 +1,4 @@
-import { Application, UUID } from "@/context/localstorage/types"
 import { useMemo } from "react"
-import { Semester } from "@/context/localstorage/enums"
 
 /**
  * Combines with courses
@@ -11,8 +9,8 @@ export function useUserApplications(targetTutor: UUID): (Application & {
   semester: Semester
 })[] {
   // FIXME
-  const applications = null
-  const courses = null
+  const applications = []
+  const courses = []
 
   const applicantHistory = useMemo(() => {
     const frequencies: { [tutor: UUID]: Application[] } = {}

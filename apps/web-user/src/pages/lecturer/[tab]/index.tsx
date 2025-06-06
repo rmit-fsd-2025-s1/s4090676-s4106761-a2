@@ -1,7 +1,6 @@
 import { RoutedTabs } from "@/components/RoutedTabs"
 import { Applications } from "@/features/LecturerHome/Applications"
 import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
-import { AccountType } from "@/context/localstorage/enums"
 import { ReactNode } from "react"
 import { Courses } from "@/features/LecturerHome/Courses"
 
