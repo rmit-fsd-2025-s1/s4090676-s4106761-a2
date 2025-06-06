@@ -5,6 +5,13 @@ import { useState } from "react"
 import { Button, ButtonGroup, Flex } from "@chakra-ui/react"
 import styled from "@emotion/styled"
 import { SortModes } from "@/hooks/applications/useApplications"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { ApplicationStatus } from "@repo/types/enums"
+import { createMutation } from "@/hooks/api/useApi"
+import {
+  UpdateManyApplications,
+  UpdateManyApplicationsRes,
+} from "@repo/types-api/userApi"
 
 const PositionEnd = styled(Flex)`
   width: 100%;
@@ -18,20 +25,28 @@ export default function LecturerIndex() {
     query: { courseId },
   } = useRouter()
   const [selectedApplications, setSelected] = useState<string[]>([])
-  // FIMXE
-  const applications = []
-  const setApplication = (a: any) => {}
+  const queryClient = useQueryClient()
+
+  const updateManyApplications = useMutation({
+    ...createMutation<UpdateManyApplications, UpdateManyApplicationsRes>({
+      path: "/updateMany/applications",
+    }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["applications"] })
+    }
+  })
 
   if (!isReady) return null
 
   const setApplications = (status: ApplicationStatus) => {
-    selectedApplications.forEach((id: string) => {
-      setApplication({
-        ...(applications.find((a) => a.id === id) as Application),
-        status,
+    updateManyApplications
+      .mutateAsync({
+        selectedApplications,
+        updates: { status },
       })
-    })
-    setSelected([])
+      .then(() => {
+        setSelected([])
+      })
   }
 
   return (

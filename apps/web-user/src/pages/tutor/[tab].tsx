@@ -1,6 +1,7 @@
 import { RoutedTabs } from "@/components/RoutedTabs"
 import { Dashboard } from "@/features/TutorHome/Dashboard"
 import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
+import { AccountType } from "@repo/types/enums"
 
 export default function TutorRoute() {
   const redirect = useRequireAccountType(AccountType.TUTOR)

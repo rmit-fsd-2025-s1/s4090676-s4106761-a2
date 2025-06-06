@@ -7,6 +7,7 @@ import { ErrorBoundary } from "react-error-boundary"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { fetchApi } from "@/hooks/api/useApi"
 import { AccountDetails } from "@repo/database/types/AccountDetails"
+import { Suspense } from "react"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,7 +37,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Provider>
           <AppLayout>
-            <Component {...pageProps} />
+            <Suspense fallback={<p>Loading...</p>}>
+              <Component {...pageProps} />
+            </Suspense>
           </AppLayout>
           <Toaster />
         </Provider>

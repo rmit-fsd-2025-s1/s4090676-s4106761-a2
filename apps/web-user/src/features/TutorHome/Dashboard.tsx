@@ -17,7 +17,21 @@ import { useUser } from "@/hooks/localstorage/useUser"
 import { useState } from "react"
 import { CourseApplications } from "@/features/TutorApplications/CourseApplications"
 import { TutorAccount } from "@repo/database/entities/tutorAccount"
-import { useUserApplications } from "@/hooks/applications/useUserApplications"
+import {
+  ApplicationStatus,
+  ApplicationType,
+  Availability,
+  Semester,
+} from "@repo/types/enums"
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query"
+import { Application } from "@repo/database/entities/application"
+import { AccountDetailsTutor } from "@repo/database/types/AccountDetails"
+import { createMutation } from "@/hooks/api/useApi"
+import { Course } from "@repo/database/entities/courses"
 
 export const stackProps = {
   alignItems: "stretch",
@@ -31,17 +45,34 @@ export const stackProps = {
 const CURRENT_SEMESTER = Semester.ONE
 
 export function Dashboard() {
-  const [{ data: user }, updateUser] = useUser<TutorAccount, true>()
+  const [uuid] = useUser()
+  const queryClient = useQueryClient()
+  const { data: user } = useSuspenseQuery<AccountDetailsTutor, unknown>({
+    queryKey: ["/user", uuid],
+  })
 
-  // TODO: fixme
-  const userApplications = useUserApplications(user?.account.id as any)
+  const updateUser = useMutation({
+    ...createMutation<Partial<TutorAccount>, AccountDetailsTutor>({
+      path: `/user/${uuid}`,
+      options: {
+        method: "PATCH",
+      },
+    }),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["/user", data.id] })
+    },
+  })
+
+  const { data: userApplications } = useSuspenseQuery<Application[]>({
+    queryKey: ["/user", uuid, "applications"],
+  })
 
   // form management
   const [newSkill, setNewSkill] = useState("")
 
   const addSkill = () => {
     if (newSkill.trim() && !user?.skills?.includes(newSkill.trim())) {
-      updateUser({ skills: [...(user?.skills ?? []), newSkill.trim()] })
+      updateUser.mutate({ skills: [...(user?.skills ?? []), newSkill.trim()] })
       setNewSkill("")
     }
   }
@@ -77,7 +108,7 @@ export function Dashboard() {
                         : "outline"
                     }
                     onClick={() =>
-                      updateUser({ availability: Availability.PARTTIME })
+                      updateUser.mutate({ availability: Availability.PARTTIME })
                     }
                   >
                     Part Time
@@ -89,7 +120,7 @@ export function Dashboard() {
                         : "outline"
                     }
                     onClick={() =>
-                      updateUser({ availability: Availability.FULLTIME })
+                      updateUser.mutate({ availability: Availability.FULLTIME })
                     }
                   >
                     Full Time
@@ -130,7 +161,7 @@ export function Dashboard() {
                       "List your academic qualifications",
                     ])[0]
                   }
-                  onChange={(e) => updateUser({ credentials: e.target.value })}
+                  onChange={(e) => updateUser.mutate({ credentials: e.target.value })}
                   placeholder="List your academic qualifications"
                   mt={2}
                 />
@@ -149,32 +180,32 @@ export function Dashboard() {
               <Text>No previous applications</Text>
             ) : (
               <Stack direction="column" {...stackProps}>
-                {userApplications.map((role, index) => (
+                {userApplications.map((app, index) => (
                   <Card.Root key={index}>
                     <CardHeader>
                       <Flex justify="space-between" align="center">
                         <Box>
                           <Text fontWeight="bold">
-                            {role.courseName} ({role.courseCode})
+                            {app.course.name} ({app.course.code})
                           </Text>
                           <Text>
                             Role:{" "}
-                            {role.type === ApplicationType.TUTOR
+                            {app.type === ApplicationType.TUTOR
                               ? "Tutor"
                               : "Lab Assistant"}
                           </Text>
-                          <Text>Semester: {role.semester}</Text>
+                          <Text>Semester: {app.semester}</Text>
                         </Box>
                         <Badge
                           colorScheme={
-                            role.status === ApplicationStatus.ACCEPTED
+                            app.status === ApplicationStatus.ACCEPTED
                               ? "green"
-                              : role.status === ApplicationStatus.REJECTED
+                              : app.status === ApplicationStatus.REJECTED
                                 ? "red"
                                 : "yellow"
                           }
                         >
-                          {role.status}
+                          {app.status}
                         </Badge>
                       </Flex>
                     </CardHeader>

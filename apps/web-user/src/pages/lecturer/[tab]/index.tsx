@@ -3,6 +3,7 @@ import { Applications } from "@/features/LecturerHome/Applications"
 import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
 import { ReactNode } from "react"
 import { Courses } from "@/features/LecturerHome/Courses"
+import { AccountType } from "@repo/types/enums"
 
 export default function LecturerRouteRoot({
   children,

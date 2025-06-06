@@ -3,6 +3,7 @@ import { TutorIcon } from "@/icons/Tutor"
 import { LecturerIcon } from "@/icons/Lecturer"
 import { RadioCards } from "@/components/hookform/RadioCards"
 import { RadioCardItem } from "@/components/RadioCardItem"
+import { AccountType } from "@repo/types/enums"
 
 export function AccountTypePicker() {
   return (

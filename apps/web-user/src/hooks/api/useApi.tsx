@@ -46,15 +46,15 @@ export function fetchApi<T>({ path, options, ...others }: ApiRequest) {
 /**
  * factory for useMutation
  */
-export function createMutation<R, T>(req: ApiRequest) {
+export function createMutation<ReqParams, T>(req: ApiRequest) {
   return {
-    mutationFn: (body: R) =>
+    mutationFn: (body: ReqParams) =>
       fetchApi<T>({
         ...req,
         options: {
           method: "POST",
           body: JSON.stringify(body),
-          ...req.options,
+          ...(req?.options || {}),
         },
       }),
   }
