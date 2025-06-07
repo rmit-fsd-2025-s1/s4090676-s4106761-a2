@@ -3,7 +3,7 @@ import { Application } from "@repo/database/entities/application"
 import { ApplicationType } from "@repo/types/enums"
 import { Course } from "@repo/database/entities/course"
 
-export type UpdateApplications = {
+export type UpdateApplicationsReq = {
   selectedApplications: UUID[]
   updates: Partial<Application>
 }

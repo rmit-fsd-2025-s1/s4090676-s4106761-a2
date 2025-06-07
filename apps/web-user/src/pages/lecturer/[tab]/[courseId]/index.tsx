@@ -9,7 +9,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { ApplicationStatus } from "@repo/types/enums"
 import { createMutation } from "@/hooks/api/useApi"
 import {
-  UpdateApplications,
+  UpdateApplicationsReq,
   UpdateApplicationsRes,
 } from "@repo/types-api/userApi"
 
@@ -28,7 +28,7 @@ export default function LecturerIndex() {
   const queryClient = useQueryClient()
 
   const updateManyApplications = useMutation({
-    ...createMutation<UpdateApplications, UpdateApplicationsRes>({
+    ...createMutation<UpdateApplicationsReq, UpdateApplicationsRes>({
       path: "/application/update",
     }),
     onSuccess: (data) => {
