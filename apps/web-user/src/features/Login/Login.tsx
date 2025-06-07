@@ -9,6 +9,7 @@ import { TextInput } from "@/components/hookform/TextInput"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
 import { useLogin } from "@/hooks/user/useLogin"
 import { loginSchema, LoginSchemaType } from "@repo/validation/Login"
+import { AccountType } from "@repo/types/enums"
 
 const formDefaults = {
   type: AccountType.TUTOR,

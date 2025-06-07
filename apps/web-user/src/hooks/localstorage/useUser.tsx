@@ -8,6 +8,8 @@ export function useUser(): [UUID, AccountType] {
 }
 
 export function useIsLoggedIn() {
+  if (typeof window === "undefined") return false
+
   const uId = localStorage.getItem("userId")
   const type = localStorage.getItem("userType")
   return uId && type && JSON.parse(uId) && JSON.parse(type)

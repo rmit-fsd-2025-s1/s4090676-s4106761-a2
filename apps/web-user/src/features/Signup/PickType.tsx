@@ -7,6 +7,7 @@ import { ZodForm } from "@/components/hookform/ZodForm"
 import { z } from "zod"
 import { useRouter } from "next/router"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
+import { AccountType } from "@repo/types/enums"
 
 const schema = z
   .object({
