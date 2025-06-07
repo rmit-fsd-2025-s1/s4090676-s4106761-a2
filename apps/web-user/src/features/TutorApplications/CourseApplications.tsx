@@ -35,7 +35,7 @@ export function CourseApplications(props: {
     queryKey: ["/user"],
   })
   const { data: courses } = useSuspenseQuery<Course[]>({
-    queryKey: ["/courses"],
+    queryKey: ["/course", "all"],
   })
   const { data: applications } = useSuspenseQuery<Application[]>({
     queryKey: ["/user", "applications"],
@@ -44,7 +44,7 @@ export function CourseApplications(props: {
   const queryClient = useQueryClient()
   const putApplication = useMutation({
     ...createMutation<ApplicationReq, Application>({
-      path: "/application",
+      path: "/application/new",
     }),
     onSuccess: () => {
       // Invalidate the applications query to refresh the list

@@ -56,26 +56,25 @@ export function useCourses() {
 }
 
 export function Dashboard() {
-  const [uuid] = useUser()
   const queryClient = useQueryClient()
   const { data: user } = useSuspenseQuery<AccountDetailsTutor, unknown>({
-    queryKey: ["/user", uuid],
+    queryKey: ["/user"],
   })
 
   const updateUser = useMutation({
     ...createMutation<Partial<TutorAccount>, AccountDetailsTutor>({
-      path: `/user/${uuid}`,
+      path: `/user`,
       options: {
         method: "PATCH",
       },
     }),
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ["/user", data.id] })
+      queryClient.invalidateQueries({ queryKey: ["/user"] })
     },
   })
 
   const { data: userApplications } = useSuspenseQuery<Application[]>({
-    queryKey: ["/user", uuid, "applications"],
+    queryKey: ["/user", "applications"],
   })
 
   // form management

@@ -30,7 +30,7 @@ export function useLecturerApplications() {
   // FIXME: impl sorting and filtering on the API
 
   let { data: applications } = useSuspenseQuery<ApplicationsRes>({
-    queryKey: ["/applications"],
+    queryKey: ["/application", "all"],
   })
 
   return applications

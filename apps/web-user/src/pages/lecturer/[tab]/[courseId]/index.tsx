@@ -9,8 +9,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { ApplicationStatus } from "@repo/types/enums"
 import { createMutation } from "@/hooks/api/useApi"
 import {
-  UpdateManyApplications,
-  UpdateManyApplicationsRes,
+  UpdateApplications,
+  UpdateApplicationsRes,
 } from "@repo/types-api/userApi"
 
 const PositionEnd = styled(Flex)`
@@ -28,8 +28,8 @@ export default function LecturerIndex() {
   const queryClient = useQueryClient()
 
   const updateManyApplications = useMutation({
-    ...createMutation<UpdateManyApplications, UpdateManyApplicationsRes>({
-      path: "/updateMany/applications",
+    ...createMutation<UpdateApplications, UpdateApplicationsRes>({
+      path: "/application/update",
     }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["applications"] })
