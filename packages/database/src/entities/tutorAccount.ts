@@ -12,12 +12,13 @@ export class TutorAccount extends UUIDEntity {
   @Column({
     type: "enum",
     enum: Availability,
+    nullable: true,
   })
-  availability: Availability
+  availability?: Availability
 
-  @Column("simple-array")
-  skills: string[]
+  @Column("simple-array", { nullable: true })
+  skills?: string[]
 
-  @Column()
-  credentials: string
+  @Column({ nullable: true })
+  credentials?: string
 }

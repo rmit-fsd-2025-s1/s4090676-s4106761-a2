@@ -9,6 +9,34 @@ import { TextInput } from "@/components/hookform/TextInput"
 import { v4 as uuid } from "uuid"
 import { Password } from "@/components/hookform/Password"
 import { useLogin } from "@/hooks/user/useLogin"
+import { useRouter } from "next/router"
+import { useQuery } from "@tanstack/react-query"
+import { Course } from "@repo/database/entities/courses"
+import { Account } from "@repo/database/entities/account"
+import { useMutation } from "@tanstack/react-query"
+import { createMutation } from "@/hooks/api/useApi"
+import { LecturerAccount } from "@repo/database/entities/lecturerAccount"
+import { TutorAccount } from "@repo/database/entities/tutorAccount"
+import { AccountType } from "@repo/types/enums"
+import {
+  useSignupTutor,
+  signupSchema,
+  SignupSchemaType,
+} from "@/hooks/user/useSignupTutor"
+import { useSignupLecturer } from "@/hooks/user/useSignupLecturer"
+
+export function allCourses() {
+  const {
+    query: { courseId },
+    isReady,
+    pathname,
+  } = useRouter()
+  const { data: course, isSuccess } = useQuery<Course>({
+    queryKey: ["/course", courseId],
+  })
+
+  if (!isReady && !isSuccess) return null
+}
 
 const schema = z
   .object({
@@ -23,24 +51,31 @@ const schema = z
 type Schema = z.infer<typeof schema>
 
 export function Signup({ accountType }: { accountType: AccountType }) {
-  const [, writeTutor] = useStore("tutorAccounts")
-  const [, writeLecturer] = useStore("lecturerAccounts")
-  const login = useLogin()
+  const { data: accountTypeEnum, isSuccess } = useQuery<Account>({
+    queryKey: ["/accountType", accountType],
+  })
 
-  const handleClick = async (formData: Schema) => {
+  const signupTutor = useSignupTutor()
+  const signupLecturer = useSignupLecturer()
+
+  const handleSubmit = async (formData: SignupSchemaType) => {
     const user = {
       id: uuid(),
-      type: accountType,
+      type: accountTypeEnum,
       email: formData.Email,
       password: formData.Password,
       name: formData.Name,
     }
-    if (user.type === AccountType.LECTURER) {
-      writeLecturer(user as LecturerAccount)
-    } else {
-      writeTutor(user as TutorAccount)
+
+    try {
+      if (accountTypeEnum?.type === AccountType.LECTURER) {
+        await signupLecturer.mutateAsync(formData)
+      } else {
+        await signupTutor.mutateAsync(formData)
+      }
+    } catch (error) {
+      console.error(error)
     }
-    await login(user)
   }
 
   return (
@@ -49,7 +84,7 @@ export function Signup({ accountType }: { accountType: AccountType }) {
         Create {accountType === AccountType.LECTURER ? "lecturer" : "tutor"}{" "}
         account
       </CardHeader>
-      <ZodForm onSubmit={handleClick} schema={schema}>
+      <ZodForm onSubmit={handleSubmit} schema={signupSchema}>
         <Card.Body>
           <FieldSet>
             <TextInput name="Name" />
@@ -62,3 +97,24 @@ export function Signup({ accountType }: { accountType: AccountType }) {
     </AccountCard>
   )
 }
+
+// export function Signup({ accountType }: { accountType: AccountType }) {
+//   const [, writeTutor] = useStore("tutorAccounts")
+//   const [, writeLecturer] = useStore("lecturerAccounts")
+//   const login = useLogin()
+
+//   const handleClick = async (formData: Schema) => {
+//     const user = {
+//       id: uuid(),
+//       type: accountType,
+//       email: formData.Email,
+//       password: formData.Password,
+//       name: formData.Name,
+//     }
+//     if (user.type === AccountType.LECTURER) {
+//       writeLecturer(user as LecturerAccount)
+//     } else {
+//       writeTutor(user as TutorAccount)
+//     }
+//     await login(user)
+//   }

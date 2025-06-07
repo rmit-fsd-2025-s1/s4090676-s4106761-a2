@@ -1,4 +1,5 @@
 import { AccountType } from "@repo/types/enums"
+import { UUID } from "@repo/types/uuid"
 
 export function useUser(): [UUID, AccountType] {
   const uId = JSON.parse(localStorage.getItem("userId") as string)

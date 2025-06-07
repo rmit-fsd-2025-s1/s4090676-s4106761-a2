@@ -30,8 +30,9 @@ import {
 } from "@tanstack/react-query"
 import { Application } from "@repo/database/entities/application"
 import { AccountDetailsTutor } from "@repo/database/types/AccountDetails"
-import { createMutation } from "@/hooks/api/useApi"
+import { createMutation, fetchApi } from "@/hooks/api/useApi"
 import { Course } from "@repo/database/entities/courses"
+import { useQuery } from "@tanstack/react-query"
 
 export const stackProps = {
   alignItems: "stretch",
@@ -43,6 +44,16 @@ export const stackProps = {
 }
 
 const CURRENT_SEMESTER = Semester.ONE
+
+export function useCourses() {
+  return useQuery({
+    queryKey: ["courses"],
+    queryFn: () =>
+      fetchApi<Course[]>({
+        path: "/courses",
+      }),
+  })
+}
 
 export function Dashboard() {
   const [uuid] = useUser()
@@ -161,7 +172,9 @@ export function Dashboard() {
                       "List your academic qualifications",
                     ])[0]
                   }
-                  onChange={(e) => updateUser.mutate({ credentials: e.target.value })}
+                  onChange={(e) =>
+                    updateUser.mutate({ credentials: e.target.value })
+                  }
                   placeholder="List your academic qualifications"
                   mt={2}
                 />

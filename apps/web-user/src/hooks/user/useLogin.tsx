@@ -3,6 +3,7 @@ import { createMutation } from "@/hooks/api/useApi"
 import type { AccountDetails } from "@repo/database/types/AccountDetails"
 import { useMutation } from "@tanstack/react-query"
 import { setUser } from "@/hooks/localstorage/useUser"
+import { AccountType } from "@repo/types/enums"
 
 type LoginReq = {
   email: string
