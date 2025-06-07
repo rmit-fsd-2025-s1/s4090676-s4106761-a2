@@ -1,5 +1,5 @@
 import { Semester } from "@repo/types/enums"
-import { Course } from "../../entities/courses"
+import { Course } from "../../entities/course"
 import { entityManager } from "../connection"
 
 export async function createCourses() {

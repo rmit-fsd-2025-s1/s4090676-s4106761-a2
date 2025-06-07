@@ -4,7 +4,7 @@ import { Account } from "../entities/account"
 import { TutorAccount } from "../entities/tutorAccount"
 import { LecturerAccount } from "../entities/lecturerAccount"
 import { Application } from "../entities/application"
-import { Course } from "../entities/courses"
+import { Course } from "../entities/course"
 import { AccountSession } from "../entities/accountSession"
 
 if (!process.env.DB_USER || !process.env.DB_NAME || !process.env.DB_PASSWORD) {

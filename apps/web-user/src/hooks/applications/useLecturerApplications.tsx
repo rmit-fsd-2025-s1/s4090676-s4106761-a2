@@ -3,6 +3,7 @@ import { useWatchForm } from "@/hooks/useWatchForm"
 import { ApplicationStatus } from "@repo/types/enums"
 import { useSuspenseQuery } from "@tanstack/react-query"
 import { Application } from "@repo/database/entities/application"
+import { ApplicationsRes } from "@repo/types-api/userApi"
 
 export enum SortModes {
   COURSE = "COURSE",
@@ -24,11 +25,11 @@ export type ApplicationFilterSorts = Partial<
   z.infer<typeof applicationFilterSortZ>
 >
 
-export function useApplications() {
+export function useLecturerApplications() {
   const controls = useWatchForm<ApplicationFilterSorts>()
   // FIXME: impl sorting and filtering on the API
 
-  let { data: applications } = useSuspenseQuery<Application[]>({
+  let { data: applications } = useSuspenseQuery<ApplicationsRes>({
     queryKey: ["/applications"],
   })
 

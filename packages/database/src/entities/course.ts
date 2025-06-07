@@ -1,7 +1,7 @@
 import { UUIDEntity } from "./entity"
 import { Column, Entity, OneToMany } from "typeorm"
 import { Application } from "./application"
-import { Semester } from "@repo/types/enums"
+import { ApplicationType, Semester } from "@repo/types/enums"
 
 @Entity()
 export class Course extends UUIDEntity {
@@ -19,6 +19,9 @@ export class Course extends UUIDEntity {
     onDelete: "CASCADE",
   })
   applications: Application[]
+
+  @Column("simple-array")
+  availableRoles: ApplicationType[]
 }
 
 //FIXME

@@ -1,4 +1,5 @@
 import { DetailedTableItem } from "@/components/DetailedTableItem"
+import { Course } from "@repo/database/entities/course"
 
 export function CourseCode({ course }: { course: undefined | Course }) {
   const courseData = course && {

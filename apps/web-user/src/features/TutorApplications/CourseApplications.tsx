@@ -12,6 +12,18 @@ import {
 import { CardHeader } from "@/components/CardHeader"
 import { stackProps } from "@/features/TutorHome/Dashboard"
 import { v4 as uuid } from "uuid"
+import {
+  useMutation,
+  useQueryClient,
+  useSuspenseQuery,
+} from "@tanstack/react-query"
+import { TutorAccount } from "@repo/database/entities/tutorAccount"
+import { Course } from "@repo/database/entities/course"
+import { Application } from "@repo/database/entities/application"
+import { createMutation } from "@/hooks/api/useApi"
+import { ApplicationStatus, ApplicationType } from "@repo/types/enums"
+import { UUID } from "@repo/types/uuid"
+import { ApplicationReq } from "@repo/types-api/userApi"
 
 export function CourseApplications(props: {
   stackProps: {
@@ -19,19 +31,31 @@ export function CourseApplications(props: {
     sx: { "& > *:not(:last-child)": { marginBottom: string } }
   }
 }) {
-  // FIXME
-  const user = null
-  const courses = []
-  const [applications, putApplication] = [null, null]
+  const { data: user } = useSuspenseQuery<TutorAccount>({
+    queryKey: ["/user"],
+  })
+  const { data: courses } = useSuspenseQuery<Course[]>({
+    queryKey: ["/courses"],
+  })
+  const { data: applications } = useSuspenseQuery<Application[]>({
+    queryKey: ["/user", "applications"],
+  })
+
+  const queryClient = useQueryClient()
+  const putApplication = useMutation({
+    ...createMutation<ApplicationReq, Application>({
+      path: "/application",
+    }),
+    onSuccess: () => {
+      // Invalidate the applications query to refresh the list
+      queryClient.invalidateQueries({ queryKey: ["/user", "applications"] })
+    },
+  })
 
   const submitApplication = (type: ApplicationType, courseId: UUID) => {
-    console.log("im calling yeah")
-    putApplication({
-      id: uuid(),
+    putApplication.mutate({
       type,
-      courseId,
-      status: ApplicationStatus.PENDING,
-      tutorId: user!.id,
+      course: courseId,
     })
   }
 
@@ -47,8 +71,8 @@ export function CourseApplications(props: {
             {courses.map((course) => {
               const haveApplied = applications.find(
                 (application) =>
-                  application.courseId === course.id &&
-                  application.tutorId === user?.id
+                  application.course.id === course.id &&
+                  application.tutor.id === user?.id
               )
               return (
                 <Card.Root key={course.id}>

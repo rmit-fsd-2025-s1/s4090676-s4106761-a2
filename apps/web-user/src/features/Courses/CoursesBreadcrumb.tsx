@@ -2,7 +2,7 @@ import { Breadcrumb, Card, Show } from "@chakra-ui/react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import styled from "@emotion/styled"
-import { Course } from "@repo/database/entities/courses"
+import { Course } from "@repo/database/entities/course"
 import { useQuery } from "@tanstack/react-query"
 
 const CardBody = styled(Card.Body)`
@@ -22,7 +22,6 @@ export function CoursesBreadcrumb() {
   const { data: course, isSuccess } = useQuery<Course>({
     queryKey: ["/course", courseId],
   })
-
 
   if (!isReady && !isSuccess) return null
 

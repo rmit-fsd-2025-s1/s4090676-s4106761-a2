@@ -1,17 +1,15 @@
 import { IconButton, Table } from "@chakra-ui/react"
-import { useApplicantFrequency } from "@/hooks/applications/useApplicantFrequency"
 import { CircleIcon } from "@/icons/Circle"
 import FittedPopover from "@/components/FittedPopover"
-import { Application } from "@repo/database/entities/application"
+import { ApplicationsRes } from "@repo/types-api/userApi"
 
 export function ApplicantFrequency({
   application,
 }: {
-  application: Application
+  application: ApplicationsRes[0]
 }) {
-  const [frequency, frequencyPercent] = useApplicantFrequency(
-    application.tutor.id
-  )
+  const { frequency, frequencyPercent } = application
+
   const color = `rgb(${(1 - frequencyPercent) * 256}, ${frequencyPercent * 200}, 0)`
 
   return (

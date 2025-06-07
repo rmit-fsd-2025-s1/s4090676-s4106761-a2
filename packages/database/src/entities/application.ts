@@ -1,6 +1,6 @@
 import { UUIDEntity } from "./entity"
 import { Column, Entity, ManyToOne } from "typeorm"
-import { Course } from "./courses"
+import { Course } from "./course"
 import { ApplicationType, Semester } from "@repo/types/enums"
 import { TutorAccount } from "./tutorAccount"
 
@@ -28,12 +28,6 @@ export class Application extends UUIDEntity {
 
   @Column()
   comment: string
-
-  @Column({
-    type: "enum",
-    enum: Semester,
-  })
-  semester: Semester
 }
 
 //FIXME

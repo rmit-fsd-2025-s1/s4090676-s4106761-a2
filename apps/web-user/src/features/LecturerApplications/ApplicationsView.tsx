@@ -17,7 +17,7 @@ import {
   ApplicationFilterSorts,
   applicationFilterSortZ,
   SortModes,
-} from "@/hooks/applications/useApplications"
+} from "@/hooks/applications/useLecturerApplications"
 
 const SortItem = styled(RadioCardItem)`
   & > div {

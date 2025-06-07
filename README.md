@@ -10,9 +10,6 @@ npm i
 
 ## Starting development server
 
-> [!NOTE]  
-> Fill out your database details in advance at `apps/server-user/.env`
-
 ### Windows systems
 
 You must start each development server in a different window by either:

@@ -2,8 +2,8 @@ import { Show, Table } from "@chakra-ui/react"
 import {
   ApplicationFilterSorts,
   SortModes,
-  useApplications,
-} from "@/hooks/applications/useApplications"
+  useLecturerApplications,
+} from "@/hooks/applications/useLecturerApplications"
 import { Dispatch, SetStateAction } from "react"
 import { MasterCheckbox } from "@/features/LecturerApplications/TableCheckboxes"
 import { Row, TableRow } from "@/features/LecturerApplications/TableRow"
@@ -18,7 +18,7 @@ export function ApplicationsTable({
   selectionState?: [string[], Dispatch<SetStateAction<string[]>>]
 }) {
   const { sort } = useWatchForm<ApplicationFilterSorts>()
-  const applications = useApplications()
+  const applications = useLecturerApplications()
 
   /* Ranking must take place on the unfiltered list */
   const allowRanking = sort === SortModes.RANK

@@ -31,7 +31,7 @@ import {
 import { Application } from "@repo/database/entities/application"
 import { AccountDetailsTutor } from "@repo/database/types/AccountDetails"
 import { createMutation, fetchApi } from "@/hooks/api/useApi"
-import { Course } from "@repo/database/entities/courses"
+import { Course } from "@repo/database/entities/course"
 import { useQuery } from "@tanstack/react-query"
 
 export const stackProps = {
@@ -207,7 +207,7 @@ export function Dashboard() {
                               ? "Tutor"
                               : "Lab Assistant"}
                           </Text>
-                          <Text>Semester: {app.semester}</Text>
+                          <Text>Semester: {app.course.semester}</Text>
                         </Box>
                         <Badge
                           colorScheme={

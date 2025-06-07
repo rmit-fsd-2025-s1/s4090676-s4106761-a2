@@ -2,14 +2,20 @@ import { Editable, IconButton, Table } from "@chakra-ui/react"
 import { PencilLineIcon } from "@/icons/PencilLine"
 import { toaster } from "@/components/ui/toaster"
 import { JSX } from "react"
+import { Application } from "@repo/database/entities/application"
+import { useMutation } from "@tanstack/react-query"
+import { createMutation } from "@/hooks/api/useApi"
 
 export function EditableNote({
   application,
 }: {
   application: Application
 }): JSX.Element {
-  // FIXME
-  const updateApplication = (a: any) => {}
+  const updateApplication = useMutation({
+    ...createMutation<Partial<Application>, Application>({
+      path: `/application/${application.id}`,
+    }),
+  })
 
   return (
     <Table.Cell>
@@ -23,7 +29,7 @@ export function EditableNote({
         <Editable.Input
           onBlur={(e) => {
             if (updateApplication) {
-              updateApplication({ comment: e.target.value })
+              updateApplication.mutate({ comment: e.target.value })
             } else {
               toaster.create({
                 description:

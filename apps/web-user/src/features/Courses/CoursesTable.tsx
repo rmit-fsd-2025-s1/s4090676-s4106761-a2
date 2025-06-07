@@ -2,6 +2,9 @@ import { Button, Card, Table } from "@chakra-ui/react"
 import Link from "next/link"
 import styled from "@emotion/styled"
 import { RightArrowIcon } from "@/icons/RightArrow"
+import { Course } from "@repo/database/entities/course"
+import { useSuspenseQuery } from "@tanstack/react-query"
+import { CoursesRes } from "@repo/types-api/userApi"
 
 const SmallButton = styled(Button)`
   height: unset;
@@ -13,18 +16,13 @@ const Row = styled(Table.Row)`
   background-color: inherit;
 `
 
-function TableRow({ course }: { course: Course }) {
+function TableRow({ course }: { course: CoursesRes[0] }) {
   // FIXME
-  const applications = []
-  const count = applications.reduce(
-    (a, p) => a + (p.courseId === course.id ? 1 : 0),
-    0
-  )
   return (
     <Row key={course.id}>
       <Table.Cell>{course.code}</Table.Cell>
       <Table.Cell>{course.name}</Table.Cell>
-      <Table.Cell>{count}</Table.Cell>
+      <Table.Cell>{course.frequency}</Table.Cell>
       <Table.Cell textAlign="end">
         <SmallButton asChild>
           <Link href={`/lecturer/courses/${course.id}`}>
@@ -38,7 +36,9 @@ function TableRow({ course }: { course: Course }) {
 }
 
 export function CoursesTable() {
-  const [courses] = useStore("courses")
+  const { data: courses } = useSuspenseQuery<CoursesRes>({
+    queryKey: ["courses"],
+  })
 
   return (
     <Card.Root variant="outline">

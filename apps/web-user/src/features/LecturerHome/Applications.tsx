@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import { Show } from "@chakra-ui/react"
 import { ApplicationsView } from "@/features/LecturerApplications/ApplicationsView"
-import { SortModes } from "@/hooks/applications/useApplications"
+import { SortModes } from "@/hooks/applications/useLecturerApplications"
 
 /**
  *  The applications feature is responsible for /lecturer/applications/[courseId]/rank

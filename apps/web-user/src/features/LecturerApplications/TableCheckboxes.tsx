@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 import { Checkbox, Table } from "@chakra-ui/react"
+import { Application } from "@repo/database/entities/application"
 
 export function MasterCheckbox({
   applications,
