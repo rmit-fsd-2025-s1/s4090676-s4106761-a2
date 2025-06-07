@@ -23,21 +23,3 @@ export class Course extends UUIDEntity {
   @Column("simple-array")
   availableRoles: ApplicationType[]
 }
-
-//FIXME
-// export type Course = {
-//   id: UUID
-//   code: string
-//   name: string
-//   availableRoles: ApplicationType[]
-//   semester: Semester
-// }
-
-// export type Application = {
-//   id: UUID
-//   type: ApplicationType
-//   courseId: UUID
-//   tutorId: UUID
-//   status: ApplicationStatus
-//   comment?: string
-// }

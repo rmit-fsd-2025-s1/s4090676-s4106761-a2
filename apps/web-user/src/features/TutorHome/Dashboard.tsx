@@ -165,12 +165,9 @@ export function Dashboard() {
 
               <Box>
                 <Heading size="sm">Academic Credentials</Heading>
-                {/*FIXME: Using only the first value of the array */}
                 <Textarea
                   value={
-                    (user?.credentials ?? [
-                      "List your academic qualifications",
-                    ])[0]
+                    user?.credentials ?? ["List your academic qualifications"]
                   }
                   onChange={(e) =>
                     updateUser.mutate({ credentials: e.target.value })

@@ -29,34 +29,3 @@ export class Application extends UUIDEntity {
   @Column()
   comment: string
 }
-
-//FIXME
-// @Column()
-// tutorId: string
-
-// @Column()
-// status: string
-
-// @Column()
-// comment: string
-
-//   @ManyToOne(() => Account, (account) => account.uuid)
-
-// function IsNotEmpty(): (target: Application, propertyKey: "tutorId") => void {
-//   throw new Error("Function not implemented.")
-// }
-// export type Application = {
-//   id: UUID
-//   type: ApplicationType
-//   courseId: UUID
-//   tutorId: UUID
-//   status: ApplicationStatus
-//   comment?: string
-// }
-
-//   @Column({
-//     type: "enum",
-//     enum: UserRole,
-//     default: UserRole.GHOST,
-// })
-// role: UserRole

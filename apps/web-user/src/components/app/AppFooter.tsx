@@ -16,7 +16,6 @@ export function AppFooter() {
       <Footer>
         <p>© {currentYear} LiRon CORP</p>
         <nav className="footer-links">
-          {/* FIXME */}
           <Link href="/contact">Privacy Policy | </Link>
           <Link href="/contact">Terms of Service | </Link>
           <Link href="/contact">Contact Us </Link>

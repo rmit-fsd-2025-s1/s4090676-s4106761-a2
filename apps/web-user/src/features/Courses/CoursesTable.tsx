@@ -17,7 +17,6 @@ const Row = styled(Table.Row)`
 `
 
 function TableRow({ course }: { course: CoursesRes[0] }) {
-  // FIXME
   return (
     <Row key={course.id}>
       <Table.Cell>{course.code}</Table.Cell>
