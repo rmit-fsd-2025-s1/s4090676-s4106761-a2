@@ -35,3 +35,4 @@ https://react.dev/reference/react/useState#setstate
 https://tanstack.com/query/latest/docs/framework/react/quick-start
 https://stackoverflow.com/questions/6912584/how-to-get-get-query-string-variables-in-express-js-on-node-js
 https://expressjs.com/en/guide/routing.html
+https://github.com/typeorm/typeorm/issues/6803

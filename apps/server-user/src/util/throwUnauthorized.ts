@@ -1,7 +1,7 @@
-import { Response } from "express"
 import { throwError } from "@/util/throwError"
 
-export function throwUnauthorized(res: Response, err?: unknown) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function throwUnauthorized(res: any, err?: unknown) {
   res.status(401)
   throwError("Action unauthorized at this time", err)
 }

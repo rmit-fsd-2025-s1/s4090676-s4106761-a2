@@ -1,7 +1,8 @@
-import { Column, Entity, JoinColumn, OneToOne } from "typeorm"
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm"
 import { Account } from "./account"
 import { Availability } from "@repo/types/enums"
 import { UUIDEntity } from "./entity"
+import { Application } from "./application"
 
 @Entity()
 export class TutorAccount extends UUIDEntity {
@@ -21,4 +22,7 @@ export class TutorAccount extends UUIDEntity {
 
   @Column({ nullable: true })
   credentials?: string
+
+  @OneToMany(() => Application, (application) => application.tutor)
+  applications: Application[]
 }

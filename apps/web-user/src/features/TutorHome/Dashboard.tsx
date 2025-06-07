@@ -62,7 +62,7 @@ export function Dashboard() {
   })
 
   const updateUser = useMutation({
-    ...createMutation<Partial<TutorAccount>, AccountDetailsTutor>({
+    ...createMutation<Partial<TutorAccount>, void>({
       path: `/user`,
       options: {
         method: "PATCH",

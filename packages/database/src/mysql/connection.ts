@@ -34,5 +34,3 @@ export const appDataSource = new DataSource({
 })
 
 export const entityManager = appDataSource.manager
-
-export const getQueryBuilder = appDataSource.createQueryBuilder

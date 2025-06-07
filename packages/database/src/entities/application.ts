@@ -1,7 +1,8 @@
 import { UUIDEntity } from "./entity"
 import { Column, Entity, ManyToOne } from "typeorm"
+import type { Relation } from "typeorm"
 import { Course } from "./course"
-import { ApplicationType, Semester } from "@repo/types/enums"
+import { ApplicationType } from "@repo/types/enums"
 import { TutorAccount } from "./tutorAccount"
 
 @Entity()
@@ -16,12 +17,12 @@ export class Application extends UUIDEntity {
   @ManyToOne(() => Course, (course) => course.applications)
   course: Course
 
-  @ManyToOne(() => TutorAccount, (tutor) => tutor.id, {
+  @ManyToOne(() => TutorAccount, {
     nullable: false,
     onDelete: "CASCADE",
     eager: true,
   })
-  tutor: TutorAccount
+  tutor: Relation<TutorAccount>
 
   @Column()
   status: string

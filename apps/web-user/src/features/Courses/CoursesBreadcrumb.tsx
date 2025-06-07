@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import styled from "@emotion/styled"
 import { Course } from "@repo/database/entities/course"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 
 const CardBody = styled(Card.Body)`
   padding: 7px 20px;
@@ -19,11 +19,11 @@ export function CoursesBreadcrumb() {
     isReady,
     pathname,
   } = useRouter()
-  const { data: course, isSuccess } = useQuery<Course>({
+  const { data: course } = useSuspenseQuery<Course>({
     queryKey: ["/course", courseId],
   })
 
-  if (!isReady && !isSuccess) return null
+  if (!isReady) return null
 
   return (
     <>
