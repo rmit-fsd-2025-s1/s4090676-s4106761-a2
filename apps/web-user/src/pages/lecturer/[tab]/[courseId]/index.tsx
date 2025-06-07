@@ -33,7 +33,7 @@ export default function LecturerIndex() {
     }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["applications"] })
-    }
+    },
   })
 
   if (!isReady) return null
