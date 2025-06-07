@@ -29,3 +29,4 @@ protectedRoutes.use("/tutors", tutorRouter)
 //console.log("applicationRoutes is a", typeof applicationRoutes)
 
 //protectedRoutes.use("/application", applicationRoutes)
+//
