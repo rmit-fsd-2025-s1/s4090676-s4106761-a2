@@ -1,9 +1,12 @@
 import { AccountType } from "@repo/types/enums"
+import { UUID } from "@repo/types/uuid"
+import { useRouter } from "next/router"
 
 export function useUser(): [UUID, AccountType] {
+  const router = useRouter()
   const uId = JSON.parse(localStorage.getItem("userId") as string)
   const type = JSON.parse(localStorage.getItem("userType") as string)
-  if (!uId || !type) throw new Error("No userId and type found in localStorage")
+  if (!uId || !type) router.push("/login")
   return [uId, type as AccountType]
 }
 
