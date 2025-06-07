@@ -16,31 +16,11 @@ import {
 } from "@/hooks/user/useSignupTutor"
 import { useSignupLecturer } from "@/hooks/user/useSignupLecturer"
 
-const schema = z
-  .object({
-    Name: z.string().min(1, "Name is required"),
-    Email: z.string().email("Valid email is required"),
-    Password: z
-      .string()
-      .min(8, "A password of at least 8 characters is required"),
-  })
-  .required()
-
-type Schema = z.infer<typeof schema>
-
 export function Signup({ accountType }: { accountType: AccountType }) {
   const signupTutor = useSignupTutor()
   const signupLecturer = useSignupLecturer()
 
   const handleSubmit = async (formData: SignupSchemaType) => {
-    const user = {
-      id: uuid(),
-      type: accountType,
-      email: formData.Email,
-      password: formData.Password,
-      name: formData.Name,
-    }
-
     try {
       if (accountType === AccountType.LECTURER) {
         await signupLecturer.mutateAsync(formData)
@@ -71,24 +51,3 @@ export function Signup({ accountType }: { accountType: AccountType }) {
     </AccountCard>
   )
 }
-
-// export function Signup({ accountType }: { accountType: AccountType }) {
-//   const [, writeTutor] = useStore("tutorAccounts")
-//   const [, writeLecturer] = useStore("lecturerAccounts")
-//   const login = useLogin()
-
-//   const handleClick = async (formData: Schema) => {
-//     const user = {
-//       id: uuid(),
-//       type: accountType,
-//       email: formData.Email,
-//       password: formData.Password,
-//       name: formData.Name,
-//     }
-//     if (user.type === AccountType.LECTURER) {
-//       writeLecturer(user as LecturerAccount)
-//     } else {
-//       writeTutor(user as TutorAccount)
-//     }
-//     await login(user)
-//   }
