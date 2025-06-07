@@ -51,9 +51,6 @@ const schema = z
 type Schema = z.infer<typeof schema>
 
 export function Signup({ accountType }: { accountType: AccountType }) {
-  const { data: accountTypeEnum, isSuccess } = useQuery<Account>({
-    queryKey: ["/accountType", accountType],
-  })
 
   const signupTutor = useSignupTutor()
   const signupLecturer = useSignupLecturer()
@@ -61,14 +58,14 @@ export function Signup({ accountType }: { accountType: AccountType }) {
   const handleSubmit = async (formData: SignupSchemaType) => {
     const user = {
       id: uuid(),
-      type: accountTypeEnum,
+      type: accountType,
       email: formData.Email,
       password: formData.Password,
       name: formData.Name,
     }
 
     try {
-      if (accountTypeEnum?.type === AccountType.LECTURER) {
+      if (accountType === AccountType.LECTURER) {
         await signupLecturer.mutateAsync(formData)
       } else {
         await signupTutor.mutateAsync(formData)
