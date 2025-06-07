@@ -8,15 +8,6 @@ import { AccountCardControls } from "@/components/accounts/AccountCardControls"
 import { TextInput } from "@/components/hookform/TextInput"
 import { v4 as uuid } from "uuid"
 import { Password } from "@/components/hookform/Password"
-import { useLogin } from "@/hooks/user/useLogin"
-import { useRouter } from "next/router"
-import { useQuery } from "@tanstack/react-query"
-import { Course } from "@repo/database/entities/course"
-import { Account } from "@repo/database/entities/account"
-import { useMutation } from "@tanstack/react-query"
-import { createMutation } from "@/hooks/api/useApi"
-import { LecturerAccount } from "@repo/database/entities/lecturerAccount"
-import { TutorAccount } from "@repo/database/entities/tutorAccount"
 import { AccountType } from "@repo/types/enums"
 import {
   useSignupTutor,
@@ -24,19 +15,6 @@ import {
   SignupSchemaType,
 } from "@/hooks/user/useSignupTutor"
 import { useSignupLecturer } from "@/hooks/user/useSignupLecturer"
-
-export function allCourses() {
-  const {
-    query: { courseId },
-    isReady,
-    pathname,
-  } = useRouter()
-  const { data: course, isSuccess } = useQuery<Course>({
-    queryKey: ["/course", courseId],
-  })
-
-  if (!isReady && !isSuccess) return null
-}
 
 const schema = z
   .object({
@@ -51,7 +29,6 @@ const schema = z
 type Schema = z.infer<typeof schema>
 
 export function Signup({ accountType }: { accountType: AccountType }) {
-
   const signupTutor = useSignupTutor()
   const signupLecturer = useSignupLecturer()
 
