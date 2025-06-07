@@ -4,6 +4,8 @@ import cookieParser from "cookie-parser"
 import { appDataSource } from "@repo/database/datasource"
 import { protectedRoutes } from "@/protected"
 import { unprotectedRoutes } from "@/unprotected"
+import signupTutorRoute from "./routes/signup-tutor"
+import { signupLecturerRouter } from "./routes/signup-lecturer"
 
 const app = express()
 const LOGGING = true
@@ -19,6 +21,10 @@ app.use(
 app.use(express.json())
 
 app.use(cookieParser())
+
+app.use("/api", signupTutorRoute)
+
+app.use("/api", signupLecturerRouter)
 
 app.use((req, res, next) => {
   if (LOGGING) {
