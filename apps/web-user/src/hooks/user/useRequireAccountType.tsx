@@ -2,6 +2,7 @@ import { Text } from "@chakra-ui/react"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
 import { useUser } from "@/hooks/localstorage/useUser"
+import { AccountType } from "@repo/types/enums"
 
 export function useRequireAccountType(accountType: AccountType) {
   const [, userType] = useUser()

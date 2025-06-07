@@ -1,5 +1,8 @@
 import { z } from "zod"
 import { useWatchForm } from "@/hooks/useWatchForm"
+import { ApplicationStatus } from "@repo/types/enums"
+import { useSuspenseQuery } from "@tanstack/react-query"
+import { Application } from "@repo/database/entities/application"
 
 export enum SortModes {
   COURSE = "COURSE",
@@ -22,63 +25,12 @@ export type ApplicationFilterSorts = Partial<
 >
 
 export function useApplications() {
-  let [applications] = useStore("applications")
-  const [tutors] = useStore("tutorAccounts")
-  const [courses] = useStore("courses")
   const controls = useWatchForm<ApplicationFilterSorts>()
+  // FIXME: impl sorting and filtering on the API
 
-  /* filters */
-  if (controls.courseId)
-    applications = applications.filter((a) => a.courseId === controls.courseId)
-  if (controls.status)
-    applications = applications.filter((a) => a.status === controls.status)
-  if (controls.search) {
-    const query = controls.search.toLowerCase()
-
-    applications = applications.filter(
-      (app) =>
-        courses
-          .find((c) => c.id === app.courseId)
-          ?.name.toLowerCase()
-          .includes(query) ||
-        tutors
-          .find((t) => t.id === app.tutorId)
-          ?.name.toLowerCase()
-          .includes(query) ||
-        tutors
-          .find((t) => t.id === app.tutorId)
-          ?.availability?.toLowerCase()
-          .includes(query) ||
-        app.status?.toLowerCase().includes(query)
-    )
-  }
-
-  /* sorting */
-  switch (controls.sort) {
-    case SortModes.COURSE:
-      /**
-       * Resolve the course and its code to sort the applications
-       */
-      applications.sort((a, b) => {
-        const aAv = courses.find((t) => t.id === a.courseId)?.code
-        const bAv = courses.find((t) => t.id === b.courseId)?.code
-        return (aAv ?? "").localeCompare(bAv ?? "")
-      })
-      break
-    case SortModes.AVAILABILITY:
-      /**
-       * Resolve the tutor and their availability to sort the applications
-       */
-      applications.sort((a, b) => {
-        const aAv = tutors.find((t) => t.id === a.tutorId)?.availability
-        const bAv = tutors.find((t) => t.id === b.tutorId)?.availability
-        return (aAv ?? "").localeCompare(bAv ?? "")
-      })
-      break
-    case SortModes.RANK:
-      // as is, the data is stored in its rank
-      break
-  }
+  let { data: applications } = useSuspenseQuery<Application[]>({
+    queryKey: ["/applications"],
+  })
 
   return applications
 }
