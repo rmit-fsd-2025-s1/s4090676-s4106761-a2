@@ -37,12 +37,12 @@ export default function App({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <Provider>
           <ClientOnly>
-          <AppLayout>
-            <Suspense fallback={<p>Loading...</p>}>
-              <Component {...pageProps} />
-            </Suspense>
-          </AppLayout>
-          <Toaster />
+            <AppLayout>
+              <Suspense fallback={<p>Loading...</p>}>
+                <Component {...pageProps} />
+              </Suspense>
+            </AppLayout>
+            <Toaster />
           </ClientOnly>
         </Provider>
       </QueryClientProvider>
