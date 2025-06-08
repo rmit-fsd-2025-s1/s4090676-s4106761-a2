@@ -6,6 +6,8 @@ Files are arranged in a monorepo structure. Please find a `README.md` at the roo
 
 ## Set up
 
+This is a monorepo. No need to run more than once.
+
 ```shell
 npm i
 ```
