@@ -13,7 +13,6 @@ import {
   Textarea,
 } from "@chakra-ui/react"
 import { CardHeader } from "@/components/CardHeader"
-import { useUser } from "@/hooks/localstorage/useUser"
 import { useState } from "react"
 import { CourseApplications } from "@/features/TutorApplications/CourseApplications"
 import { TutorAccount } from "@repo/database/entities/tutorAccount"
@@ -33,6 +32,9 @@ import { AccountDetailsTutor } from "@repo/database/types/AccountDetails"
 import { createMutation, fetchApi } from "@/hooks/api/useApi"
 import { Course } from "@repo/database/entities/course"
 import { useQuery } from "@tanstack/react-query"
+import debounce from "lodash.debounce"
+import { useCallback } from "react"
+import { useEffect } from "react"
 
 export const stackProps = {
   alignItems: "stretch",
@@ -68,7 +70,7 @@ export function Dashboard() {
         method: "PATCH",
       },
     }),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/user"] })
     },
   })
@@ -77,8 +79,17 @@ export function Dashboard() {
     queryKey: ["/user", "applications"],
   })
 
+  useEffect(() => {
+    if (typeof user?.credentials === "string") {
+      setCredentialsText(user.credentials)
+    }
+  }, [user?.credentials])
+
   // form management
   const [newSkill, setNewSkill] = useState("")
+  const [credentialsText, setCredentialsText] = useState(
+    user?.credentials ?? ""
+  )
 
   const addSkill = () => {
     if (newSkill.trim() && !user?.skills?.includes(newSkill.trim())) {
@@ -87,6 +98,20 @@ export function Dashboard() {
     }
   }
 
+  const handleCredentialsChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const value = e.target.value
+    setCredentialsText(value)
+    debouncedUpdateUser(value)
+  }
+
+  const debouncedUpdateUser = useCallback(
+    debounce((value: string) => {
+      updateUser.mutate({ credentials: value })
+    }, 500),
+    [updateUser]
+  )
   return (
     <Box p={4}>
       <Stack direction="column" {...stackProps}>
@@ -165,12 +190,8 @@ export function Dashboard() {
               <Box>
                 <Heading size="sm">Academic Credentials</Heading>
                 <Textarea
-                  value={
-                    user?.credentials ?? ["List your academic qualifications"]
-                  }
-                  onChange={(e) =>
-                    updateUser.mutate({ credentials: e.target.value })
-                  }
+                  value={credentialsText}
+                  onChange={handleCredentialsChange}
                   placeholder="List your academic qualifications"
                   mt={2}
                 />

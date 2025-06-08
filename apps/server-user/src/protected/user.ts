@@ -4,7 +4,7 @@ import { entityManager } from "@repo/database/datasource"
 import { Account } from "@repo/database/entities/account"
 import { getAccountDetails } from "@repo/database/queries/getAccountDetails"
 import { AccountSession } from "@repo/database/entities/accountSession"
-import { tutorSchema } from "@repo/validation/UpdateUser"
+import { lecturerSchema, tutorSchema } from "@repo/validation/UpdateUser"
 import { ApplicationsRes } from "@repo/types-api/userApi"
 import { getApplications } from "@repo/database/queries/getApplications"
 import { TutorAccount } from "@repo/database/entities/tutorAccount"
@@ -29,14 +29,19 @@ userRoutes.get("/tutorStats", async (req, res) => {
 userRoutes.patch("/", async (req, res) => {
   const account = (res.locals.accountSession as AccountSession).account
 
-  if (account.type === "TUTOR") tutorSchema.parse(req.body)
-  else if (account.type === "LECTURER") tutorSchema.parse(req.body)
+  if (account.type === "TUTOR") {
+    tutorSchema.parse(req.body)
 
-  await entityManager.update(
-    Account,
-    (res.locals.accountSession as AccountSession).account,
-    req.body
-  )
+    const tutor = await entityManager.findOneByOrFail(TutorAccount, {
+      account: { id: account.id },
+    })
+
+    await entityManager.update(TutorAccount, tutor.id, req.body)
+  } else if (account.type === "LECTURER") {
+    lecturerSchema.parse(req.body)
+
+    await entityManager.update(Account, account.id, req.body)
+  }
 
   res.json({})
 })
