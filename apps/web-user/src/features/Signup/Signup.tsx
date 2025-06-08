@@ -15,10 +15,12 @@ import {
   SignupSchemaType,
 } from "@/hooks/user/useSignupTutor"
 import { useSignupLecturer } from "@/hooks/user/useSignupLecturer"
+import { useRouter } from "next/router"
 
 export function Signup({ accountType }: { accountType: AccountType }) {
   const signupTutor = useSignupTutor()
   const signupLecturer = useSignupLecturer()
+  const router = useRouter()
 
   const handleSubmit = async (formData: SignupSchemaType) => {
     try {
@@ -27,6 +29,7 @@ export function Signup({ accountType }: { accountType: AccountType }) {
       } else {
         await signupTutor.mutateAsync(formData)
       }
+      router.push("/login")
     } catch (error) {
       console.error(error)
     }
