@@ -109,7 +109,7 @@ export function Dashboard() {
   const debouncedUpdateUser = useCallback(
     debounce((value: string) => {
       updateUser.mutate({ credentials: value })
-    }, 500),
+    }, 1000),
     [updateUser]
   )
   return (
