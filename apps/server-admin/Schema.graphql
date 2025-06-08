@@ -1,19 +1,79 @@
-type Query {
-  books: [Book]
+enum Semester {
+    One
+    Two
 }
 
-type Book {
-  title: String
-  author: String
+interface Account {
+    id: ID!
+    name: String!
+    email: String!
 }
 
-type AddBookMutationResponse {
-  code: String!
-  success: Boolean!
-  message: String!
-  book: Book
+type Lecturer implements Account {
+    id: ID!
+    name: String!
+    email: String!
+}
+
+type Candidate implements Account {
+    id: ID!
+    name: String!
+    email: String!
+    frequency: Int!
+}
+
+type Course {
+    id: ID!
+    title: String!
+    description: String!
+    labPosition: Boolean!
+    tutorPosition: Boolean!
+    semester: Semester!
+    lecturers: [Lecturer!]!
+    approvedCandidates: [Candidate!]!
+}
+
+input CourseInput {
+    name: String
+    code: String
+    labPosition: Boolean
+    tutorPosition: Boolean
+    semester: Boolean
+}
+
+type CourseMutations {
+    create(details: CourseInput!): Course!
+    delete(id: ID!): ID!
+    edit(id: ID!, details: CourseInput!): Course!
+    assignLecturer(id: ID!, lecturerId: ID!): Course!
+}
+
+type CandidateMutations {
+    block(candidateId: ID!): Candidate!
+    unblock(candidateId : ID!): Candidate!
+}
+
+type AuthMutations {
+    login(username: String!, password: String!): Boolean!
+    logout: Boolean!
+}
+
+type Reports {
+    courses: [Course!]!
+    topCandidates: [Candidate!]!
+    bottomCandidates: [Candidate!]!
 }
 
 type Mutation {
-  addBook(title: String, author: String): AddBookMutationResponse
+    course: CourseMutations!
+    candidate: CandidateMutations!
+    auth: AuthMutations!
+}
+
+type Query {
+    echo(string : String!): String!
+}
+
+type Subscription {
+    report: Reports
 }
