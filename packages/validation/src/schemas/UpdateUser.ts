@@ -9,10 +9,12 @@ export const accountSchema = z.object({
 })
 
 export const tutorSchema = z.object({
-  account: accountSchema,
-  availability: z.enum([Availability.FULLTIME, Availability.PARTTIME]),
-  skills: z.array(z.string()),
-  credentials: z.string(),
+  account: accountSchema.optional(),
+  availability: z
+    .enum([Availability.FULLTIME, Availability.PARTTIME])
+    .optional(),
+  skills: z.array(z.string()).optional(),
+  credentials: z.string().optional(),
 })
 
 export const lecturerSchema = z.object({
