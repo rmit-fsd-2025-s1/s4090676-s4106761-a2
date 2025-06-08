@@ -12,6 +12,8 @@ npm i
 
 ```shell
 : # All dev servers will come online concurrently
+: # See the admin app on http://localhost:3001
+: # See the tutor/lecturer app on http://localhost:3000
 npm run dev
 ```
 

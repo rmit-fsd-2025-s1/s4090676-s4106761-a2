@@ -49,3 +49,4 @@ https://www.npmjs.com/package/concurrently
 https://the-guild.dev/graphql/codegen/docs/getting-started/esm-typescript-usage
 https://github.com/eslint/eslint/discussions/18304
 https://stackoverflow.com/questions/73888927/set-http-only-cookie-from-resolver-in-apollo-graphql
+https://chakra-ui.com/docs/get-started/frameworks/next-app
