@@ -19,8 +19,10 @@ export function CoursesBreadcrumb() {
     isReady,
     pathname,
   } = useRouter()
-  const { data: course } = useSuspenseQuery<Course>({
+  const { data: course } = useQuery<Course>({
     queryKey: ["/course", courseId],
+    throwOnError: true,
+    enabled: !!courseId,
   })
 
   if (!isReady) return null
