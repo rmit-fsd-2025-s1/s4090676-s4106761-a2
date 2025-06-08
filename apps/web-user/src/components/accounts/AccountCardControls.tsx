@@ -13,14 +13,14 @@ export function AccountCardControls({
   return (
     <Card.Footer justifyContent="end" mt="3">
       <FullWidthVStack>
+        <FullWidthButton type="submit" loading={loading}>
+          Create Account
+        </FullWidthButton>
         {backHref && (
           <FullWidthButton asChild variant="subtle">
             <Link href={backHref}>Back</Link>
           </FullWidthButton>
         )}
-        <FullWidthButton type="submit" loading={loading}>
-          Next
-        </FullWidthButton>
       </FullWidthVStack>
     </Card.Footer>
   )
