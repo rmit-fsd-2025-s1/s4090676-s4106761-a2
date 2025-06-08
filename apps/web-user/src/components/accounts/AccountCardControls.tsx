@@ -6,11 +6,11 @@ import { FullWidthVStack } from "@/components/FullWidthVStack"
 export function AccountCardControls({
   backHref,
   loading,
-  text,
+  text = "Create Account",
 }: {
   backHref?: string
   loading?: boolean
-  text: string
+  text?: string
 }) {
   return (
     <Card.Footer justifyContent="end" mt="3">
