@@ -1,7 +1,8 @@
-import { ReactNode } from "react"
+import { ReactNode, Suspense } from "react"
 import { Show } from "@chakra-ui/react"
 import { ApplicationsView } from "@/features/LecturerApplications/ApplicationsView"
 import { SortModes } from "@/hooks/applications/useLecturerApplications"
+import { HydrationBoundary } from "@tanstack/react-query"
 
 /**
  *  The applications feature is responsible for /lecturer/applications/[courseId]/rank
@@ -11,9 +12,13 @@ import { SortModes } from "@/hooks/applications/useLecturerApplications"
 export function Applications({ children }: { children: ReactNode }) {
   return (
     <>
-      <Show when={!children} fallback={children}>
-        <ApplicationsView defaultFilters={{ sort: SortModes.RANK }} />
-      </Show>
+      <HydrationBoundary>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Show when={!children} fallback={children}>
+            <ApplicationsView defaultFilters={{ sort: SortModes.RANK }} />
+          </Show>
+        </Suspense>
+      </HydrationBoundary>
     </>
   )
 }

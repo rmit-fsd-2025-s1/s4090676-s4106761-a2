@@ -2,8 +2,9 @@ import { z } from "zod"
 import { useWatchForm } from "@/hooks/useWatchForm"
 import { ApplicationStatus } from "@repo/types/enums"
 import { useSuspenseQuery } from "@tanstack/react-query"
-import { Application } from "@repo/database/entities/application"
 import { ApplicationsRes } from "@repo/types-api/userApi"
+import { serialiseSearchParams } from "@/util"
+import { useDebounce } from "use-debounce"
 
 export enum SortModes {
   COURSE = "COURSE",
@@ -27,10 +28,14 @@ export type ApplicationFilterSorts = Partial<
 
 export function useLecturerApplications() {
   const controls = useWatchForm<ApplicationFilterSorts>()
-  // FIXME: impl sorting and filtering on the API
+  const [debouncedControls] = useDebounce(controls, 1000)
 
-  let { data: applications } = useSuspenseQuery<ApplicationsRes>({
-    queryKey: ["/application", "all"],
+  const { data: applications } = useSuspenseQuery<ApplicationsRes>({
+    queryKey: [
+      "/application",
+      "all",
+      "?" + serialiseSearchParams(debouncedControls),
+    ],
   })
 
   return applications

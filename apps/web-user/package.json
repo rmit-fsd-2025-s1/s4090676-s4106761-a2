@@ -21,6 +21,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@repo/validation": "0.0.1",
     "@tanstack/react-query": "^5.77.0",
+    "lodash.debounce": "^4.0.8",
     "next": "15.2.4",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
@@ -29,12 +30,11 @@
     "react-hook-form": "^7.55.0",
     "react-icons": "^5.5.0",
     "recharts": "^2.15.3",
+    "use-debounce": "^10.0.5",
     "uuid": "^11.1.0",
-    "zod": "^3.24.2",
-    "lodash.debounce": "^4.0.8"
+    "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@types/lodash.debounce": "^4.0.9",
     "@eslint/eslintrc": "^3",
     "@repo/database": "0.0.1",
     "@repo/lint-config": "*",
@@ -43,6 +43,7 @@
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.3.0",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -38,7 +38,8 @@ applicationRoutes.post("/new", async (req, res) => {
 })
 
 applicationRoutes.get("/all", async (req, res) => {
-  res.json((await getApplications()) satisfies ApplicationsRes)
+  const searchParam = req.query.search as string | undefined
+  res.json((await getApplications({ searchParam })) satisfies ApplicationsRes)
 })
 
 applicationRoutes.patch("/update", async (req, res) => {

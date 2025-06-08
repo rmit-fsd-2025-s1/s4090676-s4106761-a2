@@ -48,7 +48,7 @@ export function ApplicationsView({
           <TextInput
             name="search"
             hideLabel
-            placeholder="Search (implementation pending in useApplications. and it needs a magnifying glass.)"
+            placeholder="Search tutor name or application details"
             style={{ width: "100%", marginBottom: "20px" }}
           />
           <HStack alignItems="center" style={{ marginBottom: 20 }}>

@@ -2,13 +2,16 @@ import { entityManager } from "../mysql/connection"
 import { Application } from "../entities/application"
 import { ApplicationStatus } from "@repo/types/enums"
 import { UUID } from "@repo/types/uuid"
-import { Course } from "../entities/course"
-import { Account } from "../entities/account"
 
 export async function getApplications({
   tutorId,
   lecturerId,
-}: { tutorId?: UUID; lecturerId?: UUID } = {}) {
+  searchParam,
+}: {
+  tutorId?: UUID
+  lecturerId?: UUID
+  searchParam?: string | undefined
+} = {}) {
   const query = entityManager
     .createQueryBuilder()
     .select("application")
@@ -26,6 +29,13 @@ export async function getApplications({
     .leftJoinAndSelect("application.tutor", "tutor")
     .leftJoinAndSelect("tutor.account", "tutorAccount")
 
+  if (searchParam)
+    query
+      .andWhere("tutorAccount.name LIKE CONCAT('%',:search, '%')", {
+        search: searchParam,
+      })
+      .orWhere("course.code LIKE CONCAT('%',:search, '%')")
+      .orWhere("course.name LIKE CONCAT('%',:search, '%')")
   if (tutorId) query.andWhere("application.tutorId = :tutorId", { tutorId })
   if (lecturerId)
     query.innerJoin(
