@@ -1,0 +1,27 @@
+{
+  "name": "server-admin",
+  "version": "0.0.1",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "watch-ts": "tsx watch --env-file=../../.env ./src/index.ts",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint --fix",
+    "lint-staged": "pretty-quick --staged",
+    "watch-codegen": "graphql-codegen --config ./codegen.ts",
+    "dev": "concurrently \"npm run watch-ts\" \"npm run watch-codegen\""
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.7",
+    "@graphql-codegen/typescript": "^4.1.6",
+    "@graphql-codegen/typescript-resolvers": "^4.5.1",
+    "@parcel/watcher": "^2.5.1",
+    "@repo/lint-config": "*",
+    "@types/node": "^22.15.17"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.12.2",
+    "@repo/database": "0.0.1",
+    "graphql": "^16.11.0"
+  }
+}

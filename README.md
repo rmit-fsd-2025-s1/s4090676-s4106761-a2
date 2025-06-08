@@ -10,21 +10,8 @@ npm i
 
 ## Starting development server
 
-### Windows systems
-
-You must start each development server in a different window by either:
-
-- Change into each directory under `app/` in a different window and run `npm run dev` in that directory
-- Use `npm run dev -w <directory name>` such as `npm run dev -w server-admin`
-
-Follow the list of dev severs to start in the `dev` npm script.
-
-### UNIX systems
-
 ```shell
-: # web-user now at http://localhost:3000 and watching for changes
-: # server-user now at http://localhost:3001 and watching for changes
-: # @repo/database now watching for changes
+: # All dev servers will come online concurrently
 npm run dev
 ```
 
