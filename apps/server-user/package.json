@@ -20,7 +20,6 @@
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "typeorm": "^0.3.24",
     "@repo/database": "0.0.1"
   }
 }

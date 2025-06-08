@@ -1,26 +1,12 @@
 import { ApolloServer } from "@apollo/server"
-import { startStandaloneServer } from "@apollo/server/standalone"
 import { readFileSync } from "fs"
 import { BooksDataSource } from "./datasources/BooksAPI"
-
-const books = [
-  {
-    title: "The Awakening",
-    author: "Kate Chopin",
-  },
-  {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
-]
-
-// Resolvers define how to fetch the types defined in your schema.
-// This resolver retrieves books from the "books" array above.
-const resolvers = {
-  Query: {
-    books: () => books,
-  },
-}
+import express from "express"
+import * as http from "node:http"
+import apiResolvers from "./resolvers"
+import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer"
+import cors from "cors"
+import { expressMiddleware } from "@as-integrations/express5"
 
 const typeDefs = readFileSync("./Schema.graphql", { encoding: "utf-8" })
 
@@ -30,24 +16,31 @@ export interface DefaultContext {
   }
 }
 
+const app = express()
+const httpServer = http.createServer(app)
+
 const server = new ApolloServer<DefaultContext>({
   typeDefs,
-  resolvers,
+  resolvers: apiResolvers,
+  plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 })
 
-// Passing an ApolloServer instance to the `startStandaloneServer` function:
-//  1. creates an Express app
-//  2. installs your ApolloServer instance as middleware
-//  3. prepares your app to handle incoming requests
-const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 },
-  context: async () => {
-    return {
+await server.start()
+
+app.use(
+  "/graphql",
+  cors<cors.CorsRequest>(),
+  express.json(),
+  expressMiddleware(server, {
+    context: async ({ req }) => ({
+      token: req.headers.token,
       dataSources: {
         booksAPI: new BooksDataSource(),
       },
-    }
-  },
-})
+    }),
+  })
+)
 
-console.log(`🚀  Server ready at: ${url}`)
+await new Promise<void>((resolve) => httpServer.listen({ port: 4000 }, resolve))
+
+console.log(`🚀 Server ready at http://localhost:4000/graphql`)
