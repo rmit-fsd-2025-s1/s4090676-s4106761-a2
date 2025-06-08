@@ -35,6 +35,9 @@ export default function Home() {
           my={4}
           zIndex={1}
           position="relative"
+          textAlign="center"
+          color="black"
+          textShadow="-1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white"
         >
           Tutor Matching made easy
         </Text>
@@ -90,16 +93,19 @@ export default function Home() {
       {/* Content without background */}
       <div
         style={{
-          backgroundColor: "",
+          backgroundColor: "gray",
           padding: "40px 20px",
           zIndex: 1,
         }}
       >
         {/* Additional content can go here */}
         <Heading size="5xl">What We Can Offer You</Heading>
-        <Text mt={4} fontSize="xl">
-          Tutors, Lecturers. All just a click away. Whether you're looking to
-          fill up a lecture hall
+        <Text mt={4} fontSize="xl" whiteSpace="pre-line">
+          Tutors, Lecturers. All just a click away.{"\n"}
+          Whether you're looking to fill up a lecture hall or plan a study
+          session, TutorMatch has you covered.{"\n"}
+          Our platform connects you with the right people to make your
+          educational journey from front to end.
         </Text>
       </div>
     </>
