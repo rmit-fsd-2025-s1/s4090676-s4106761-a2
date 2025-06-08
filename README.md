@@ -21,6 +21,16 @@ npm i
 npm run dev
 ```
 
+## Test accounts
+
+julian@example.com and password111 as tutor
+julia@example.com and password111 as tutor
+
+```shell
+: # To reset the database and load test data
+npm run load-fixtures -w @repo/database
+```
+
 ## Linting and type checking
 
 ```shell
