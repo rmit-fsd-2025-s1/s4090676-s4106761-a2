@@ -5,8 +5,9 @@ import { useFormContext } from "react-hook-form"
 
 export function Password({
   name,
+  label = name,
   ...props
-}: { name: string } & ComponentProps<typeof Input>) {
+}: { name: string; label?: string } & ComponentProps<typeof Input>) {
   const {
     register,
     formState: { errors },
@@ -16,7 +17,7 @@ export function Password({
 
   return (
     <Field.Root invalid={!!error}>
-      <Field.Label>{name}</Field.Label>
+      <Field.Label>{label}</Field.Label>
       <PasswordInput {...register(name)} {...props} />
       <Field.ErrorText>{error?.message as string}</Field.ErrorText>
     </Field.Root>
