@@ -28,8 +28,5 @@
   },
   "simple-git-hooks": {
     "pre-commit": "npm run clean ; npm ci ; npm run lint-staged --workspaces --if-present ; npm run type-check"
-  },
-  "dependencies": {
-    "graphql-ws": "^6.0.5"
   }
 }

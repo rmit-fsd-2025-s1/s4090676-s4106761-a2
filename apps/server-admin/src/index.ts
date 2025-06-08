@@ -64,7 +64,7 @@ const serverCleanup = useServer(
     onConnect: async (ctx) => {
       const cookies = cookie.parse(ctx.extra.request.headers.cookie ?? "")
       console.log(cookies)
-    }
+    },
   },
   wsServer
 )
