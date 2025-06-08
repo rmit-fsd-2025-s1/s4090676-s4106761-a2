@@ -58,11 +58,6 @@ export function ApplicationsView({
                 {/* The lecturer may not rank the applications while not looking at the full list
                   as when returning to the all applications view the order would be deeply unclear
               */}
-                <Show when={!defaultFilters?.courseId}>
-                  <SortItem value={SortModes.RANK}>
-                    <RadioCard.ItemText>Rank</RadioCard.ItemText>
-                  </SortItem>
-                </Show>
                 <SortItem value={SortModes.COURSE}>
                   <RadioCard.ItemText>Course</RadioCard.ItemText>
                 </SortItem>

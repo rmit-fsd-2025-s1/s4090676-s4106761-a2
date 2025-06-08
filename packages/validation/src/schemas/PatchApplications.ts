@@ -10,8 +10,8 @@ export const patchApplicationsSchema = z
   .object({
     selectedApplications: z.array(z.string().uuid()),
     updates: z.object({
-      comment: z.string(),
-      status: z.nativeEnum(ApplicationStatus),
+      comment: z.string().optional(),
+      status: z.nativeEnum(ApplicationStatus).optional(),
     }),
   })
   .required()

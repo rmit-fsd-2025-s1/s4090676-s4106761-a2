@@ -18,7 +18,6 @@ export function TableRow({
 }: {
   application: ApplicationsRes[0]
   selectionState: [string[], Dispatch<SetStateAction<string[]>>] | undefined
-  allowRanking: boolean
 }) {
   const course = application.course
   const tutor = application.tutor
@@ -27,9 +26,7 @@ export function TableRow({
     <Row>
       <RowCheckbox application={application} selectionState={selectionState} />
       <CourseCode course={course} />
-      <Show when={!!tutor}>
-        <TutorName tutor={tutor!} />
-      </Show>
+      <TutorName tutor={tutor} />
       <Table.Cell>
         {tutor?.availability ?? <span style={{ textWrap: "nowrap" }}>N/A</span>}
       </Table.Cell>

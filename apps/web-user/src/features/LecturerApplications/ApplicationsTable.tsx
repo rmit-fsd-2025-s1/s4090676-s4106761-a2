@@ -20,16 +20,10 @@ export function ApplicationsTable({
   const { sort } = useWatchForm<ApplicationFilterSorts>()
   const applications = useLecturerApplications()
 
-  /* Ranking must take place on the unfiltered list */
-  const allowRanking = sort === SortModes.RANK
-
   return (
     <Table.Root size="sm" interactive>
       <Table.Header>
         <Row>
-          <Show when={allowRanking}>
-            <Table.ColumnHeader w="20">Order</Table.ColumnHeader>
-          </Show>
           <MasterCheckbox
             applications={applications}
             selectionState={selectionState}
@@ -48,7 +42,6 @@ export function ApplicationsTable({
             key={application.id}
             application={application}
             selectionState={selectionState}
-            allowRanking={allowRanking}
           />
         ))}
       </Table.Body>

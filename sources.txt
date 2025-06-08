@@ -51,3 +51,5 @@ https://github.com/eslint/eslint/discussions/18304
 https://stackoverflow.com/questions/73888927/set-http-only-cookie-from-resolver-in-apollo-graphql
 https://chakra-ui.com/docs/get-started/frameworks/next-app
 https://tanstack.com/query/v5/docs/framework/solid/guides/disabling-queries
+https://typeorm.io/docs/query-builder/select-query-builder/#joining-relations
+https://typeorm.io/docs/query-builder/select-query-builder/#joining-any-entity-or-table

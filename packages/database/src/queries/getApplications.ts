@@ -2,6 +2,8 @@ import { entityManager } from "../mysql/connection"
 import { Application } from "../entities/application"
 import { ApplicationStatus } from "@repo/types/enums"
 import { UUID } from "@repo/types/uuid"
+import { Course } from "../entities/course"
+import { Account } from "../entities/account"
 
 export async function getApplications({
   tutorId,
@@ -13,23 +15,31 @@ export async function getApplications({
     .addSelect(
       (subQuery) =>
         subQuery
-          .select("COUNT(groupedApplication.id)")
-          .from(Application, "groupedApplication")
-          .groupBy("groupedApplication.tutor")
-          .where(`groupedApplication.status = '${ApplicationStatus.ACCEPTED}'`),
+          .select("COUNT(tutorApplications.id)")
+          .from(Application, "tutorApplications")
+          .where(`tutorApplications.status = '${ApplicationStatus.ACCEPTED}'`)
+          .andWhere("tutorApplications.tutorId = application.tutorId"),
       "frequency"
     )
     .from(Application, "application")
+    .leftJoinAndSelect("application.course", "course")
+    .leftJoinAndSelect("application.tutor", "tutor")
+    .leftJoinAndSelect("tutor.account", "tutorAccount")
 
-  if (tutorId) query.where("application.tutorId = :tutorId", { tutorId })
+  if (tutorId) query.andWhere("application.tutorId = :tutorId", { tutorId })
   if (lecturerId)
-    query
-      .innerJoin("application.course", "course")
-      .innerJoin("course.lecturers", "lecturer", "lecturer.id = :lecturerId", {
+    query.innerJoin(
+      "course.lecturers",
+      "lecturer",
+      "lecturer.id = :lecturerId",
+      {
         lecturerId,
-      })
+      }
+    )
 
   const result = await query.getRawAndEntities()
+
+  console.warn(result)
 
   const maxFrequency = Math.max(
     ...result.raw.map((row) => Number(row.frequency))

@@ -41,7 +41,7 @@ applicationRoutes.get("/all", async (req, res) => {
   res.json((await getApplications()) satisfies ApplicationsRes)
 })
 
-applicationRoutes.get("/update", async (req, res) => {
+applicationRoutes.patch("/update", async (req, res) => {
   // validate body
   const requestBody = patchApplicationsSchema.parse(
     req.body as UpdateApplicationsReq
@@ -53,4 +53,18 @@ applicationRoutes.get("/update", async (req, res) => {
   )
 
   res.json({} satisfies UpdateApplicationsRes)
+})
+
+applicationRoutes.patch("/:applicationId", async (req, res) => {
+  // FIXME: validate body
+
+  const account = await entityManager.update(
+    Application,
+    {
+      id: req.params.applicationId,
+    },
+    req.body
+  )
+
+  res.json({})
 })

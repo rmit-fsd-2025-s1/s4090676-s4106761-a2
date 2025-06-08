@@ -12,8 +12,11 @@ export function EditableNote({
   application: Application
 }): JSX.Element {
   const updateApplication = useMutation({
-    ...createMutation<Partial<Application>, Application>({
+    ...createMutation<Partial<Application>, void>({
       path: `/application/${application.id}`,
+      options: {
+        method: "PATCH",
+      },
     }),
   })
 
@@ -29,13 +32,14 @@ export function EditableNote({
         <Editable.Input
           onBlur={(e) => {
             if (updateApplication) {
-              updateApplication.mutate({ comment: e.target.value })
-            } else {
-              toaster.create({
-                description:
-                  "Unable to update user note at this time. Please try again later",
-                type: "error",
-              })
+              updateApplication
+                .mutateAsync({ comment: e.target.value })
+                .then(() => {
+                  toaster.create({
+                    description: "User note updated successfully",
+                    type: "success",
+                  })
+                })
             }
           }}
         />

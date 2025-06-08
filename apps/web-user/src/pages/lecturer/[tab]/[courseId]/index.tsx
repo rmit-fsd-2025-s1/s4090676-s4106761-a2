@@ -35,7 +35,8 @@ export default function LecturerIndex() {
       },
     }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["applications"] })
+      queryClient.invalidateQueries({ queryKey: ["/application"] })
+      queryClient.invalidateQueries({ queryKey: ["/course"] })
     },
   })
 

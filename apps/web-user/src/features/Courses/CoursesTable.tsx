@@ -39,8 +39,6 @@ export function CoursesTable() {
     queryKey: ["/course", "all"],
   })
 
-  console.log(courses)
-
   return (
     <Card.Root variant="outline">
       <Card.Body>
