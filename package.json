@@ -11,7 +11,8 @@
     "clean": "npm run clean --workspaces --if-present",
     "dev": "concurrently \"npm run dev -w server-user\" \"npm run dev -w server-admin\" \"npm run dev -w web-user\" \"npm run dev -w @repo/database\" \"npm run dev -w web-admin\"",
     "type-check": "npm run type-check --workspaces --if-present",
-    "prepare": "npx simple-git-hooks"
+    "prepare": "npx simple-git-hooks",
+    "build": "npm run build --workspaces --if-present"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.9",

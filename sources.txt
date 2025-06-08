@@ -57,3 +57,5 @@ https://nivo.rocks/bar/
 https://stackoverflow.com/questions/52872500/react-js-nivo-pie-chart-not-showing-up
 https://chakra-ui.com/docs/charts/bar-chart
 https://www.apollographql.com/docs/apollo-server/api/express-middleware
+https://www.apollographql.com/docs/apollo-server/security/authentication
+https://www.apollographql.com/docs/apollo-server/data/subscriptions

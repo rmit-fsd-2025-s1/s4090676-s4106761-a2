@@ -7,6 +7,7 @@ import apiResolvers from "./resolvers"
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer"
 import cors from "cors"
 import { expressMiddleware } from "@as-integrations/express5"
+import cookieParser from "cookie-parser"
 
 const typeDefs = readFileSync("./Schema.graphql", { encoding: "utf-8" })
 
@@ -28,9 +29,16 @@ const server = new ApolloServer<DefaultContext>({
 await server.start()
 
 app.use(
-  "/graphql",
-  cors<cors.CorsRequest>(),
+  cors({
+    origin: "http://localhost:3001",
+    credentials: true,
+  }),
   express.json(),
+  cookieParser()
+)
+
+app.use(
+  "/graphql",
   expressMiddleware(server, {
     context: async ({ req }) => ({
       token: req.headers.token,
