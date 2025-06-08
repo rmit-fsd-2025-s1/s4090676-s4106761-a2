@@ -3,10 +3,8 @@ import { AccountCard } from "@/components/accounts/AccountCard"
 import { FieldSet } from "@/components/FieldSet"
 import { CardHeader } from "@/components/CardHeader"
 import { ZodForm } from "@/components/hookform/ZodForm"
-import { z } from "zod"
 import { AccountCardControls } from "@/components/accounts/AccountCardControls"
 import { TextInput } from "@/components/hookform/TextInput"
-import { v4 as uuid } from "uuid"
 import { Password } from "@/components/hookform/Password"
 import { AccountType } from "@repo/types/enums"
 import {
@@ -47,6 +45,7 @@ export function Signup({ accountType }: { accountType: AccountType }) {
             <TextInput name="Name" />
             <TextInput name="Email" />
             <Password name="Password" />
+            <Password name="confirmPassword" label="Confirm Password" />
           </FieldSet>
         </Card.Body>
         <AccountCardControls
