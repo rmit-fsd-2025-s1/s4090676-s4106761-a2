@@ -1,8 +1,10 @@
 import { MutationResolvers } from "__generated__/resolvers-types"
+import { pubsub } from "../index"
 
 const mutations: MutationResolvers = {
-  addBook: async (_, { title, author }, { dataSources }) => {
-    return dataSources.booksAPI.addBook({ title, author })
+  echo: (_, { string }, { dataSources }) => {
+    pubsub.publish("ECHO", string)
+    return Promise.resolve(string)
   },
 }
 

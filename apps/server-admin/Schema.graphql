@@ -68,6 +68,7 @@ type Mutation {
     course: CourseMutations!
     candidate: CandidateMutations!
     auth: AuthMutations!
+    echo(string : String!): String!
 }
 
 type Query {
@@ -76,4 +77,5 @@ type Query {
 
 type Subscription {
     report: Reports
+    echo: String!
 }

@@ -1,8 +1,8 @@
 import { QueryResolvers } from "__generated__/resolvers-types"
 
 const queries: QueryResolvers = {
-  books: async (_, __, { dataSources }) => {
-    return dataSources.booksAPI.getBooks()
+  echo: async (_, { string }, { dataSources }) => {
+    return Promise.resolve(string)
   },
 }
 
