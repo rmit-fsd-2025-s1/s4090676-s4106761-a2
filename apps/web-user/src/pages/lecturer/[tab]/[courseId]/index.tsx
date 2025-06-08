@@ -30,8 +30,11 @@ export default function LecturerIndex() {
   const updateManyApplications = useMutation({
     ...createMutation<UpdateApplicationsReq, UpdateApplicationsRes>({
       path: "/application/update",
+      options: {
+        method: "PATCH",
+      },
     }),
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["applications"] })
     },
   })

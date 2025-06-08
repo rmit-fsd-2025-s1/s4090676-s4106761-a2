@@ -2,7 +2,7 @@ import { UUIDEntity } from "./entity"
 import { Column, Entity, ManyToOne } from "typeorm"
 import type { Relation } from "typeorm"
 import { Course } from "./course"
-import { ApplicationType } from "@repo/types/enums"
+import { ApplicationStatus, ApplicationType } from "@repo/types/enums"
 import { TutorAccount } from "./tutorAccount"
 
 @Entity()
@@ -14,7 +14,9 @@ export class Application extends UUIDEntity {
   })
   type: ApplicationType
 
-  @ManyToOne(() => Course, (course) => course.applications)
+  @ManyToOne(() => Course, (course) => course.applications, {
+    eager: true,
+  })
   course: Course
 
   @ManyToOne(() => TutorAccount, {
@@ -24,8 +26,12 @@ export class Application extends UUIDEntity {
   })
   tutor: Relation<TutorAccount>
 
-  @Column()
-  status: string
+  @Column({
+    type: "enum",
+    enum: ApplicationStatus,
+    nullable: false,
+  })
+  status: ApplicationStatus
 
   @Column()
   comment: string

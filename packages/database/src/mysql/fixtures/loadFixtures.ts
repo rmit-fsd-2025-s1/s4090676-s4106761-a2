@@ -1,6 +1,7 @@
 import { appDataSource, entityManager } from "../connection"
 import { createCourses } from "./courses"
 import { createAccounts } from "./accounts"
+import { createApplications } from "./applications"
 
 const generateClearQuery = (tableNames: string[]) =>
   `SET FOREIGN_KEY_CHECKS=0; ` +
@@ -23,6 +24,7 @@ await entityManager.query(
 /* load fixtures */
 await createCourses()
 await createAccounts()
+await createApplications()
 
 /* panic the program as this operation should be one off */
 process.exit()

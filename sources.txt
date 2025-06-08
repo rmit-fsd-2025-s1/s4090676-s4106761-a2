@@ -36,3 +36,7 @@ https://tanstack.com/query/latest/docs/framework/react/quick-start
 https://stackoverflow.com/questions/6912584/how-to-get-get-query-string-variables-in-express-js-on-node-js
 https://expressjs.com/en/guide/routing.html
 https://github.com/typeorm/typeorm/issues/6803
+https://orkhan.gitbook.io/typeorm/docs/select-query-builder#using-subqueries
+https://stackoverflow.com/questions/60363353/typeorm-onetomany-causes-referenceerror-cannot-access-entity-before-initia
+https://typeorm.io/docs/query-builder/select-query-builder/#adding-where-expression
+https://orkhan.gitbook.io/typeorm/docs/select-query-builder

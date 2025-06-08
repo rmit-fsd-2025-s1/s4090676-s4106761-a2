@@ -1,4 +1,4 @@
-import { Semester } from "@repo/types/enums"
+import { ApplicationType, Semester } from "@repo/types/enums"
 import { Course } from "../../entities/course"
 import { entityManager } from "../connection"
 
@@ -8,18 +8,7 @@ export async function createCourses() {
       code: "CS101",
       name: "Computer Science 101",
       semester: Semester.ONE,
+      availableRoles: [ApplicationType.LAB, ApplicationType.TUTOR],
     })
   )
 }
-
-//   @Column()
-//   code: string
-
-//   @Column()
-//   name: string
-
-//   @Column()
-//   semester: Semester
-
-//   @OneToMany(() => Application, (application) => application.id)
-//   applications: Application[]
