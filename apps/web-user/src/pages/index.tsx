@@ -1,5 +1,4 @@
-import { Button, Heading, Box, Flex, Text } from "@chakra-ui/react"
-import Link from "next/link"
+import { Heading, Box, Flex, Text } from "@chakra-ui/react"
 
 export default function Home() {
   return (
@@ -64,9 +63,6 @@ export default function Home() {
                 border: "2px solid black", // Added black border
               }}
             />
-            <Button asChild size="lg" rounded="full" mt={4}>
-              <Link href="/infoTutor">TutorMatch for Tutors</Link>
-            </Button>
           </Box>
 
           {/* Lecturer Section */}
@@ -83,9 +79,6 @@ export default function Home() {
                 border: "2px solid black",
               }}
             />
-            <Button asChild size="lg" rounded="full" mt={4}>
-              <Link href="/infoLecturer">TutorMatch for Lecturers</Link>
-            </Button>
           </Box>
         </Flex>
       </div>
