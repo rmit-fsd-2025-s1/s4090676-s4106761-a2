@@ -12,7 +12,7 @@ type ApiRequest = {
 } & ToastConf
 
 export function fetchApi<T>({ path, options, ...others }: ApiRequest) {
-  const fetchPromise = fetch(`http://localhost:3001${path}`, {
+  const fetchPromise = fetch(`http://localhost:3002${path}`, {
     headers: {
       "Content-Type": "application/json",
       ...options?.headers,

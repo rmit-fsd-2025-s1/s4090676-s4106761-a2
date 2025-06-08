@@ -6,17 +6,17 @@ import { FullWidthVStack } from "@/components/FullWidthVStack"
 export function AccountCardControls({
   backHref,
   loading,
-  submitText = "Create Account",
+  text,
 }: {
   backHref?: string
   loading?: boolean
-  submitText?: string
+  text: string
 }) {
   return (
     <Card.Footer justifyContent="end" mt="3">
       <FullWidthVStack>
         <FullWidthButton type="submit" loading={loading}>
-          {submitText}
+          Create Account
         </FullWidthButton>
         {backHref && (
           <FullWidthButton asChild variant="subtle">

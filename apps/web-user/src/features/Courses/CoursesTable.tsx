@@ -36,8 +36,10 @@ function TableRow({ course }: { course: CoursesRes[0] }) {
 
 export function CoursesTable() {
   const { data: courses } = useSuspenseQuery<CoursesRes>({
-    queryKey: ["courses"],
+    queryKey: ["/course", "all"],
   })
+
+  console.log(courses)
 
   return (
     <Card.Root variant="outline">

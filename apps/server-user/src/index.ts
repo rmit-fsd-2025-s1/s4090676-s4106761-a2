@@ -9,7 +9,7 @@ import { signupLecturerRouter } from "./routes/signup-lecturer"
 
 const app = express()
 const LOGGING = true
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3002
 
 app.use(
   cors({

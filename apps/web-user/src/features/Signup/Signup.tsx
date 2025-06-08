@@ -49,7 +49,11 @@ export function Signup({ accountType }: { accountType: AccountType }) {
             <Password name="Password" />
           </FieldSet>
         </Card.Body>
-        <AccountCardControls backHref="/signup" />
+        <AccountCardControls
+          backHref="/signup"
+          text="Create account"
+          loading={signupLecturer.isPending || signupTutor.isPending}
+        />
       </ZodForm>
     </AccountCard>
   )

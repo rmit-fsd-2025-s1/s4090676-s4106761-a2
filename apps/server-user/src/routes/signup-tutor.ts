@@ -4,6 +4,7 @@ import { Account } from "@repo/database/entities/account"
 import { TutorAccount } from "@repo/database/entities/tutorAccount"
 import { AccountType } from "@repo/types/enums"
 import { accountSchema } from "@repo/validation/UpdateUser"
+import { throwError } from "@/util/throwError"
 
 const router = Router()
 
@@ -20,6 +21,15 @@ router.post("/signup-tutor", async (req, res) => {
 
     // validate the input
     accountSchema.parse(record)
+
+    const existingAccount = await entityManager.findOneBy(Account, {
+      email: record.email,
+    })
+
+    if (existingAccount) {
+      res.status(400)
+      throwError("Account with this email already exists")
+    }
 
     const account = entityManager.create(Account, record)
     await entityManager.save(account)

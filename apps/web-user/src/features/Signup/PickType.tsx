@@ -41,7 +41,7 @@ export function PickType() {
             <AccountTypePicker />
           </FieldSet>
         </Card.Body>
-        <AccountCardControls />
+        <AccountCardControls text="Next" />
       </ZodForm>
     </AccountCard>
   )

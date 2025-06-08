@@ -5,7 +5,7 @@ export async function getCourses() {
   const result = await entityManager
     .createQueryBuilder()
     .select("course")
-    .addSelect("COALESCE(SUM(applications.id), 0)", "frequency")
+    .addSelect("COUNT(applications.id)", "frequency")
     .from(Course, "course")
     .leftJoin("course.applications", "applications")
     .groupBy("course.id")
