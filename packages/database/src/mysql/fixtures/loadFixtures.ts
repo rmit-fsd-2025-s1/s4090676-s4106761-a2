@@ -22,8 +22,8 @@ await entityManager.query(
 )
 
 /* load fixtures */
-await createCourses()
 await createAccounts()
+await createCourses()
 await createApplications()
 
 /* panic the program as this operation should be one off */

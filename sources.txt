@@ -40,3 +40,4 @@ https://orkhan.gitbook.io/typeorm/docs/select-query-builder#using-subqueries
 https://stackoverflow.com/questions/60363353/typeorm-onetomany-causes-referenceerror-cannot-access-entity-before-initia
 https://typeorm.io/docs/query-builder/select-query-builder/#adding-where-expression
 https://orkhan.gitbook.io/typeorm/docs/select-query-builder
+https://github.com/typeorm/typeorm/issues/3369

@@ -1,6 +1,7 @@
 import { ApplicationType, Semester } from "@repo/types/enums"
 import { Course } from "../../entities/course"
 import { entityManager } from "../connection"
+import { LecturerAccount } from "../../entities/lecturerAccount"
 
 export async function createCourses() {
   await entityManager.save(
@@ -9,6 +10,7 @@ export async function createCourses() {
       name: "Computer Science 101",
       semester: Semester.ONE,
       availableRoles: [ApplicationType.LAB, ApplicationType.TUTOR],
+      lecturers: [await entityManager.findOneByOrFail(LecturerAccount, {})],
     })
   )
 }
