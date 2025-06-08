@@ -4,6 +4,7 @@ import { useRequireAccountType } from "@/hooks/user/useRequireAccountType"
 import { ReactNode } from "react"
 import { Courses } from "@/features/LecturerHome/Courses"
 import { AccountType } from "@repo/types/enums"
+import { Charting } from "@/features/LecturerHome/Charting"
 
 export default function LecturerRouteRoot({
   children,
@@ -20,13 +21,18 @@ export default function LecturerRouteRoot({
       tabs={[
         {
           key: "courses",
-          text: "Pending applications",
+          text: "Accept and deny applications",
           content: <Courses>{children}</Courses>,
         },
         {
           key: "applications",
           text: "All Applications",
           content: <Applications>{children}</Applications>,
+        },
+        {
+          key: "charting",
+          text: "Charting",
+          content: <Charting>{children}</Charting>,
         },
       ]}
     />

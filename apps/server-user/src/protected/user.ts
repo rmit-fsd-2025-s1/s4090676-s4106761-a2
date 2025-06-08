@@ -9,6 +9,8 @@ import { ApplicationsRes } from "@repo/types-api/userApi"
 import { getApplications } from "@repo/database/queries/getApplications"
 import { TutorAccount } from "@repo/database/entities/tutorAccount"
 import { LecturerAccount } from "@repo/database/entities/lecturerAccount"
+import { getTutorStats } from "@repo/database/queries/getUsers"
+import { TutorStatsRes } from "@repo/types/tutorStats"
 
 export const userRoutes = express.Router()
 
@@ -18,6 +20,10 @@ userRoutes.get("/", async (req, res) => {
       (res.locals.accountSession as AccountSession).account
     )
   )
+})
+
+userRoutes.get("/tutorStats", async (req, res) => {
+  res.json((await getTutorStats()) satisfies TutorStatsRes)
 })
 
 userRoutes.patch("/", async (req, res) => {

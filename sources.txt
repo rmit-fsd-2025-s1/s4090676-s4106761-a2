@@ -53,3 +53,6 @@ https://chakra-ui.com/docs/get-started/frameworks/next-app
 https://tanstack.com/query/v5/docs/framework/solid/guides/disabling-queries
 https://typeorm.io/docs/query-builder/select-query-builder/#joining-relations
 https://typeorm.io/docs/query-builder/select-query-builder/#joining-any-entity-or-table
+https://nivo.rocks/bar/
+https://stackoverflow.com/questions/52872500/react-js-nivo-pie-chart-not-showing-up
+https://chakra-ui.com/docs/charts/bar-chart

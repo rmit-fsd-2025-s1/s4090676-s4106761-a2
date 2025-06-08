@@ -17,7 +17,7 @@ export function GhostTable({ object }: { object: { [key: string]: string } }) {
       <Table.Body>
         <For each={Object.entries(object)}>
           {([key, value]) => (
-            <Row>
+            <Row key={key}>
               <Cell>{key}</Cell>
               <Cell>{value}</Cell>
             </Row>
