@@ -22,3 +22,10 @@ npm run dev
 ```shell
 npm run lint ; npm run type-check
 ```
+
+## Build
+
+```shell
+: # builds anything that can. For review use the dev servers instead - `npm run dev`
+npm run build
+```
