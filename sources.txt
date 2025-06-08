@@ -59,3 +59,7 @@ https://chakra-ui.com/docs/charts/bar-chart
 https://www.apollographql.com/docs/apollo-server/api/express-middleware
 https://www.apollographql.com/docs/apollo-server/security/authentication
 https://www.apollographql.com/docs/apollo-server/data/subscriptions
+https://stackoverflow.com/questions/44737043/is-it-possible-to-not-return-any-data-when-using-a-graphql-mutation
+https://the-guild.dev/graphql/ws/recipes
+https://www.npmjs.com/package/cookie-parser
+https://www.npmjs.com/package/cookie
