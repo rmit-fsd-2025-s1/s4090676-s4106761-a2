@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "lib": ["es2020"],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "esModuleInterop": true,
+    "types": ["node"],
+    "rootDirs": ["src"],
+    "baseUrl": "./src"
+  }
+}

@@ -41,3 +41,11 @@ https://stackoverflow.com/questions/60363353/typeorm-onetomany-causes-referencee
 https://typeorm.io/docs/query-builder/select-query-builder/#adding-where-expression
 https://orkhan.gitbook.io/typeorm/docs/select-query-builder
 https://github.com/typeorm/typeorm/issues/3369
+https://www.apollographql.com/docs/apollo-server/getting-started
+https://www.apollographql.com/docs/apollo-server/workflow/generate-types
+https://stackoverflow.com/questions/57040429/how-to-split-a-long-graphql-schema
+https://github.com/apollographql/docs-examples/blob/e3c133e50cd1d9ce6fb54630ca9ea9395b9bfa4d/apollo-server/v4/generated-types/package.json#L12
+https://www.npmjs.com/package/concurrently
+https://the-guild.dev/graphql/codegen/docs/getting-started/esm-typescript-usage
+https://github.com/eslint/eslint/discussions/18304
+https://stackoverflow.com/questions/73888927/set-http-only-cookie-from-resolver-in-apollo-graphql

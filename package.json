@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "npm run lint --workspaces --if-present -- --fix",
     "clean": "npm run clean --workspaces --if-present",
-    "dev": "(trap 'kill 0' SIGINT; npm run dev -w server-user & npm run dev -w web-user & npm run dev -w @repo/database)",
+    "dev": "concurrently \"npm run dev -w server-user\" \"npm run dev -w web-user\" \"npm run dev -w @repo/database)\"",
     "type-check": "npm run type-check --workspaces --if-present",
     "prepare": "npx simple-git-hooks"
   },
@@ -17,7 +17,8 @@
     "pretty-quick": "^4.1.1",
     "simple-git-hooks": "^2.13.0",
     "tsx": "^4.19.4",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "concurrently": "^9.1.2"
   },
   "packageManager": "npm@11.4.0",
   "engines": {
