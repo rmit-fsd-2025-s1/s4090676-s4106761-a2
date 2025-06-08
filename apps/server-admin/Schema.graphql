@@ -1,81 +1,81 @@
 enum Semester {
-    One
-    Two
+  One
+  Two
 }
 
 interface Account {
-    id: ID!
-    name: String!
-    email: String!
+  id: ID!
+  name: String!
+  email: String!
 }
 
 type Lecturer implements Account {
-    id: ID!
-    name: String!
-    email: String!
+  id: ID!
+  name: String!
+  email: String!
 }
 
 type Candidate implements Account {
-    id: ID!
-    name: String!
-    email: String!
-    frequency: Int!
+  id: ID!
+  name: String!
+  email: String!
+  frequency: Int!
 }
 
 type Course {
-    id: ID!
-    title: String!
-    description: String!
-    labPosition: Boolean!
-    tutorPosition: Boolean!
-    semester: Semester!
-    lecturers: [Lecturer!]!
-    approvedCandidates: [Candidate!]!
+  id: ID!
+  title: String!
+  description: String!
+  labPosition: Boolean!
+  tutorPosition: Boolean!
+  semester: Semester!
+  lecturers: [Lecturer!]!
+  approvedCandidates: [Candidate!]!
 }
 
 input CourseInput {
-    name: String
-    code: String
-    labPosition: Boolean
-    tutorPosition: Boolean
-    semester: Boolean
+  name: String
+  code: String
+  labPosition: Boolean
+  tutorPosition: Boolean
+  semester: Boolean
 }
 
 type CourseMutations {
-    create(details: CourseInput!): Course!
-    delete(id: ID!): ID!
-    edit(id: ID!, details: CourseInput!): Course!
-    assignLecturer(id: ID!, lecturerId: ID!): Course!
+  create(details: CourseInput!): Course!
+  delete(id: ID!): ID!
+  edit(id: ID!, details: CourseInput!): Course!
+  assignLecturer(id: ID!, lecturerId: ID!): Course!
 }
 
 type CandidateMutations {
-    block(candidateId: ID!): Candidate!
-    unblock(candidateId : ID!): Candidate!
+  block(candidateId: ID!): Candidate!
+  unblock(candidateId: ID!): Candidate!
 }
 
 type AuthMutations {
-    login(username: String!, password: String!): Boolean!
-    logout: Boolean!
+  login(username: String!, password: String!): Boolean!
+  logout: Boolean!
 }
 
 type Reports {
-    courses: [Course!]!
-    topCandidates: [Candidate!]!
-    bottomCandidates: [Candidate!]!
+  courses: [Course!]!
+  topCandidates: [Candidate!]!
+  bottomCandidates: [Candidate!]!
 }
 
 type Mutation {
-    course: CourseMutations!
-    candidate: CandidateMutations!
-    auth: AuthMutations!
-    echo(string : String!): String!
+  course: CourseMutations!
+  candidate: CandidateMutations!
+  auth: AuthMutations!
+  echo(string: String!): String!
 }
 
 type Query {
-    echo(string : String!): String!
+  echo(string: String!): String!
 }
 
 type Subscription {
-    report: Reports
-    echo: String!
+  report: Reports
+  echoSubscription(id: ID): String!
 }

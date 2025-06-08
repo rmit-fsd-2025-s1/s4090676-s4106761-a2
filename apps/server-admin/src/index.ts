@@ -16,11 +16,17 @@ import cookie from "cookie"
 
 const typeDefs = readFileSync("./Schema.graphql", { encoding: "utf-8" })
 
-export const pubsub = new PubSub()
+export const pubsub = new PubSub<{
+  ECHO: string
+}>()
 
 export interface DefaultContext {
   dataSources: {}
 }
+
+pubsub.subscribe("ECHO", (msg) => {
+  console.error("ECHO message sent:", msg)
+})
 
 const app = express()
 const httpServer = http.createServer(app)

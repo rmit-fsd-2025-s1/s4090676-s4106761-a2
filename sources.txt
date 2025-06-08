@@ -63,3 +63,5 @@ https://stackoverflow.com/questions/44737043/is-it-possible-to-not-return-any-da
 https://the-guild.dev/graphql/ws/recipes
 https://www.npmjs.com/package/cookie-parser
 https://www.npmjs.com/package/cookie
+https://www.apollographql.com/docs/react/data/subscriptions#1-install-required-libraries
+https://www.apollographql.com/docs/react/data/mutations

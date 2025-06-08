@@ -1,12 +1,14 @@
 import { SubscriptionResolvers } from "__generated__/resolvers-types"
-import { pubsub } from "../index"
 
-const queries: SubscriptionResolvers = {
-  resolve: {
-    echo: {
-      subscribe: () => pubsub.asyncIterableIterator(["ECHO"]),
+const subscriptions: SubscriptionResolvers = {
+  echoSubscription: {
+    subscribe: async function* () {
+      for await (const word of ["Hello", "Bonjour", "Ciao"]) {
+        yield word
+      }
     },
+    resolve: () => "why",
   },
 }
 
-export default queries
+export default subscriptions
