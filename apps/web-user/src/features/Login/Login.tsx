@@ -41,7 +41,7 @@ export function Login() {
             <Password name="Password" />
           </FieldSet>
         </Card.Body>
-        <AccountCardControls loading={login.isPending} />
+        <AccountCardControls loading={login.isPending} submitText="Login" />
       </ZodForm>
     </AccountCard>
   )
